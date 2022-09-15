@@ -43,5 +43,5 @@ margin: 0.5rem 0 0;
 padding: 1.188rem 3rem 1.188rem 1rem;
 border-radius: 2px;
 border: solid 1px #b8b8b8;
-background-color:#e8222e
+background-color:#e8222e;
 `
