@@ -1,2 +1,4 @@
-export * from './homepage';
-export * from './feed-page';
+export * from './home';
+export * from './feed';
+export * from './signup';
+export * from './adress';

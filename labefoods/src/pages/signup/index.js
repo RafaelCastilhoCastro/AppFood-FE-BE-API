@@ -1,9 +1,13 @@
 import React from 'react';
-import labefood from './labefood.svg'
+import logo from '../../img/logo.svg'
 import { useState } from 'react';
-import { ButtonSend, FormStyled, InputStyled, Main, } from '../sign-in/style';
+import { ButtonSend, FormStyled, InputStyled, Main } from './style';
+import { useNavigate } from 'react-router-dom';
 
-function PageSigin() {
+export function SignUpPage() {
+
+    const navigate = useNavigate()
+
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [cpf, setCPF] = useState("")
@@ -30,7 +34,7 @@ function PageSigin() {
 
     return (
         <Main>
-            <img src={labefood} />
+            <img src={logo} alt='logo' />
             <h2>Cadastrar</h2>
             <FormStyled onSubmit={"#"}>
                 <InputStyled
@@ -62,11 +66,9 @@ function PageSigin() {
                     onChange={changeCheckPassw}
                     type="password"
                 />
-                <ButtonSend onSubmit={"#"}>Enviar</ButtonSend>
+                <ButtonSend type="submit" >Enviar</ButtonSend>
             </FormStyled>
         </Main>
     );
     
 }
-
-export default PageSigin

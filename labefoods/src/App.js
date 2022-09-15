@@ -1,10 +1,11 @@
-import PageSigin from "./pages/sign-in";
 import { RoutesComponent } from "./routes/Routes"
+import { GlobalStyle } from "./style";
 
 function App() {
   return (
     <>
-      <RoutesComponent/>
+      <GlobalStyle />
+      <RoutesComponent />
     </>
   )
 }
