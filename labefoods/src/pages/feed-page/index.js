@@ -1,21 +1,21 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"
-import { feedContainer } from "./style";
+import { FeedContainer } from './style'
 
 export function Feedpage() {
 
     const navigate = useNavigate()
 
     return(
-        <feedContainer>
+        <FeedContainer>
             <h1>Ifuture</h1>
-            <input type="text"/>
+            <input type="text" placeholder="Restaurante"/>
             <nav>
                 <a href="">Burger</a>
                 <a href="">Asiática</a>
                 <a href="">Massas</a>
                 <a href="">Saudáveis</a>
             </nav>
-        </feedContainer>
+        </FeedContainer>
     )
 }
