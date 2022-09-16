@@ -9,6 +9,6 @@ export const HomePageContainer = styled.div`
     background-color: #e8222e;
 
     img {
-        width: 200px;
+        width: 235px;
     }
 `
