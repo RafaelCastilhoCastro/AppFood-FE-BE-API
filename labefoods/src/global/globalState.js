@@ -2,6 +2,7 @@ import React from "react";
 import { GlobalStateContext } from "./globalStateContext";
 import { useRequestData } from './../hooks/useRequestData';
 import { BASE_URL } from './../constants/constants';
+import { useState } from "react";
 
 
 export function GlobalState(props) {
