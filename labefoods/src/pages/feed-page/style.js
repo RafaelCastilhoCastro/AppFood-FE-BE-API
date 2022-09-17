@@ -1,33 +1,40 @@
 import styled from "styled-components";
 
 export const FeedContainer = styled.main`
-    height: 97vh;
-    width: 100vw;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 10px;
     text-align: center;
+    overflow: hidden;
     border: 1px solid lightgray;
 
     h1{
         border-bottom: 1px solid lightgray;
-        padding-bottom: 5px;
-        /* margin-top: 5px; */
+        padding: 15px;
+        width: 100vw;
     }
 
     input{
-        height: 3em;
+        height: 4em;
+        width: 95vw;
+        margin: 10px auto 0;
     }
 
     nav{
         display: flex;
         gap: 15px;
-        overflow: auto;
+        overflow: scroll;
         height: 2em;
-        margin: 10px 10px 0 10px;
+        align-self: normal;
+        margin: 5px 15px;
     }
 `
 
-export const restaurantCard = styled.div`
+export const RestaurantCard = styled.div`
     border: 1px solid lightgray;
-    /* padding: 5px; */
+    border-radius: 5px;
+    width: 95vw;
+    overflow: hidden;
+
 `
