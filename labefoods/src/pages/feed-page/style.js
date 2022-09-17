@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 export const FeedContainer = styled.main`
+    height: 97vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     text-align: center;
-    /* justify-content: center; */
     border: 1px solid lightgray;
 
     h1{
@@ -16,4 +17,17 @@ export const FeedContainer = styled.main`
     input{
         height: 3em;
     }
+
+    nav{
+        display: flex;
+        gap: 15px;
+        overflow: auto;
+        height: 2em;
+        margin: 10px 10px 0 10px;
+    }
+`
+
+export const restaurantCard = styled.div`
+    border: 1px solid lightgray;
+    /* padding: 5px; */
 `

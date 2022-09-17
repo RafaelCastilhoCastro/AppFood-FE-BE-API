@@ -1,13 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"
-import { FeedContainer } from './style'
+import * as All from './style'
 
 export function Feedpage() {
 
     const navigate = useNavigate()
 
     return(
-        <FeedContainer>
+        <All.FeedContainer>
             <h1>Ifuture</h1>
             <input type="text" placeholder="Restaurante"/>
             <nav>
@@ -15,7 +15,15 @@ export function Feedpage() {
                 <a href="">Asiática</a>
                 <a href="">Massas</a>
                 <a href="">Saudáveis</a>
+                <a href="">Vegetariana</a>
+                <a href="">Pizzas</a>
+                <a href="">Brasileira</a>
+                <a href="">Promoções</a>
             </nav>
-        </FeedContainer>
+            <All.restaurantCard>
+                <img src="https://picsum.photos/300/100" alt="" />
+                {/* <p>test</p> */}
+            </All.restaurantCard>
+        </All.FeedContainer>
     )
 }
