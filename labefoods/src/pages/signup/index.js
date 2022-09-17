@@ -4,6 +4,11 @@ import { useState } from 'react';
 import { ButtonSend, FormStyled, InputStyled, Main } from './style';
 import { useNavigate } from 'react-router-dom';
 import { GlobalStateContext } from './../../global/globalStateContext';
+import TextField from '@mui/material/TextField';
+import {
+    FormsPageContainer,
+    FormContainer
+} from '../../components';
 
 export function SignUpPage() {
 
@@ -30,42 +35,65 @@ export function SignUpPage() {
 
 
     return (
-        <Main>
+        <FormsPageContainer>
+            <FormContainer>
             <img src={logo} alt='logo' />
             <h2>Cadastrar</h2>
+            </FormContainer>
             <FormStyled onSubmit={"#"}>
-                <InputStyled
-                    placeholder="Nome"
-                    value={name}
-                    onChange={changeName}
-                    type="text" />
-                <InputStyled
-                    placeholder="E-mail"
-                    value={email}
-                    onChange={changeEmail}
-                    type="email"
+            <TextField
+                    sx={{ m: 1, width: '100%' }}
+                    required
+                    id="outlined-required"
+                    label="Nome"
+                    placeholder='Nome e Sobrenome'
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
                 />
-                <InputStyled
-                    placeholder="CPF"
-                    value={cpf}
-                    onChange={changeCpf}
-                    type="email"
+                <TextField
+                    sx={{ m: 1, width: '100%' }}
+                    required
+                    id="outlined-required"
+                    label="E-mail"
+                    placeholder='email@email.com'
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
                 />
-                <InputStyled
-                    placeholder="Senha"
-                    value={pwd}
-                    onChange={changePwd}
-                    type="email"
+                <TextField
+                    sx={{ m: 1, width: '100%' }}
+                    required
+                    id="outlined-required"
+                    label="CPF"
+                    placeholder='000.000.000-00'
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
                 />
-                <InputStyled
-                    placeholder="Confirme a Senha"
-                    value={pwdConfirmation}
-                    onChange={changePwdConfirmation}
-                    type="password"
+                <TextField
+                    sx={{ m: 1, width: '100%' }}
+                    required
+                    id="outlined-required"
+                    label="Senha"
+                    placeholder='Mínimo de 6 números'
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                />
+                <TextField
+                    sx={{ m: 1, width: '100%' }}
+                    required
+                    id="outlined-required"
+                    label="Confirme a Senha"
+                    placeholder='Confirme a Senha'
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
                 />
                 <ButtonSend type="submit" >Enviar</ButtonSend>
             </FormStyled>
-        </Main>
+        </FormsPageContainer>
     );
     
 }
