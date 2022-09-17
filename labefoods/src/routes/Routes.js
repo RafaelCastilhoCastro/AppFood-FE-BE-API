@@ -1,8 +1,11 @@
 import React from "react";
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import {
-    Homepage,
-    Feedpage
+    HomePage,
+    FeedPage,
+    SignUpPage,
+    AdressPage,
+    LoginPage
 } from '../pages'
 
 
@@ -10,8 +13,11 @@ export function RoutesComponent() {
     return(
         <BrowserRouter>
             <Routes>
-                <Route index element={<Homepage/>}/>
-                <Route path="/feed" element={<Feedpage/>}/>
+                <Route index element={<HomePage/>}/>
+                <Route path="/feed" element={<FeedPage/>}/>
+                <Route path="/signup" element={<SignUpPage />}/>
+                <Route path="/adress" element={<AdressPage />}/>
+                <Route path="/login" element={<LoginPage />}/>
             </Routes>
         </BrowserRouter>
     )
