@@ -51,7 +51,9 @@ export const FormContainer = styled.div`
     align-items: center;
     width: 90%;
 
-    button {
+`
+
+export const FormButton = styled.button`
         border: none;
         width: 100%;
         height: 42px;
@@ -67,7 +69,6 @@ export const FormContainer = styled.div`
         :hover {
             opacity: 0.9;
         }
-    }
 
 `
 
