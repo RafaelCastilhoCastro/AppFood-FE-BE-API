@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"
 import * as All from './style'
+import { FooterMenu } from "../../components/footer-menu";
 
 export function FeedPage() {
 
@@ -36,6 +37,17 @@ export function FeedPage() {
                     <p>Frete R$ 6,00</p>
                 </div>
             </All.RestaurantCard>
+            <All.RestaurantCard>
+                <img src="https://picsum.photos/355/100" alt="" />
+                <h3>Bullger Eldorado</h3>
+                <div>
+                    <p>30 - 45 min</p>
+                    <p>Frete R$ 6,00</p>
+                </div>
+            </All.RestaurantCard>
+            <All.FooterContainer>
+                <FooterMenu/>
+            </All.FooterContainer>
         </All.FeedContainer>
     )
 }
