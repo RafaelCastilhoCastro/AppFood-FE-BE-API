@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 export const FeedContainer = styled.main`
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
     text-align: center;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     border: 1px solid lightgray;
 
     h1{
@@ -31,10 +32,21 @@ export const FeedContainer = styled.main`
     }
 `
 
+export const RestaurantCardContainer = styled.div`
+    overflow: auto;
+
+    div{
+        margin-top: 5px;
+    }
+`
+
 export const RestaurantCard = styled.div`
     border: 1px solid lightgray;
-    border-radius: 5px;
+    border-radius: 10px;
     width: 95vw;
     overflow: hidden;
+`
 
+export const FooterContainer = styled.div`
+    margin-top: auto;
 `
