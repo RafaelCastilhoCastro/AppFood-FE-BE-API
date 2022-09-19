@@ -6,8 +6,6 @@ export const FeedContainer = styled.main`
     flex-direction: column;
     align-items: center;
     text-align: center;
-    overflow-y: auto;
-    overflow-x: hidden;
     border: 1px solid lightgray;
 
     h1{
@@ -17,27 +15,25 @@ export const FeedContainer = styled.main`
     }
 
     input{
-        height: 4em;
+        flex-shrink: 0;
+        height: 3em;
         width: 95vw;
         margin: 10px auto 0;
     }
+`
 
-    nav{
-        display: flex;
-        gap: 15px;
-        overflow: scroll;
-        height: 2em;
-        align-self: normal;
-        margin: 5px 15px;
-    }
+export const Categories = styled.div`
+    flex-shrink: 0;
+    display: flex;
+    gap: 15px;
+    overflow: scroll;
+    height: 2em;
+    align-self: normal;
+    margin: 15px 15px;
 `
 
 export const RestaurantCardContainer = styled.div`
     overflow: auto;
-
-    div{
-        margin-top: 5px;
-    }
 `
 
 export const RestaurantCard = styled.div`
@@ -45,6 +41,26 @@ export const RestaurantCard = styled.div`
     border-radius: 10px;
     width: 95vw;
     overflow: hidden;
+    margin-bottom: 10px;
+
+    img{
+        width: 100%;
+    }
+
+    h3 {
+        color: var(--title-red);
+        text-align: start;
+        margin-left: 53px;
+    }
+
+    div {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    div p {
+        color: var(--subtitle-gray);
+    }
 `
 
 export const FooterContainer = styled.div`

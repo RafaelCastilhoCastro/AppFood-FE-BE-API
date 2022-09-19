@@ -14,7 +14,7 @@ export function GlobalState(props) {
     const [cpf, setCpf] = useState("")
     const [pwd, setPwd] = useState("")
     const [pwdConfirmation, setPwdConfirmation] = useState("")
-    //const [restaurantsData, loadingRestaurants, errorRestaurants] = useRequestData(`${BASE_URL}restaurants`);
+    const [restaurantsData, loadingRestaurants, errorRestaurants] = useRequestData(`${BASE_URL}restaurants`);
    // const [restaurantInfoData, loadingRestaurantInfo, errorRestaurantInfo] = useRequestData(`${BASE_URL}restaurants/${'id'}`);
 
     // EFFECTS
@@ -25,9 +25,7 @@ export function GlobalState(props) {
 
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
-      };
-
-
+    };
 
     return (
         <GlobalStateContext.Provider
@@ -43,7 +41,8 @@ export function GlobalState(props) {
                     setPwd,
                     pwdConfirmation,
                     setPwdConfirmation,
-                    handleMouseDownPassword
+                    handleMouseDownPassword,
+                    restaurantsData
                 }
             }>
             {props.children}
