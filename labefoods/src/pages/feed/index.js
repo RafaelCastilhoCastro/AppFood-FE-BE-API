@@ -4,8 +4,10 @@ import * as All from './style'
 import { FooterMenu } from "../../components/footer-menu";
 import { GlobalStateContext } from "../../global/globalStateContext";
 import { useContext } from "react"
+import { useProtectedPage } from "../../hooks/useProtectedPage"
 
 export function FeedPage() {
+    useProtectedPage()
 
     const navigate = useNavigate()
 
