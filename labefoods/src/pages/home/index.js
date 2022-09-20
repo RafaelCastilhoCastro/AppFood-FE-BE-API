@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import { goToFeedPage } from '../../routes/Coordinator';
 
 export function HomePage() {
-    useProtectedPage()
 
     const navigate = useNavigate()
 
