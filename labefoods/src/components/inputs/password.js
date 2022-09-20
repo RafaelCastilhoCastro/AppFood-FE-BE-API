@@ -9,13 +9,13 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { GlobalStateContext } from '../../global/globalStateContext';
 
-export function PasswordInput({value, onChange, showPassword, TogglePassword, name, label, placeHolder}) {
+export function PasswordInput({ value, onChange, showPassword, togglePassword, name, label, placeHolder, error, helperText }) {
 
-    const {handleMouseDownPassword} = useContext(GlobalStateContext)
-    
+    const { handleMouseDownPassword } = useContext(GlobalStateContext)
+
     return (
         <FormControl required={true} sx={{ m: 1, width: '100%' }} variant="outlined" >
-            <InputLabel shrink={true} htmlFor="outlined-adornment-password">{label}</InputLabel>
+            <InputLabel error={error} shrink={true} htmlFor="outlined-adornment-password">{label}</InputLabel>
             <OutlinedInput
                 notched={true}
                 value={value}
@@ -23,22 +23,23 @@ export function PasswordInput({value, onChange, showPassword, TogglePassword, na
                 id="outlined-adornment-password"
                 type={showPassword ? 'text' : 'password'}
                 name={name}
+                error={error}
                 endAdornment={
                     <InputAdornment position="end">
                         <IconButton
                             aria-label="toggle password visibility"
-                            onClick={() => TogglePassword()}
+                            onClick={() => togglePassword()}
                             onMouseDown={handleMouseDownPassword}
                             edge="end"
                         >
-                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                            {showPassword ? <Visibility /> : <VisibilityOff />}
                         </IconButton>
                     </InputAdornment>
                 }
                 label={label}
                 placeholder={placeHolder}
-
             />
+            {error ? <FormHelperText error={error} >{helperText}</FormHelperText> : undefined}
         </FormControl>
     )
 }

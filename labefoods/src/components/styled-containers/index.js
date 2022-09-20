@@ -6,17 +6,13 @@ export const FormsPageContainer = styled.div`
     align-items: center;
 
     h2 {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 42px;
         font-weight: normal;
-        width: 296px;
         font-size: 16px;
         letter-spacing: -0.4px;
         text-align: center;
         color: #000;
         font-weight: 500;
+        margin: 13px 0;
     }
 
     img {
@@ -27,14 +23,11 @@ export const FormsPageContainer = styled.div`
     }
 
     a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 42px;
         font-size: 16px;
         letter-spacing: -0.4px;
         text-align: center;
         font-weight: 500;
+        margin: 13px 0;
 
         :hover {
             cursor: pointer;

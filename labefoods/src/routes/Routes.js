@@ -4,7 +4,7 @@ import {
     HomePage,
     FeedPage,
     SignUpPage,
-    AdressPage,
+    AddressPage,
     LoginPage
 } from '../pages'
 
@@ -16,7 +16,7 @@ export function RoutesComponent() {
                 <Route index element={<HomePage/>}/>
                 <Route path="/feed" element={<FeedPage/>}/>
                 <Route path="/signup" element={<SignUpPage />}/>
-                <Route path="/adress" element={<AdressPage />}/>
+                <Route path="/address" element={<AddressPage />}/>
                 <Route path="/login" element={<LoginPage />}/>
             </Routes>
         </BrowserRouter>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import logo from '../../img/logo.svg'
 import {
     FormsPageContainer,
@@ -9,21 +9,55 @@ import {
 
 } from '../../components';
 import { useForm } from '../../hooks/useForm'
+import axios from 'axios';
+import { BASE_URL } from '../../constants/constants';
+import { useNavigate } from 'react-router-dom';
+import { goToAddressPage, goToFeedPage } from '../../routes/Coordinator';
+import { GlobalStateContext } from '../../global/globalStateContext';
 
 export function LoginPage() {
 
+    const navigate = useNavigate()
+
     // STATES
 
+    const { validateEmail, validatePassword } = useContext(GlobalStateContext)
+
+    const [isEmailValid, setIsEmailValid] = useState(true);
+    const [isPasswordValid, setIsPasswordValid] = useState(true);
+
     const [showLoginPassword, setShowLoginPassword] = useState(false);
-    const [ form, onChangeInputs, clearInputs ] = useForm({
+    const [form, onChangeInputs, clearInputs] = useForm({
         email: '',
         password: ''
     });
 
     // FUNCTIONS
 
-    const ToggleLoginPassword = () => {
+    const toggleLoginPassword = () => {
         setShowLoginPassword(!showLoginPassword);
+    }
+
+    const submitForm = (e) => {
+        e.preventDefault();
+
+        setIsEmailValid(validateEmail(form.email))
+        setIsPasswordValid(validatePassword(form.password))
+
+        axios.post(`${BASE_URL}login`, form)
+            .then(response => {
+                localStorage.setItem('token', response.data.token)
+                if (response.data.user.hasAddress === true) {
+                    goToFeedPage(navigate)
+                } else {
+                    goToAddressPage(navigate)
+                }
+            })
+            .catch(err => {
+                alert(err.response.data.message)
+                console.log(err)
+            })
+        
     }
 
 
@@ -31,9 +65,29 @@ export function LoginPage() {
         <FormsPageContainer>
             <img src={logo} alt='logo' />
             <h2>Entrar</h2>
-            <FormContainer onSubmit={(e) => e.preventDefault()}>
-                <GenericInput value={form.email} onChange={onChangeInputs} name={'email'} label={'E-mail'} placeHolder={'email@email.com'} />
-                <PasswordInput value={form.password} onChange={onChangeInputs} name={'password'} label={'Password'} placeHolder={'Mínimo 6 caracteres'} showPassword={showLoginPassword} TogglePassword={ToggleLoginPassword} />
+            <FormContainer onSubmit={submitForm} >
+                <GenericInput
+                    value={form.email}
+                    onChange={onChangeInputs}
+                    name={'email'}
+                    label={'E-mail'}
+                    placeHolder={'email@email.com'}
+                    error={!isEmailValid}
+                    helperText={'E-mail inválido.'}
+                    required={true}
+                />
+                <PasswordInput
+                    value={form.password}
+                    onChange={onChangeInputs}
+                    name={'password'}
+                    label={'Password'}
+                    placeHolder={'Mínimo 6 caracteres'}
+                    showPassword={showLoginPassword}
+                    togglePassword={toggleLoginPassword}
+                    error={!isPasswordValid}
+                    helperText={'Senha inválida.'}
+                    required={true}
+                />
                 <FormButton type='submit'>Entrar</FormButton>
             </FormContainer>
             <a>Não possui cadastro? Clique aqui.</a>
