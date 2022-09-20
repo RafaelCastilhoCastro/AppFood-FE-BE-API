@@ -30,6 +30,10 @@ export const Categories = styled.div`
     height: 2em;
     align-self: normal;
     margin: 15px 15px;
+
+    ::-webkit-scrollbar { 
+        display: none; 
+    }
 `
 
 export const RestaurantCardContainer = styled.div`
