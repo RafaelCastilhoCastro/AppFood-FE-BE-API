@@ -1,126 +1,52 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import logo from '../../img/logo.svg'
-import { useState } from 'react';
-import { ButtonSend, FormsPageContainer2, FormStyled, ImgLogo, InputContainer, InputStyled, Main, PasswImg, PasswImg2, Toogle } from './style';
-import { useNavigate } from 'react-router-dom';
-import { GlobalStateContext } from './../../global/globalStateContext';
-import TextField from '@mui/material/TextField';
 import {
     FormsPageContainer,
     FormContainer,
-    FormButton
+    FormButton,
+    PasswordInput,
+    GenericInput
+
 } from '../../components';
-import VisiblePassword from '../../img/senha-2@2x.png'
-import InvisiblePassword from '../../img/senha@2x.png'
+import { useForm } from '../../hooks/useForm'
 
 export function SignUpPage() {
 
-    const navigate = useNavigate()
+    // STATES
 
-    const { name, setName, email, setEmail, cpf, setCpf, pwd, setPwd, pwdConfirmation, setPwdConfirmation } = useContext(GlobalStateContext)
+    const [showSignUpPassword, setShowSignUpPassword] = useState(false);
+    const [showSignUpPasswordConfirm, setShowSignUpPasswordConfirm] = useState(false);
+    const [ form, onChangeInputs, clearInputs ] = useForm({
+        name: '',
+        email: '',
+        cpf: '',
+        password: '',
+        confirmpsw: ''
+    });
 
-    const [clickState, setClickState] = useState(false)
-    const [clickState2, setClickState2] = useState(false)
+    // FUNCTIONS
 
-    const toogleBtn = (event) => {
-        event.preventDefault();
-        setClickState(PrevState => !PrevState)
+    const ToggleSignUpPassword = () => {
+        setShowSignUpPassword(!showSignUpPassword);
     }
-
-    const toogleBtn2 = (event) => {
-        event.preventDefault();
-        setClickState2(PrevState => !PrevState)
-    }
-
-    const changeName = (event) => {
-        setName(event.target.value)
-    }
-    const changeEmail = (event) => {
-        setEmail(event.target.value)
-    }
-    const changeCpf = (event) => {
-        setCpf(event.target.value)
-    }
-    const changePwd = (event) => {
-        setPwd(event.target.value)
-    }
-    const changePwdConfirmation = (event) => {
-        setPwdConfirmation(event.target.value)
+    const ToggleSignUpPasswordConfirm = () => {
+        setShowSignUpPasswordConfirm(!showSignUpPasswordConfirm);
     }
 
 
     return (
-        <FormsPageContainer2>
-            <FormContainer>
-                <ImgLogo src={logo} alt='logo' />
-                <h2>Cadastrar</h2>
+        <FormsPageContainer>
+            <img src={logo} alt='logo' />
+            <h2>Entrar</h2>
+            <FormContainer onSubmit={(e) => e.preventDefault()}>
+                <GenericInput value={form.name} onChange={onChangeInputs} name={'name'} label={'Nome'} placeHolder={'Nome e sobrenome'} />
+                <GenericInput value={form.email} onChange={onChangeInputs} name={'email'} label={'E-mail'} placeHolder={'email@email.com'} />
+                <GenericInput value={form.cpf} onChange={onChangeInputs} name={'cpf'} label={'CPF'} placeHolder={'000.000.000-00'} />
+                <PasswordInput value={form.password} onChange={onChangeInputs} name={'password'} label={'Password'} placeHolder={'Mínimo 6 caracteres'} showPassword={showSignUpPassword} TogglePassword={ToggleSignUpPassword} />
+                <PasswordInput value={form.confirmpsw} onChange={onChangeInputs} name={'confirmpsw'} label={'Confirm'} placeHolder={'Mesmos 6 caracteres'} showPassword={showSignUpPasswordConfirm} TogglePassword={ToggleSignUpPasswordConfirm} />
+                <FormButton type='submit'>Enviar</FormButton>
             </FormContainer>
-            <FormStyled onSubmit={"#"}>
-                <TextField
-                    sx={{ m: 1, width: '100%', marginLeft: "0", }}
-                    required
-                    id="outlined-required"
-                    label="Nome"
-                    placeholder='Nome e Sobrenome'
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
-                <TextField
-                    sx={{ m: 1, width: '100%', marginLeft: "0", }}
-                    required
-                    id="outlined-required"
-                    label="E-mail"
-                    placeholder='email@email.com'
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
-                <TextField
-                    sx={{ m: 1, width: '100%', marginLeft: "0" }}
-                    required
-                    id="outlined-required"
-                    label="CPF"
-                    placeholder='000.000.000-00'
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
-                <TextField
-                    sx={{ m: 1, width: '100%', marginLeft: "0" }}
-                    required
-                    id="outlined-required"
-                    label="Senha"
-                    type={clickState ? "text" : "password"}
-                    placeholder='Mínimo de 6 números'
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
-                <Toogle onClick={toogleBtn}>
-
-                    {clickState ? <PasswImg src={InvisiblePassword} /> : <PasswImg src={VisiblePassword} />}
-
-                </Toogle>
-                <TextField
-                    sx={{ m: 1, width: '100%', marginLeft: "0" }}
-                    required
-                    id="outlined-required"
-                    type={clickState2 ? "text" : "password"}
-                    label="Confirme a Senha"
-                    placeholder='Confirme a Senha'
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
-                <Toogle onClick={toogleBtn2}>
-
-                    {clickState2 ? <PasswImg2 src={InvisiblePassword} /> : <PasswImg2 src={VisiblePassword} />}
-                    
-                </Toogle>
-                <FormButton type="submit" >Enviar</FormButton>
-            </FormStyled>
-        </FormsPageContainer2>
+        </FormsPageContainer>
     );
 
 }
