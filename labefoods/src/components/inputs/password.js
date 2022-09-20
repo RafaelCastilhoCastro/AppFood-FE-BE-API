@@ -28,12 +28,13 @@ export function PasswordInput({value, onChange}) {
                 onChange={onChange}
                 id="outlined-adornment-password"
                 type={showPassword ? 'text' : 'password'}
+                name='password'
                 endAdornment={
                     <InputAdornment position="end">
                         <IconButton
                             aria-label="toggle password visibility"
                             onClick={() => onClickShowPassword()}
-                            onMouseDown={() => handleMouseDownPassword()}
+                            onMouseDown={handleMouseDownPassword}
                             edge="end"
                         >
                             {showPassword ? <VisibilityOff /> : <Visibility />}
