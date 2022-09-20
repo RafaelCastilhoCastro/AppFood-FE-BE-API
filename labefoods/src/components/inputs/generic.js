@@ -1,17 +1,17 @@
 import { TextField } from '@mui/material'
 import React from 'react'
 
-export function EmailInput({ value, onChange }) {
+export function GenericInput({ value, onChange, label, placeHolder, name }) {
   return (
     <TextField
       sx={{ m: 1, width: '100%' }}
       required
       id="outlined-required"
-      label="E-mail"
-      placeholder='email@email.com'
+      label={label}
+      placeholder={placeHolder}
       value={value}
       onChange={onChange}
-      name='email'
+      name={name}
       InputLabelProps={{
         shrink: true,
       }}
