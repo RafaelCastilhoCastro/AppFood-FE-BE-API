@@ -24,7 +24,7 @@ export function FeedPage() {
         setSelectionValue(e.target.value)
     }
 
-    const restaurantList = restaurantsData && restaurantsData.map((item, index) => {
+    const restaurantList = restaurantsData && restaurantsData.restaurants.map((item, index) => {
         return (
                 <All.RestaurantCard key={index} onClick={() => onClickCard(item.id)}>
                     <img src={item.logoUrl} alt="Logo do restaurante" />

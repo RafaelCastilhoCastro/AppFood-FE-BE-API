@@ -1,9 +1,7 @@
 import React from 'react'
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
-import { useState } from "react";
 import { BASE_URL } from "../../constants/constants";
+import { useRequestData } from '../../hooks/useRequestData';
 
 
 
@@ -15,21 +13,40 @@ export function DetailsPage() {
 
     // REQUEST
 
-    // useEffect(() => {
-    //     getRestaurantDetail()
-    // }, [])
+    const [restaurantData, isLoading, error] = useRequestData(`${BASE_URL}restaurants/${pathParams.id}`)
 
-    // const getRestaurantDetail = () => {
+    const detailsArray = [{ ...restaurantData }]
 
-    //     axios.get(`${BASE_URL}${pathParams/id}`)
-    //         .then((response) => {
-    //             console.log(response.data)
+    // RENDER RESTAURANT DETAIL
 
-    //         })
-    //         .catch((err) => { console.log(err) })
-    // }
+    const detailsList = restaurantData && detailsArray.map(details => {
+        return (
+            <div key={details.restaurant.id}>
+                <img src={details.restaurant.logoUrl} alt='logo' />
+                <span>{details.restaurant.name}</span>
+                <span>{details.restaurant.category}</span>
+                <span>{details.restaurant.deliveryTime}</span>
+                <span>{details.restaurant.shipping}</span>
+                <span>{details.restaurant.address}</span>
+                {details.restaurant.products.map(product => {
+                    return (
+                        <div key={product.id}>
+                            <span>{product.name}</span>
+                            <span>{product.description}</span>
+                            <span>{product.price}</span>
+                        </div>
+                    )
+                })}
+            </div>
+        )
+    })
+
 
     return (
-        <>oi</>
+        <>
+            {isLoading && <span>Carregando...</span>}
+            {!isLoading && restaurantData && detailsList}
+            {!isLoading && !restaurantData && error}
+        </>
     )
 }

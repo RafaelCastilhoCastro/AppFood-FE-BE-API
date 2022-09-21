@@ -23,7 +23,7 @@ export function AddressPage() {
 
     const { validateWords, validateNumber, isValidated } = useContext(GlobalStateContext)
 
-    const [form, onChangeInputs, clearInputs] = useForm({
+    const [form, onChangeInputs] = useForm({
         street: '',
         number: '',
         neighbourhood: '',
