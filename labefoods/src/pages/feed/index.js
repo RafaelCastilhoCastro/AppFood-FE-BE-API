@@ -5,6 +5,7 @@ import { FooterMenu } from "../../components/footer-menu";
 import { GlobalStateContext } from "../../global/globalStateContext";
 import { useContext } from "react"
 import { useProtectedPage } from "../../hooks/useProtectedPage"
+import { goToDetailPage } from "../../routes/Coordinator";
 
 export function FeedPage() {
     
@@ -15,13 +16,17 @@ export function FeedPage() {
     const { restaurantsData } = useContext(GlobalStateContext)
     const [selectionValue, setSelectionValue] = useState('Todos')
 
+    const onClickCard = (id) => {
+        goToDetailPage(navigate, id)
+    }
+
     const handleSelection = (e) => {
         setSelectionValue(e.target.value)
     }
 
     const restaurantList = restaurantsData && restaurantsData.map((item, index) => {
         return (
-                <All.RestaurantCard key={index}>
+                <All.RestaurantCard key={index} onClick={() => onClickCard(item.id)}>
                     <img src={item.logoUrl} alt="Logo do restaurante" />
                     <h3>{item.name}</h3>
                     <div>
