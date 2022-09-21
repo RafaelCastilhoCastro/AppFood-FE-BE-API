@@ -13,7 +13,11 @@ export function FeedPage() {
     const navigate = useNavigate()
 
     const { restaurantsData } = useContext(GlobalStateContext)
-    const [selectionValue, setSelectionValue] = useState('Burger')
+    const [selectionValue, setSelectionValue] = useState('Todos')
+
+    const handleSelection = (e) => {
+        setSelectionValue(e.target.value)
+    }
 
     const restaurantList = restaurantsData && restaurantsData.map((item, index) => {
         return (
@@ -35,15 +39,15 @@ export function FeedPage() {
             <h1>Ifuture</h1>
             <input type="text" placeholder="Restaurante"/>
             <All.Categories>
-                <input onClick={(e) => setSelectionValue(e.target.value)} autoFocus type='button' value='Todos'/>
-                <input onClick={(e) => setSelectionValue(e.target.value)} type='button' value='Burger'/>
-                <input onClick={(e) => setSelectionValue(e.target.value)} type='button' value='Asiática'/>
-                <input onClick={(e) => setSelectionValue(e.target.value)} type='button' value='Massas'/>
-                <input onClick={(e) => setSelectionValue(e.target.value)} type='button' value='Saudáveis'/>
-                <input onClick={(e) => setSelectionValue(e.target.value)} type='button' value='Vegetariana'/>
-                <input onClick={(e) => setSelectionValue(e.target.value)} type='button' value='Pizzas'/>
-                <input onClick={(e) => setSelectionValue(e.target.value)} type='button' value='Brasileira'/>
-                <input onClick={(e) => setSelectionValue(e.target.value)} type='button' value='Promoções'/>
+                <input onClick={handleSelection} autoFocus type='button' value='Todos'/>
+                <input onClick={handleSelection} type='button' value='Burger'/>
+                <input onClick={handleSelection} type='button' value='Asiática'/>
+                <input onClick={handleSelection} type='button' value='Massas'/>
+                <input onClick={handleSelection} type='button' value='Saudáveis'/>
+                <input onClick={handleSelection} type='button' value='Vegetariana'/>
+                <input onClick={handleSelection} type='button' value='Pizzas'/>
+                <input onClick={handleSelection} type='button' value='Brasileira'/>
+                <input onClick={handleSelection} type='button' value='Promoções'/>
             </All.Categories>
 
             <All.RestaurantCardContainer>
