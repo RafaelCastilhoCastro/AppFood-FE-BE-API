@@ -1,16 +1,27 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
     FormsPageContainer,
     FormContainer,
     FormButton,
     GenericInput
 } from '../../components';
+import { BASE_URL } from '../../constants/constants';
+import { GlobalStateContext } from '../../global/globalStateContext';
 import { useForm } from '../../hooks/useForm'
+import { goToFeedPage } from '../../routes/Coordinator';
 
 
 export function AddressPage() {
 
+    const navigate = useNavigate()
+
+    const identification = localStorage.getItem('identification')
+
     // STATES
+
+    const { validateWords, validateNumber, isValidated } = useContext(GlobalStateContext)
 
     const [form, onChangeInputs, clearInputs] = useForm({
         street: '',
@@ -21,13 +32,45 @@ export function AddressPage() {
         complement: ''
     });
 
+    const [isStreetValid, setIsStreetValid] = useState(true);
+    const [isNumberValid, setIsNumberValid] = useState(true);
+    const [isNeighbourhoodValid, setIsNeighbourhoodValid] = useState(true);
+    const [isCityValid, setIsCityValid] = useState(true);
+    const [isStateValid, setIsStateValid] = useState(true);
+
     // FUNCTIONS
 
+    const submitForm = (e) => {
+        e.preventDefault();
+
+        setIsStreetValid(validateWords(form.street))
+        setIsNumberValid(validateNumber(form.number))
+        setIsNeighbourhoodValid(validateWords(form.neighbourhood))
+        setIsCityValid(validateWords(form.city))
+        setIsStateValid(validateWords(form.state))
+
+
+        if (validateWords(form.street) && validateNumber(form.number) && validateWords(form.neighbourhood) && validateWords(form.city) && validateWords(form.state)) {
+            isValidated.current = true
+        }
+
+        isValidated.current && axios.put(`${BASE_URL}address`, form, { headers: { auth: identification } })
+            .then(response => {
+                console.log(response)
+                localStorage.setItem('token', response.data.token)
+                goToFeedPage(navigate)
+                isValidated.current = false
+            })
+            .catch(err => {
+                alert(err.response.data.message)
+                console.log(err)
+            })
+    }
 
     return (
         <FormsPageContainer>
             <h2>Meu endereço</h2>
-            <FormContainer onSubmit={(e) => e.preventDefault()}>
+            <FormContainer onSubmit={submitForm}>
                 <GenericInput
                     value={form.street}
                     onChange={onChangeInputs}
@@ -35,6 +78,8 @@ export function AddressPage() {
                     label={'Logradouro'}
                     placeHolder={'Rua / Av.'}
                     required={true}
+                    error={!isStreetValid}
+                    helperText={'Digite um endereço com pelo menos 3 letras.'}
                 />
                 <GenericInput
                     value={form.number}
@@ -43,6 +88,8 @@ export function AddressPage() {
                     label={'Número'}
                     placeHolder={'Número'}
                     required={true}
+                    error={!isNumberValid}
+                    helperText={'Digite apenas números.'}
                 />
                 <GenericInput
                     value={form.complement}
@@ -51,6 +98,7 @@ export function AddressPage() {
                     label={'Complemento'}
                     placeHolder={'Apto. / Bloco'}
                     required={false}
+                    error={false}
                 />
                 <GenericInput
                     value={form.neighbourhood}
@@ -59,6 +107,8 @@ export function AddressPage() {
                     label={'Bairro'}
                     placeHolder={'Bairro'}
                     required={true}
+                    error={!isNeighbourhoodValid}
+                    helperText={'Digite um bairro com pelo menos 3 letras.'}
                 />
                 <GenericInput
                     value={form.city}
@@ -67,6 +117,8 @@ export function AddressPage() {
                     label={'Cidade'}
                     placeHolder={'Cidade'}
                     required={true}
+                    error={!isCityValid}
+                    helperText={'Digite uma cidade com pelo menos 3 letras.'}                    
                 />
                 <GenericInput
                     value={form.state}
@@ -75,6 +127,8 @@ export function AddressPage() {
                     label={'Estado'}
                     placeHolder={'Estado'}
                     required={true}
+                    error={!isStateValid}
+                    helperText={'Digite um estado com pelo menos 3 letras.'}
                 />
                 <FormButton type='submit'>Salvar</FormButton>
             </FormContainer>

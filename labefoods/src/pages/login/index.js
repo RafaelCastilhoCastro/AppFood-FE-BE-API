@@ -21,7 +21,7 @@ export function LoginPage() {
 
     // STATES
 
-    const { validateEmail, validatePassword } = useContext(GlobalStateContext)
+    const { validateEmail, validatePassword, isValidated } = useContext(GlobalStateContext)
 
     const [isEmailValid, setIsEmailValid] = useState(true);
     const [isPasswordValid, setIsPasswordValid] = useState(true);
@@ -44,7 +44,11 @@ export function LoginPage() {
         setIsEmailValid(validateEmail(form.email))
         setIsPasswordValid(validatePassword(form.password))
 
-        axios.post(`${BASE_URL}login`, form)
+        if (validateEmail(form.email) && validatePassword(form.password)) {
+            isValidated.current = true
+        }
+
+        isValidated.current && axios.post(`${BASE_URL}login`, form)
             .then(response => {
                 localStorage.setItem('token', response.data.token)
                 if (response.data.user.hasAddress === true) {
@@ -52,6 +56,7 @@ export function LoginPage() {
                 } else {
                     goToAddressPage(navigate)
                 }
+                isValidated.current = false
             })
             .catch(err => {
                 alert(err.response.data.message)
