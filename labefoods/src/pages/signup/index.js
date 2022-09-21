@@ -21,7 +21,7 @@ export function SignUpPage() {
 
     // STATES
 
-    const { validateWords, validateEmail, validatePassword, validateCPF } = useContext(GlobalStateContext)
+    const { validateWords, validateEmail, validatePassword, validateCPF, isValidated } = useContext(GlobalStateContext)
 
     const [isNameValid, setIsNameValid] = useState(true);
     const [isEmailValid, setIsEmailValid] = useState(true);
@@ -56,23 +56,27 @@ export function SignUpPage() {
         setIsCPFValid(validateCPF(form.cpf))
         setIsPasswordValid(validatePassword(form.password))
 
-        if (form.password !== form.confirmpsw) {
-            setIsConfirmPasswordValid(false)
-        } else {
+        if (form.password === form.confirmpsw) {
             setIsConfirmPasswordValid(true)
+        } else {
+            setIsConfirmPasswordValid(false)
         }
 
-        axios.post(`${BASE_URL}signup`, form)
+        if (validateWords(form.name) && validateEmail(form.email) && validateCPF(form.cpf) && validatePassword(form.password) && (form.password === form.confirmpsw)) {
+            isValidated.current = true
+        }
+
+        isValidated.current && axios.post(`${BASE_URL}signup`, form)
             .then(response => {
                 console.log(response)
-                localStorage.setItem('token', response.data.token)
+                localStorage.setItem('identification', response.data.token)
                 goToAddressPage(navigate)
+                isValidated.current = false
             })
             .catch(err => {
                 alert(err.response.data.message)
                 console.log(err)
-            })
-        
+            })        
     }
 
 
