@@ -9,3 +9,6 @@ export const goToFeedPage = (navigate) => {
 export const goToAddressPage = (navigate) => {
     navigate("/address")
 }
+export const goToDetailPage = (navigate, id) => {
+    navigate(`/details/${id}`)
+}

@@ -5,7 +5,8 @@ import {
     FeedPage,
     SignUpPage,
     AddressPage,
-    LoginPage
+    LoginPage,
+    DetailsPage
 } from '../pages'
 
 
@@ -18,6 +19,7 @@ export function RoutesComponent() {
                 <Route path="/signup" element={<SignUpPage />}/>
                 <Route path="/address" element={<AddressPage />}/>
                 <Route path="/login" element={<LoginPage />}/>
+                <Route path="/details/:id" element={<DetailsPage/>}/>
             </Routes>
         </BrowserRouter>
     )
