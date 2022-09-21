@@ -31,6 +31,23 @@ export const Categories = styled.div`
     align-self: normal;
     margin: 15px 15px;
 
+    input {
+        width: auto;
+        height: auto;
+        background: transparent;
+        cursor: pointer;    
+        border: none !important;
+        font-weight: 700;
+        font-size: 1.2rem;
+
+        :focus {
+            outline: none;
+            color: red;
+        }
+    }
+
+
+
     ::-webkit-scrollbar { 
         display: none; 
     }
@@ -49,6 +66,7 @@ export const RestaurantCard = styled.div`
 
     img{
         width: 100%;
+        height: 15rem;
     }
 
     h3 {
