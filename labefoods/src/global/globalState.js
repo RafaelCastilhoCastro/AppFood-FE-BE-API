@@ -43,7 +43,8 @@ export function GlobalState(props) {
                     validateWords,
                     validateCPF,
                     validateNumber,
-                    isValidated
+                    isValidated,
+                    
                 }
             }>
             {props.children}

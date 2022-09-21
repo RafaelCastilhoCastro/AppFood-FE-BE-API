@@ -5,14 +5,14 @@ import {
     FormContainer,
     FormButton,
     PasswordInput,
-    GenericInput
-
+    GenericInput,
+    SignUpButton
 } from '../../components';
 import { useForm } from '../../hooks/useForm'
 import axios from 'axios';
 import { BASE_URL } from '../../constants/constants';
 import { useNavigate } from 'react-router-dom';
-import { goToAddressPage, goToFeedPage } from '../../routes/Coordinator';
+import { goToAddressPage, goToFeedPage, goToSignupPage } from '../../routes/Coordinator';
 import { GlobalStateContext } from '../../global/globalStateContext';
 
 export function LoginPage() {
@@ -27,7 +27,7 @@ export function LoginPage() {
     const [isPasswordValid, setIsPasswordValid] = useState(true);
 
     const [showLoginPassword, setShowLoginPassword] = useState(false);
-    const [form, onChangeInputs, clearInputs] = useForm({
+    const [form, onChangeInputs] = useForm({
         email: '',
         password: ''
     });
@@ -62,7 +62,7 @@ export function LoginPage() {
                 alert(err.response.data.message)
                 console.log(err)
             })
-        
+
     }
 
 
@@ -95,7 +95,7 @@ export function LoginPage() {
                 />
                 <FormButton type='submit'>Entrar</FormButton>
             </FormContainer>
-            <a>Não possui cadastro? Clique aqui.</a>
+            <SignUpButton onClick={() => goToSignupPage(navigate)} >Não possui cadastro? Clique aqui.</SignUpButton>
         </FormsPageContainer>
     );
 

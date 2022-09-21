@@ -31,7 +31,7 @@ export function SignUpPage() {
 
     const [showSignUpPassword, setShowSignUpPassword] = useState(false);
     const [showSignUpPasswordConfirm, setShowSignUpPasswordConfirm] = useState(false);
-    const [form, onChangeInputs, clearInputs] = useForm({
+    const [form, onChangeInputs] = useForm({
         name: '',
         email: '',
         cpf: '',

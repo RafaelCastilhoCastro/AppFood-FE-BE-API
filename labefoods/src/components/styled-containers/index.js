@@ -22,19 +22,6 @@ export const FormsPageContainer = styled.div`
         object-fit: contain;
     }
 
-    a {
-        font-size: 16px;
-        letter-spacing: -0.4px;
-        text-align: center;
-        font-weight: 500;
-        margin: 13px 0;
-
-        :hover {
-            cursor: pointer;
-            text-decoration: underline;
-        }
-    }
-
 `
 
 export const FormContainer = styled.form`
@@ -63,5 +50,20 @@ export const FormButton = styled.button`
             opacity: 0.9;
         }
 
+`
+
+export const SignUpButton = styled.button`
+    background: none;
+    border: none;
+    font-size: 16px;
+    letter-spacing: -0.4px;
+    text-align: center;
+    font-weight: 500;
+    margin: 13px 0;
+
+    :hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
 `
 
