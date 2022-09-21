@@ -35,7 +35,8 @@ export function FeedPage() {
             <h1>Ifuture</h1>
             <input type="text" placeholder="Restaurante"/>
             <All.Categories>
-                <input onClick={(e) => setSelectionValue(e.target.value)} autoFocus type='button' value='Burger'/>
+                <input onClick={(e) => setSelectionValue(e.target.value)} autoFocus type='button' value='Todos'/>
+                <input onClick={(e) => setSelectionValue(e.target.value)} type='button' value='Burger'/>
                 <input onClick={(e) => setSelectionValue(e.target.value)} type='button' value='Asiática'/>
                 <input onClick={(e) => setSelectionValue(e.target.value)} type='button' value='Massas'/>
                 <input onClick={(e) => setSelectionValue(e.target.value)} type='button' value='Saudáveis'/>
