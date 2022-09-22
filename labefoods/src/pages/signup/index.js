@@ -5,7 +5,10 @@ import {
     FormContainer,
     FormButton,
     PasswordInput,
-    GenericInput
+    GenericInput,
+    Header,
+    SignUpImg,
+    PageTitle
 
 } from '../../components';
 import { useForm } from '../../hooks/useForm'
@@ -82,8 +85,9 @@ export function SignUpPage() {
 
     return (
         <FormsPageContainer>
-            <img src={logo} alt='logo' />
-            <h2>Cadastrar</h2>
+            <Header buttonExists={true} />
+            <SignUpImg src={logo} alt='logo' />
+            <PageTitle>Cadastrar</PageTitle>
             <FormContainer onSubmit={submitForm}>
                 <GenericInput
                     value={form.name}
