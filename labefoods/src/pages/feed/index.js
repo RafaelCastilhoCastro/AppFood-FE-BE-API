@@ -69,7 +69,10 @@ export function FeedPage() {
     return(
         <All.FeedContainer>
             <h1>Ifuture</h1>
-            <input type="text" placeholder="Restaurante" value={filterValue} onChange={handleFilter}/>
+            <All.InputContainer>
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input type="text" placeholder="Restaurante" value={filterValue} onChange={handleFilter}/>
+            </All.InputContainer>
             <All.Categories>
                 <button  className={selected === "1" ? "selected" : undefined} id={"1"} onClick={handleSelection} value='Todos'>Todos</button>
                 <button className={selected === "2" ? "selected" : undefined} id={"2"} onClick={handleSelection} value='Árabe'>Árabe</button>
