@@ -13,10 +13,14 @@ export function FeedPage() {
 
     const navigate = useNavigate()
 
+    // STATES
+
     const { restaurantsData } = useContext(GlobalStateContext)
     const [selectionValue, setSelectionValue] = useState('Todos')
     const [filterValue, setFilterValue] = useState('')
-    const [active, setActive] = useState("1");
+    const [selected, setSelected] = useState("1");
+
+    //FUNCTIONS
 
     const onClickCard = (id) => {
         goToDetailPage(navigate, id)
@@ -24,12 +28,14 @@ export function FeedPage() {
 
     const handleSelection = (e) => {
         setSelectionValue(e.target.value)
-        setActive(e.target.id);
+        setSelected(e.target.id);
     }
 
     const handleFilter = (e) => {
         setFilterValue(e.target.value)
     }
+
+    //FILTERS
 
     const arrayFiltrado = restaurantsData && restaurantsData.restaurants.filter((item, index, array) => {
         if (selectionValue === 'Todos') {
@@ -45,9 +51,7 @@ export function FeedPage() {
         }
     })
 
-    console.log(arrayFiltrado)
-
-
+    // MAP
 
     const restaurantList = arrayFiltrado && arrayFiltrado.map((item, index) => {
         return (
@@ -62,23 +66,21 @@ export function FeedPage() {
         )
     })
 
-    console.log(selectionValue)
-
     return(
         <All.FeedContainer>
             <h1>Ifuture</h1>
             <input type="text" placeholder="Restaurante" value={filterValue} onChange={handleFilter}/>
             <All.Categories>
-                <button  className={active === "1" ? "active" : undefined} id={"1"} onClick={handleSelection} value='Todos'>Todos</button>
-                <button className={active === "2" ? "active" : undefined} id={"2"} onClick={handleSelection} value='Árabe'>Árabe</button>
-                <button className={active === "3" ? "active" : undefined} id={"3"} onClick={handleSelection} value='Asiática'>Asiática</button>
-                <button className={active === "4" ? "active" : undefined} id={"4"} onClick={handleSelection} value='Hamburguer'>Hamburguer</button>
-                <button className={active === "5" ? "active" : undefined} id={"5"} onClick={handleSelection} value='Italiana'>Italiana</button>
-                <button className={active === "6" ? "active" : undefined} id={"6"} onClick={handleSelection} value='Sorvetes'>Sorvetes</button>
-                <button className={active === "7" ? "active" : undefined} id={"7"} onClick={handleSelection} value='Carnes'>Carnes</button>
-                <button className={active === "8" ? "active" : undefined} id={"8"} onClick={handleSelection} value='Baiana'>Baiana</button>
-                <button className={active === "9" ? "active" : undefined} id={"9"} onClick={handleSelection} value='Petiscos'>Petiscos</button>
-                <button className={active === "10" ? "active" : undefined} id={"10"} onClick={handleSelection} value='Mexicana'>Mexicana</button>
+                <button  className={selected === "1" ? "selected" : undefined} id={"1"} onClick={handleSelection} value='Todos'>Todos</button>
+                <button className={selected === "2" ? "selected" : undefined} id={"2"} onClick={handleSelection} value='Árabe'>Árabe</button>
+                <button className={selected === "3" ? "selected" : undefined} id={"3"} onClick={handleSelection} value='Asiática'>Asiática</button>
+                <button className={selected === "4" ? "selected" : undefined} id={"4"} onClick={handleSelection} value='Hamburguer'>Hamburguer</button>
+                <button className={selected === "5" ? "selected" : undefined} id={"5"} onClick={handleSelection} value='Italiana'>Italiana</button>
+                <button className={selected === "6" ? "selected" : undefined} id={"6"} onClick={handleSelection} value='Sorvetes'>Sorvetes</button>
+                <button className={selected === "7" ? "selected" : undefined} id={"7"} onClick={handleSelection} value='Carnes'>Carnes</button>
+                <button className={selected === "8" ? "selected" : undefined} id={"8"} onClick={handleSelection} value='Baiana'>Baiana</button>
+                <button className={selected === "9" ? "selected" : undefined} id={"9"} onClick={handleSelection} value='Petiscos'>Petiscos</button>
+                <button className={selected === "10" ? "selected" : undefined} id={"10"} onClick={handleSelection} value='Mexicana'>Mexicana</button>
             </All.Categories>
 
             <All.RestaurantCardContainer>

@@ -31,7 +31,7 @@ export const Categories = styled.div`
     align-self: normal;
     margin: 15px 15px;
 
-    .active {
+    .selected {
             color: red;
         }
 
