@@ -45,14 +45,15 @@ export function FeedPage() {
             <input type="text" placeholder="Restaurante"/>
             <All.Categories>
                 <input onClick={handleSelection} autoFocus type='button' value='Todos'/>
-                <input onClick={handleSelection} type='button' value='Burger'/>
+                <input onClick={handleSelection} type='button' value='Árabe'/>
                 <input onClick={handleSelection} type='button' value='Asiática'/>
-                <input onClick={handleSelection} type='button' value='Massas'/>
-                <input onClick={handleSelection} type='button' value='Saudáveis'/>
-                <input onClick={handleSelection} type='button' value='Vegetariana'/>
-                <input onClick={handleSelection} type='button' value='Pizzas'/>
-                <input onClick={handleSelection} type='button' value='Brasileira'/>
-                <input onClick={handleSelection} type='button' value='Promoções'/>
+                <input onClick={handleSelection} type='button' value='Hamburguer'/>
+                <input onClick={handleSelection} type='button' value='Italiana'/>
+                <input onClick={handleSelection} type='button' value='Sorvetes'/>
+                <input onClick={handleSelection} type='button' value='Carnes'/>
+                <input onClick={handleSelection} type='button' value='Baiana'/>
+                <input onClick={handleSelection} type='button' value='Petiscos'/>
+                <input onClick={handleSelection} type='button' value='Mexicana'/>
             </All.Categories>
 
             <All.RestaurantCardContainer>
