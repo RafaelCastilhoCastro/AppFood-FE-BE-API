@@ -90,7 +90,6 @@ export function FeedPage() {
                 </ul>
             </All.RestaurantCardContainer>
 
-
             <FooterMenu />
         </All.FeedContainer>
     )
