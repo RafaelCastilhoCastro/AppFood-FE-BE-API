@@ -31,7 +31,11 @@ export const Categories = styled.div`
     align-self: normal;
     margin: 15px 15px;
 
-    input {
+    .active {
+            color: red;
+        }
+
+    button {
         width: auto;
         height: auto;
         background: transparent;
@@ -39,11 +43,6 @@ export const Categories = styled.div`
         border: none !important;
         font-weight: 700;
         font-size: 1.2rem;
-
-        :focus {
-            outline: none;
-            color: red;
-        }
     }
 
 
