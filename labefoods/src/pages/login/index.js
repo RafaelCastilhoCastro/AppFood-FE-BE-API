@@ -6,7 +6,9 @@ import {
     FormButton,
     PasswordInput,
     GenericInput,
-    SignUpButton
+    SignUpButton,
+    LoginImg,
+    PageTitle
 } from '../../components';
 import { useForm } from '../../hooks/useForm'
 import axios from 'axios';
@@ -68,8 +70,8 @@ export function LoginPage() {
 
     return (
         <FormsPageContainer>
-            <img src={logo} alt='logo' />
-            <h2>Entrar</h2>
+            <LoginImg src={logo} alt='logo' />
+            <PageTitle>Entrar</PageTitle>
             <FormContainer onSubmit={submitForm} >
                 <GenericInput
                     value={form.email}
