@@ -17,3 +17,7 @@ export const goToDetailPage = (navigate, id) => {
 export const goToSignupPage = (navigate) => {
     navigate("/signup")
 }
+
+export const goBack = (navigate) => {
+    navigate(-1)
+}
