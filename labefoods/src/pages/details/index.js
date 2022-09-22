@@ -2,7 +2,9 @@ import React from 'react'
 import { useNavigate, useParams } from "react-router-dom";
 import { BASE_URL } from "../../constants/constants";
 import { useRequestData } from '../../hooks/useRequestData';
-
+import { ContainerTop, DescriptionDetail, RestImg, RestaurtTitle, DetailDiv, PrincDiv, ContainerProd, ProductImg, ItemName, ItemDetail, PriceItem, TextDiv, AddButton, DescriptionDetail2 } from './style';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { goBack } from '../../routes/Coordinator';
 
 
 
@@ -20,24 +22,36 @@ export function DetailsPage() {
     // RENDER RESTAURANT DETAIL
 
     const detailsList = restaurantData && detailsArray.map(details => {
-        return (
+        return (<div>
             <div key={details.restaurant.id}>
-                <img src={details.restaurant.logoUrl} alt='logo' />
-                <span>{details.restaurant.name}</span>
-                <span>{details.restaurant.category}</span>
-                <span>{details.restaurant.deliveryTime}</span>
-                <span>{details.restaurant.shipping}</span>
-                <span>{details.restaurant.address}</span>
+                <ContainerTop><ArrowBackIosIcon style={{"cursor":"pointer"}} onClick={()=>{goBack(navigate)}}> </ArrowBackIosIcon> Restaurante </ContainerTop>
+                <RestImg src={details.restaurant.logoUrl} alt='logo' />
+                <RestaurtTitle>{details.restaurant.name}</RestaurtTitle>
+                <DescriptionDetail>{details.restaurant.category}</DescriptionDetail>
+                <DescriptionDetail2><span>{details.restaurant.deliveryTime - 10} - {details.restaurant.deliveryTime} min</span> Frete R${details.restaurant.shipping},00</DescriptionDetail2>
+                <DescriptionDetail>Frete R${details.restaurant.shipping},00</DescriptionDetail>
+                <DescriptionDetail>{details.restaurant.address}</DescriptionDetail>
+
+                <PrincDiv>Principais</PrincDiv>
+
                 {details.restaurant.products.map(product => {
                     return (
-                        <div key={product.id}>
-                            <span>{product.name}</span>
-                            <span>{product.description}</span>
-                            <span>{product.price}</span>
-                        </div>
+                        // <DetailDiv>
+                        <ContainerProd key={product.id}>
+                            <ProductImg src={product.photoUrl} />
+                            <TextDiv>
+                                <ItemName>{product.name}</ItemName>
+                                <ItemDetail>{product.description}</ItemDetail>
+                                <PriceItem>R${product.price.toFixed(0)},00
+                                <AddButton>Adicionar</AddButton></PriceItem>
+                            </TextDiv>
+                        </ContainerProd>
+                        // </DetailDiv>
                     )
-                })}
-            </div>
+                })
+                }
+            </div >
+        </div >
         )
     })
 
