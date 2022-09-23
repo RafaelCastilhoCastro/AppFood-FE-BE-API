@@ -27,13 +27,14 @@ export const Categories = styled.div`
     overflow: scroll;
     height: 2em;
     align-self: normal;
-    margin: 15px 15px;
+    margin: ${(props) => props.margin};
 
     .selected {
             color: red;
         }
 
     button {
+        display: ${(props) => props.display};
         width: auto;
         height: auto;
         background: transparent;
@@ -52,6 +53,11 @@ export const Categories = styled.div`
 
 export const RestaurantCardContainer = styled.div`
     overflow: auto;
+    ul {
+        span {
+            font-weight: 700;
+        }
+    }
 `
 
 export const RestaurantCard = styled.div`

@@ -17,8 +17,12 @@ export function FeedPage() {
     // STATES
 
     const { restaurantsData } = useContext(GlobalStateContext)
-    const [selectionValue, setSelectionValue] = useState('Todos')
+    const [selectionValue, setSelectionValue] = useState('Asiática')
     const [filterValue, setFilterValue] = useState('')
+    const [focused, setFocused] = useState(false);
+    const [title, setTitle] = useState('iFuture')
+    const [display, setDisplay] = useState('inline')
+    const [margin, setMargin] = useState('15px 15px')
     const [selected, setSelected] = useState("1");
 
     //FUNCTIONS
@@ -36,9 +40,27 @@ export function FeedPage() {
         setFilterValue(e.target.value)
     }
 
+    const onFocus = () => {
+        setFocused(true);
+        setTitle('Buscar');
+        setDisplay('none');
+        setMargin('0px')
+        setSelectionValue('Todos')
+    }
+
+    const onBlur = () => {
+        setFocused(false);
+        setTitle('iFuture');
+        setDisplay('inline');
+        setMargin('15px 15px')
+        setSelectionValue('Asiática')
+        setSelected('1')
+        setFilterValue('')
+    }
+
     //FILTERS
 
-    const arrayFiltrado = restaurantsData && restaurantsData.restaurants.filter((item, index, array) => {
+    let arrayFiltrado = restaurantsData && restaurantsData.restaurants.filter((item, index, array) => {
         if (selectionValue === 'Todos') {
             return array
         } else {
@@ -46,42 +68,61 @@ export function FeedPage() {
         }
     }).filter((item, index, array) => {
         if (filterValue === '') {
-            return array
+                return array  
         } else {
             return item.name.toLowerCase().includes(filterValue.toLowerCase())
         }
     })
 
+    if (arrayFiltrado && focused && filterValue === '') {
+        arrayFiltrado = [0]
+    }
+
+    if (arrayFiltrado?.length === 0) {
+        arrayFiltrado = [1]
+    }
+
     // MAP
 
-    const restaurantList = arrayFiltrado && arrayFiltrado.map((item, index) => {
-        return (
-            <All.RestaurantCard key={index} onClick={() => onClickCard(item.id)}>
-                <img src={item.logoUrl} alt="Logo do restaurante" />
-                <h3>{item.name}</h3>
-                <div>
-                    <p>{`${item.deliveryTime} min`}</p>
-                    <p>{`Frete R$ ${item.shipping},00`}</p>
-                </div>
-            </All.RestaurantCard>
-        )
+    const restaurantList = arrayFiltrado && arrayFiltrado.map((item, index, array) => {
+        if (item === 0) {
+            return (
+                <span key={index}>Busque por nome de restaurante</span>
+            )
+        } else if (item === 1) {
+            return (
+                <span key={index}>Não encontramos :(</span>
+            )
+        }  else {
+            return (
+                <All.RestaurantCard key={index} onClick={() => onClickCard(item.id)}>
+                    <img src={item.logoUrl} alt="Logo do restaurante" />
+                    <h3>{item.name}</h3>
+                    <div>
+                        <p>{`${item.deliveryTime} min`}</p>
+                        <p>{`Frete R$ ${item.shipping},00`}</p>
+                    </div>
+                </All.RestaurantCard>
+            )
+        }
     })
+
+    
 
     return (
         <All.FeedContainer>
-            <Header pageTitle={selectionValue === 'Todos' && filterValue === '' ? 'Ifuture' : 'Busca'}/>
-            <input type="text" placeholder="Restaurante" value={filterValue} onChange={handleFilter} />
-            <All.Categories>
-                <button className={selected === "1" ? "selected" : undefined} id={"1"} onClick={handleSelection} value='Todos'>Todos</button>
-                <button className={selected === "2" ? "selected" : undefined} id={"2"} onClick={handleSelection} value='Árabe'>Árabe</button>
-                <button className={selected === "3" ? "selected" : undefined} id={"3"} onClick={handleSelection} value='Asiática'>Asiática</button>
-                <button className={selected === "4" ? "selected" : undefined} id={"4"} onClick={handleSelection} value='Hamburguer'>Hamburguer</button>
-                <button className={selected === "5" ? "selected" : undefined} id={"5"} onClick={handleSelection} value='Italiana'>Italiana</button>
-                <button className={selected === "6" ? "selected" : undefined} id={"6"} onClick={handleSelection} value='Sorvetes'>Sorvetes</button>
-                <button className={selected === "7" ? "selected" : undefined} id={"7"} onClick={handleSelection} value='Carnes'>Carnes</button>
-                <button className={selected === "8" ? "selected" : undefined} id={"8"} onClick={handleSelection} value='Baiana'>Baiana</button>
-                <button className={selected === "9" ? "selected" : undefined} id={"9"} onClick={handleSelection} value='Petiscos'>Petiscos</button>
-                <button className={selected === "10" ? "selected" : undefined} id={"10"} onClick={handleSelection} value='Mexicana'>Mexicana</button>
+            <Header pageTitle={title} />
+            <input onFocus={onFocus} onBlur={onBlur} type="text" placeholder="Restaurante" value={filterValue} onChange={handleFilter} />
+             <All.Categories display={display} margin={margin}>
+             <button className={selected === "1" ? "selected" : undefined} id={"1"} onClick={handleSelection} value='Asiática'>Asiática</button>
+                <button className={selected === "2" ? "selected" : undefined} id={"2"} onClick={handleSelection} value='Hamburguer'>Burger</button>
+                <button className={selected === "3" ? "selected" : undefined} id={"3"} onClick={handleSelection} value='Árabe'>Árabe</button>
+                <button className={selected === "4" ? "selected" : undefined} id={"4"} onClick={handleSelection} value='Italiana'>Italiana</button>
+                <button className={selected === "5" ? "selected" : undefined} id={"5"} onClick={handleSelection} value='Sorvetes'>Sorvetes</button>
+                <button className={selected === "6" ? "selected" : undefined} id={"6"} onClick={handleSelection} value='Carnes'>Carnes</button>
+                <button className={selected === "7" ? "selected" : undefined} id={"7"} onClick={handleSelection} value='Baiana'>Baiana</button>
+                <button className={selected === "8" ? "selected" : undefined} id={"8"} onClick={handleSelection} value='Petiscos'>Petiscos</button>
+                <button className={selected === "9" ? "selected" : undefined} id={"9"} onClick={handleSelection} value='Mexicana'>Mexicana</button>
             </All.Categories>
 
             <All.RestaurantCardContainer>
