@@ -69,7 +69,7 @@ export function FeedPage() {
 
     return (
         <All.FeedContainer>
-            <Header pageTitle={'Ifuture'} />
+            <Header pageTitle={selectionValue === 'Todos' && filterValue === '' ? 'Ifuture' : 'Busca'}/>
             <input type="text" placeholder="Restaurante" value={filterValue} onChange={handleFilter} />
             <All.Categories>
                 <button className={selected === "1" ? "selected" : undefined} id={"1"} onClick={handleSelection} value='Todos'>Todos</button>
