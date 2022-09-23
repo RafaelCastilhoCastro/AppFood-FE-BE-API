@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate, useParams } from "react-router-dom";
 import { BASE_URL } from "../../constants/constants";
 import { useRequestData } from '../../hooks/useRequestData';
-import { ContainerTop, DescriptionDetail, RestImg, RestaurtTitle, DetailDiv, PrincDiv, ContainerProd, ProductImg, ItemName, ItemDetail, PriceItem, TextDiv, AddButton, DescriptionDetail2 } from './style';
+import * as All from './style';
 import { Header, LoadingDiv } from '../../components';
 import gif from '../../img/loading-gif.gif'
 
@@ -24,35 +24,34 @@ export function DetailsPage() {
     const detailsList = restaurantData && detailsArray.map(details => {
         return (
             <div key={details.restaurant.id}>
-                <RestImg src={details.restaurant.logoUrl} alt='logo' />
-                <RestaurtTitle>{details.restaurant.name}</RestaurtTitle>
-                <DescriptionDetail>{details.restaurant.category}</DescriptionDetail>
-                <DescriptionDetail2><span>{details.restaurant.deliveryTime - 10} - {details.restaurant.deliveryTime} min</span> Frete R${details.restaurant.shipping},00</DescriptionDetail2>
-                <DescriptionDetail>Frete R${details.restaurant.shipping},00</DescriptionDetail>
-                <DescriptionDetail>{details.restaurant.address}</DescriptionDetail>
+                <All.RestaurantImg src={details.restaurant.logoUrl} alt='logo' />
+                <All.RestaurtTitle>{details.restaurant.name}</All.RestaurtTitle>
+                <All.DescriptionDetail>{details.restaurant.category}</All.DescriptionDetail>
+                <All.DescriptionContainer>
+                    <All.DescriptionDetail>{details.restaurant.deliveryTime} min</All.DescriptionDetail>
+                    <All.DescriptionDetail>R$ {details.restaurant.shipping},00</All.DescriptionDetail>
+                </All.DescriptionContainer>
+                <All.DescriptionDetail>{details.restaurant.address}</All.DescriptionDetail>
 
-                <PrincDiv>Principais</PrincDiv>
+                <All.PrincDiv>Principais</All.PrincDiv>
 
                 {details.restaurant.products.map(product => {
                     return (
-                        // <DetailDiv>
-                        <ContainerProd key={product.id}>
-                            <ProductImg src={product.photoUrl} />
-                            <TextDiv>
-                                <ItemName>{product.name}</ItemName>
-                                <ItemDetail>{product.description}</ItemDetail>
-                                <PriceItem>R${product.price.toFixed(0)},00
-                                    <AddButton>Adicionar</AddButton></PriceItem>
-                            </TextDiv>
-                        </ContainerProd>
-                        // </DetailDiv>
+                        <All.ContainerProd key={product.id}>
+                            <All.ProductImg src={product.photoUrl} />
+                            <All.TextDiv>
+                                <All.ItemName>{product.name}</All.ItemName>
+                                <All.ItemDetail>{product.description}</All.ItemDetail>
+                                <All.PriceItem>R${product.price.toFixed(0)},00
+                                    <All.AddButton>Adicionar</All.AddButton></All.PriceItem>
+                            </All.TextDiv>
+                        </All.ContainerProd>
                     )
                 })
                 }
             </div >
         )
     })
-
 
     return (
         <>
