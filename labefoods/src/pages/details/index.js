@@ -5,6 +5,7 @@ import { useRequestData } from '../../hooks/useRequestData';
 import { ContainerTop, DescriptionDetail, RestImg, RestaurtTitle, DetailDiv, PrincDiv, ContainerProd, ProductImg, ItemName, ItemDetail, PriceItem, TextDiv, AddButton, DescriptionDetail2 } from './style';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { goBack } from '../../routes/Coordinator';
+import { Header } from '../../components';
 
 
 
@@ -22,9 +23,8 @@ export function DetailsPage() {
     // RENDER RESTAURANT DETAIL
 
     const detailsList = restaurantData && detailsArray.map(details => {
-        return (<div>
+        return (
             <div key={details.restaurant.id}>
-                <ContainerTop><ArrowBackIosIcon style={{"cursor":"pointer"}} onClick={()=>{goBack(navigate)}}> </ArrowBackIosIcon> Restaurante </ContainerTop>
                 <RestImg src={details.restaurant.logoUrl} alt='logo' />
                 <RestaurtTitle>{details.restaurant.name}</RestaurtTitle>
                 <DescriptionDetail>{details.restaurant.category}</DescriptionDetail>
@@ -43,7 +43,7 @@ export function DetailsPage() {
                                 <ItemName>{product.name}</ItemName>
                                 <ItemDetail>{product.description}</ItemDetail>
                                 <PriceItem>R${product.price.toFixed(0)},00
-                                <AddButton>Adicionar</AddButton></PriceItem>
+                                    <AddButton>Adicionar</AddButton></PriceItem>
                             </TextDiv>
                         </ContainerProd>
                         // </DetailDiv>
@@ -51,13 +51,13 @@ export function DetailsPage() {
                 })
                 }
             </div >
-        </div >
         )
     })
 
 
     return (
         <>
+            <Header buttonExists={true} pageTitle={'Restaurante'} />
             {isLoading && <span>Carregando...</span>}
             {!isLoading && restaurantData && detailsList}
             {!isLoading && !restaurantData && error}

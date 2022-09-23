@@ -1,12 +1,10 @@
 import styled from "styled-components";
 
 export const FeedContainer = styled.main`
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    border: 1px solid lightgray;
 
     h1{
         border-bottom: 1px solid lightgray;
@@ -96,8 +94,4 @@ export const RestaurantCard = styled.div`
     div p {
         color: var(--subtitle-gray);
     }
-`
-
-export const FooterContainer = styled.div`
-    margin-top: auto;
 `

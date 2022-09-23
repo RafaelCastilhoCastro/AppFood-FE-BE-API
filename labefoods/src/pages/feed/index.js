@@ -6,9 +6,10 @@ import { GlobalStateContext } from "../../global/globalStateContext";
 import { useContext } from "react"
 import { useProtectedPage } from "../../hooks/useProtectedPage"
 import { goToDetailPage } from "../../routes/Coordinator";
+import { Header } from "../../components";
 
 export function FeedPage() {
-    
+
     useProtectedPage()
 
     const navigate = useNavigate()
@@ -55,18 +56,18 @@ export function FeedPage() {
 
     const restaurantList = arrayFiltrado && arrayFiltrado.map((item, index) => {
         return (
-                <All.RestaurantCard key={index} onClick={() => onClickCard(item.id)}>
-                    <img src={item.logoUrl} alt="Logo do restaurante" />
-                    <h3>{item.name}</h3>
-                    <div>
-                        <p>{`${item.deliveryTime} min`}</p>
-                        <p>{`Frete R$ ${item.shipping},00`}</p>
-                    </div>
-                </All.RestaurantCard>
+            <All.RestaurantCard key={index} onClick={() => onClickCard(item.id)}>
+                <img src={item.logoUrl} alt="Logo do restaurante" />
+                <h3>{item.name}</h3>
+                <div>
+                    <p>{`${item.deliveryTime} min`}</p>
+                    <p>{`Frete R$ ${item.shipping},00`}</p>
+                </div>
+            </All.RestaurantCard>
         )
     })
 
-    return(
+    return (
         <All.FeedContainer>
             <h1>Ifuture</h1>
             <All.InputContainer>
@@ -74,7 +75,7 @@ export function FeedPage() {
                 <input type="text" placeholder="Restaurante" value={filterValue} onChange={handleFilter}/>
             </All.InputContainer>
             <All.Categories>
-                <button  className={selected === "1" ? "selected" : undefined} id={"1"} onClick={handleSelection} value='Todos'>Todos</button>
+                <button className={selected === "1" ? "selected" : undefined} id={"1"} onClick={handleSelection} value='Todos'>Todos</button>
                 <button className={selected === "2" ? "selected" : undefined} id={"2"} onClick={handleSelection} value='Árabe'>Árabe</button>
                 <button className={selected === "3" ? "selected" : undefined} id={"3"} onClick={handleSelection} value='Asiática'>Asiática</button>
                 <button className={selected === "4" ? "selected" : undefined} id={"4"} onClick={handleSelection} value='Hamburguer'>Hamburguer</button>
@@ -92,9 +93,7 @@ export function FeedPage() {
                 </ul>
             </All.RestaurantCardContainer>
 
-            <All.FooterContainer>
-                <FooterMenu/>
-            </All.FooterContainer>
+            <FooterMenu />
         </All.FeedContainer>
     )
 }

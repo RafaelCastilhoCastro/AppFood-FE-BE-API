@@ -5,12 +5,15 @@ import {
     FormsPageContainer,
     FormContainer,
     FormButton,
-    GenericInput
+    GenericInput,
+    PageTitle,
+    Header
 } from '../../components';
 import { BASE_URL } from '../../constants/constants';
 import { GlobalStateContext } from '../../global/globalStateContext';
 import { useForm } from '../../hooks/useForm'
 import { goToFeedPage } from '../../routes/Coordinator';
+import { AddressPageTitle } from './style';
 
 
 export function AddressPage() {
@@ -69,7 +72,8 @@ export function AddressPage() {
 
     return (
         <FormsPageContainer>
-            <h2>Meu endereço</h2>
+            <Header buttonExists={true} />
+            <AddressPageTitle>Meu endereço</AddressPageTitle>
             <FormContainer onSubmit={submitForm}>
                 <GenericInput
                     value={form.street}

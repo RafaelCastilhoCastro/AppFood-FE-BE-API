@@ -4,24 +4,15 @@ export const FormsPageContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+`
 
-    h2 {
-        font-weight: normal;
-        font-size: 16px;
-        letter-spacing: -0.4px;
-        text-align: center;
-        color: #000;
-        font-weight: 500;
-        margin: 13px 0;
-    }
-
-    img {
-        width: 104px;
-        height: 58px;
-        margin: 68px 128px 16px;
-        object-fit: contain;
-    }
-
+export const PageTitle = styled.h2`
+    font-size: 16px;
+    letter-spacing: -0.4px;
+    text-align: center;
+    color: #000;
+    font-weight: 500;
+    margin: 13px 0;
 `
 
 export const FormContainer = styled.form`
@@ -65,5 +56,19 @@ export const SignUpButton = styled.button`
         cursor: pointer;
         text-decoration: underline;
     }
+`
+
+export const SignUpImg = styled.img`
+    width: 104px;
+    height: 58px;
+    margin: 22px 128px 16px;
+    object-fit: contain;
+`
+
+export const LoginImg = styled.img`
+    width: 104px;
+    height: 58px;
+    margin: 68px 128px 16px;
+    object-fit: contain;
 `
 
