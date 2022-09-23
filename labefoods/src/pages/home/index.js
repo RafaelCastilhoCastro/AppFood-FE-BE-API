@@ -1,5 +1,5 @@
 import React from "react";
-import gif from '../../img/loading-gif.gif'
+import gif from '../../img/home-gif.gif'
 import { HomePageContainer } from "./style";
 import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';

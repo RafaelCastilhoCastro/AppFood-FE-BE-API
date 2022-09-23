@@ -12,8 +12,8 @@ export const useRequestData = (url) => {
         getData()
     }, [])
 
-    const myHeaders =  {
-        headers:{
+    const myHeaders = {
+        headers: {
             auth: token
         }
     }
@@ -22,8 +22,10 @@ export const useRequestData = (url) => {
         setIsLoading(true);
         axios.get(url, myHeaders)
             .then(response => {
-                setIsLoading(false)
-                setData(response.data)
+                setTimeout(() => {
+                    setIsLoading(false)
+                    setData(response.data)
+                }, 1000)
             }).catch(err => {
                 setIsLoading(false)
                 setError(err)

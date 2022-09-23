@@ -9,12 +9,9 @@ export function GlobalState(props) {
 
     // STATES
 
-    const [restaurantsData, loadingRestaurants, errorRestaurants] = useRequestData(`${BASE_URL}restaurants`);
-    // const [restaurantInfoData, loadingRestaurantInfo, errorRestaurantInfo] = useRequestData(`${BASE_URL}restaurants/${'id'}`);
-
-    // EFFECTS
-
     // REQUESTS
+
+
 
     // FUNCTIONS
 
@@ -37,14 +34,12 @@ export function GlobalState(props) {
             value={
                 {
                     handleMouseDownPassword,
-                    restaurantsData,
                     validateEmail,
                     validatePassword,
                     validateWords,
                     validateCPF,
                     validateNumber,
-                    isValidated,
-                    
+                    isValidated                    
                 }
             }>
             {props.children}
