@@ -4,33 +4,19 @@ export const FeedContainer = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
 
-    h1{
-        border-bottom: 1px solid lightgray;
-        padding: 15px;
-        width: 100vw;
-    }
-
-    input{
-        flex-shrink: 0;
-        height: 3em;
-        width: 95vw;
-        margin: 10px auto 0;
-    }
 `
 
 export const Categories = styled.div`
     flex-shrink: 0;
     display: flex;
-    gap: 15px;
     overflow: scroll;
-    height: 2em;
-    align-self: normal;
-    margin: ${(props) => props.margin};
+    height: 42px;
+    margin-bottom: ${(props) => props.margin};
+    width: 100%;
 
     .selected {
-            color: red;
+            color: #e8222e;
         }
 
     button {
@@ -40,11 +26,10 @@ export const Categories = styled.div`
         background: transparent;
         cursor: pointer;    
         border: none !important;
-        font-weight: 700;
-        font-size: 1.2rem;
+        font-weight: 500;
+        font-size: 16px;
+        margin: 0 7%;
     }
-
-
 
     ::-webkit-scrollbar { 
         display: none; 
@@ -53,17 +38,13 @@ export const Categories = styled.div`
 
 export const RestaurantCardContainer = styled.div`
     overflow: auto;
-    ul {
-        span {
-            font-weight: 700;
-        }
-    }
+    width: 90%;
 `
 
 export const RestaurantCard = styled.div`
     border: 1px solid lightgray;
     border-radius: 10px;
-    width: 95vw;
+    width: 100%;
     overflow: hidden;
     margin-bottom: 10px;
 
@@ -73,7 +54,7 @@ export const RestaurantCard = styled.div`
     }
 
     h3 {
-        color: var(--title-red);
+        color: #e8222e;
         text-align: start;
         margin-left: 53px;
     }

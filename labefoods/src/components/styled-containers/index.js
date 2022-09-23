@@ -72,3 +72,14 @@ export const LoginImg = styled.img`
     object-fit: contain;
 `
 
+export const LoadingDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+
+    img {
+        width: 130px;
+    }
+    
+`

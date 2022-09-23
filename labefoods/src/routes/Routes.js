@@ -6,7 +6,11 @@ import {
     SignUpPage,
     AddressPage,
     LoginPage,
-    DetailsPage
+    DetailsPage,
+    CartPage,
+    ProfilePage,
+    EditAddressPage,
+    EditUserPage
 } from '../pages'
 
 
@@ -20,6 +24,10 @@ export function RoutesComponent() {
                 <Route path="/address" element={<AddressPage />}/>
                 <Route path="/login" element={<LoginPage />}/>
                 <Route path="/details/:id" element={<DetailsPage/>}/>
+                <Route path="/cart" element={<CartPage/>}/>
+                <Route path="/profile" element={<ProfilePage/>}/>
+                <Route path="/edit-address" element={<EditAddressPage/>}/>
+                <Route path="/edit-user" element={<EditUserPage/>}/>
             </Routes>
         </BrowserRouter>
     )

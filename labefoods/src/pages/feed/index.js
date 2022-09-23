@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import * as All from './style'
 import { FooterMenu } from "../../components/footer-menu";
-import { GlobalStateContext } from "../../global/globalStateContext";
-import { useContext } from "react"
 import { useProtectedPage } from "../../hooks/useProtectedPage"
 import { goToDetailPage } from "../../routes/Coordinator";
-import { Header } from "../../components";
+import { Header, LoadingDiv } from "../../components";
+import SearchIcon from '@mui/icons-material/Search';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import { BASE_URL } from "../../constants/constants";
+import { useRequestData } from "../../hooks/useRequestData";
+import gif from '../../img/loading-gif.gif'
 
 export function FeedPage() {
 
@@ -16,14 +20,15 @@ export function FeedPage() {
 
     // STATES
 
-    const { restaurantsData } = useContext(GlobalStateContext)
-    const [selectionValue, setSelectionValue] = useState('Asiática')
+    const [restaurantsData, loadingRestaurants, errorRestaurants] = useRequestData(`${BASE_URL}restaurants`);
+
+    const [selectionValue, setSelectionValue] = useState('Árabe')
     const [filterValue, setFilterValue] = useState('')
     const [focused, setFocused] = useState(false);
     const [title, setTitle] = useState('iFuture')
     const [display, setDisplay] = useState('inline')
-    const [margin, setMargin] = useState('15px 15px')
-    const [selected, setSelected] = useState("1");
+    const [margin, setMargin] = useState('8px')
+    const [selected, setSelected] = useState("1")
 
     //FUNCTIONS
 
@@ -52,8 +57,8 @@ export function FeedPage() {
         setFocused(false);
         setTitle('iFuture');
         setDisplay('inline');
-        setMargin('15px 15px')
-        setSelectionValue('Asiática')
+        setMargin('8px')
+        setSelectionValue('Árabe')
         setSelected('1')
         setFilterValue('')
     }
@@ -68,7 +73,7 @@ export function FeedPage() {
         }
     }).filter((item, index, array) => {
         if (filterValue === '') {
-                return array  
+            return array
         } else {
             return item.name.toLowerCase().includes(filterValue.toLowerCase())
         }
@@ -93,7 +98,7 @@ export function FeedPage() {
             return (
                 <span key={index}>Não encontramos :(</span>
             )
-        }  else {
+        } else {
             return (
                 <All.RestaurantCard key={index} onClick={() => onClickCard(item.id)}>
                     <img src={item.logoUrl} alt="Logo do restaurante" />
@@ -107,31 +112,42 @@ export function FeedPage() {
         }
     })
 
-    
+
 
     return (
         <All.FeedContainer>
             <Header pageTitle={title} />
-            <input onFocus={onFocus} onBlur={onBlur} type="text" placeholder="Restaurante" value={filterValue} onChange={handleFilter} />
-             <All.Categories display={display} margin={margin}>
-             <button className={selected === "1" ? "selected" : undefined} id={"1"} onClick={handleSelection} value='Asiática'>Asiática</button>
-                <button className={selected === "2" ? "selected" : undefined} id={"2"} onClick={handleSelection} value='Hamburguer'>Burger</button>
-                <button className={selected === "3" ? "selected" : undefined} id={"3"} onClick={handleSelection} value='Árabe'>Árabe</button>
-                <button className={selected === "4" ? "selected" : undefined} id={"4"} onClick={handleSelection} value='Italiana'>Italiana</button>
-                <button className={selected === "5" ? "selected" : undefined} id={"5"} onClick={handleSelection} value='Sorvetes'>Sorvetes</button>
-                <button className={selected === "6" ? "selected" : undefined} id={"6"} onClick={handleSelection} value='Carnes'>Carnes</button>
-                <button className={selected === "7" ? "selected" : undefined} id={"7"} onClick={handleSelection} value='Baiana'>Baiana</button>
+            <TextField
+                id="outlined-start-adornment"
+                sx={{ m: 1, width: '90%' }}
+                InputProps={{
+                    startAdornment: <InputAdornment position="start"><SearchIcon /> </InputAdornment>,
+                }}
+                value={filterValue}
+                onChange={handleFilter}
+                placeholder="Restaurante"
+                onFocus={onFocus}
+                onBlur={onBlur}
+            />
+            <All.Categories display={display} margin={margin}>
+                <button className={selected === "1" ? "selected" : undefined} id={"1"} onClick={handleSelection} value='Árabe'>Árabe</button>
+                <button className={selected === "2" ? "selected" : undefined} id={"2"} onClick={handleSelection} value='Asiática'>Asiática</button>
+                <button className={selected === "3" ? "selected" : undefined} id={"3"} onClick={handleSelection} value='Baiana'>Baiana</button>
+                <button className={selected === "4" ? "selected" : undefined} id={"4"} onClick={handleSelection} value='Hamburguer'>Burger</button>
+                <button className={selected === "5" ? "selected" : undefined} id={"5"} onClick={handleSelection} value='Carnes'>Carnes</button>
+                <button className={selected === "6" ? "selected" : undefined} id={"6"} onClick={handleSelection} value='Italiana'>Italiana</button>
+                <button className={selected === "7" ? "selected" : undefined} id={"7"} onClick={handleSelection} value='Mexicana'>Mexicana</button>
                 <button className={selected === "8" ? "selected" : undefined} id={"8"} onClick={handleSelection} value='Petiscos'>Petiscos</button>
-                <button className={selected === "9" ? "selected" : undefined} id={"9"} onClick={handleSelection} value='Mexicana'>Mexicana</button>
+                <button className={selected === "9" ? "selected" : undefined} id={"9"} onClick={handleSelection} value='Sorvetes'>Sorvetes</button>
             </All.Categories>
 
             <All.RestaurantCardContainer>
-                <ul>
-                    {restaurantList}
-                </ul>
+                {loadingRestaurants && <LoadingDiv><img src={gif} alt="gif" /></LoadingDiv>}
+                {!loadingRestaurants && restaurantsData && restaurantList}
+                {!loadingRestaurants && !restaurantsData && errorRestaurants}
             </All.RestaurantCardContainer>
 
-            <FooterMenu />
+            <FooterMenu selectedPage={'Feed'} />
         </All.FeedContainer>
     )
 }

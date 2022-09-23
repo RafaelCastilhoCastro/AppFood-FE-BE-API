@@ -3,9 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { BASE_URL } from "../../constants/constants";
 import { useRequestData } from '../../hooks/useRequestData';
 import { ContainerTop, DescriptionDetail, RestImg, RestaurtTitle, DetailDiv, PrincDiv, ContainerProd, ProductImg, ItemName, ItemDetail, PriceItem, TextDiv, AddButton, DescriptionDetail2 } from './style';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import { goBack } from '../../routes/Coordinator';
-import { Header } from '../../components';
+import { Header, LoadingDiv } from '../../components';
+import gif from '../../img/loading-gif.gif'
 
 
 
@@ -58,7 +57,7 @@ export function DetailsPage() {
     return (
         <>
             <Header buttonExists={true} pageTitle={'Restaurante'} />
-            {isLoading && <span>Carregando...</span>}
+            {isLoading && <LoadingDiv><img src={gif} alt="gif" /></LoadingDiv>}
             {!isLoading && restaurantData && detailsList}
             {!isLoading && !restaurantData && error}
         </>

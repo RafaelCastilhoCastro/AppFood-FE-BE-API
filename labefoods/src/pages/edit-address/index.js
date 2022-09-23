@@ -6,17 +6,16 @@ import {
     FormContainer,
     FormButton,
     GenericInput,
-    PageTitle,
     Header
 } from '../../components';
 import { BASE_URL } from '../../constants/constants';
 import { GlobalStateContext } from '../../global/globalStateContext';
 import { useForm } from '../../hooks/useForm'
-import { goToFeedPage } from '../../routes/Coordinator';
-import { AddressPageTitle } from './style';
+import { goToProfilePage } from '../../routes/Coordinator';
+import { MarginDiv } from './style';
 
 
-export function AddressPage() {
+export function EditAddressPage() {
 
     const navigate = useNavigate()
 
@@ -60,7 +59,7 @@ export function AddressPage() {
         isValidated.current && axios.put(`${BASE_URL}address`, form, { headers: { auth: identification } })
             .then(response => {
                 localStorage.setItem('token', response.data.token)
-                goToFeedPage(navigate)
+                goToProfilePage(navigate)
                 isValidated.current = false
             })
             .catch(err => {
@@ -71,8 +70,8 @@ export function AddressPage() {
 
     return (
         <FormsPageContainer>
-            <Header buttonExists={true} />
-            <AddressPageTitle>Meu endereço</AddressPageTitle>
+            <Header buttonExists={true} pageTitle={'Endereço'} />
+            <MarginDiv />
             <FormContainer onSubmit={submitForm}>
                 <GenericInput
                     value={form.street}

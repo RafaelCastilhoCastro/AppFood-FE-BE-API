@@ -52,8 +52,8 @@ export function LoginPage() {
 
         isValidated.current && axios.post(`${BASE_URL}login`, form)
             .then(response => {
-                localStorage.setItem('token', response.data.token)
                 if (response.data.user.hasAddress === true) {
+                    localStorage.setItem('token', response.data.token)
                     goToFeedPage(navigate)
                 } else {
                     goToAddressPage(navigate)
