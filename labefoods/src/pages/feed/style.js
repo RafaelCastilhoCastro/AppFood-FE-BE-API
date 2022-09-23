@@ -11,26 +11,12 @@ export const FeedContainer = styled.main`
         padding: 15px;
         width: 100vw;
     }
-`
-
-export const InputContainer = styled.div`
-    width: 100%;
-    /* display: flex; */
-    
-    i{
-        position: absolute;
-        padding-left: 15px;
-        padding-top: 22px;
-        color: lightgray;
-    }
 
     input{
         flex-shrink: 0;
         height: 3em;
-        width: 70%;
+        width: 95vw;
         margin: 10px auto 0;
-        padding-left: 41px;
-        padding-top: 1px;
     }
 `
 
