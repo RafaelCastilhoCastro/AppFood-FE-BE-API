@@ -6,4 +6,7 @@ export const FooterContainer = styled.div`
     justify-content: space-around;
     border-top: 1px solid lightgray;
     padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    background-color: white;
 `
