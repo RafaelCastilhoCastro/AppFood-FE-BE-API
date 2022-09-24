@@ -3,7 +3,7 @@ import { Header, FooterMenu, LoadingDiv } from "../../components";
 import { BASE_URL } from '../../constants/constants';
 import { useRequestData } from '../../hooks/useRequestData';
 import gif from '../../img/loading-gif.gif'
-import { AddressDiv, HistoryCard, HistoryDiv, InfoDiv, ProfileDiv } from './style';
+import * as All from './style'
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import { useNavigate } from 'react-router-dom';
 import { goToEditAddressPage, goToEditUserPage } from '../../routes/Coordinator';
@@ -26,23 +26,23 @@ export function ProfilePage() {
 
     const profileInfo = profileData && profileArray.map(profile => {
         return (
-            <ProfileDiv key={profile.user.id}>
-                <InfoDiv>
+            <All.ProfileDiv key={profile.user.id}>
+                <All.InfoDiv>
                     <div>
                         <span>{profile.user.name}</span>
                         <span>{profile.user.email}</span>
                         <span>{profile.user.cpf}</span>
                     </div>
                     <ModeEditOutlineOutlinedIcon onClick={() => {goToEditUserPage(navigate)}} />
-                </InfoDiv>
-                <AddressDiv>
+                </All.InfoDiv>
+                <All.AddressDiv>
                     <div>
                         <p>Endereço cadastrado</p>
                         <span>{profile.user.address}</span>
                     </div>
                     <ModeEditOutlineOutlinedIcon onClick={() => {goToEditAddressPage(navigate)}} />
-                </AddressDiv>
-            </ProfileDiv>
+                </All.AddressDiv>
+            </All.ProfileDiv>
         )
     })
 
@@ -53,21 +53,24 @@ export function ProfilePage() {
 
     const ordersHistory = ordersData && ordersArray.map((orders, index) => {
         return (
-            <HistoryDiv key={index}>
-                <p>Histórico de pedidos</p>
+            <All.HistoryDiv key={index}>
+                <All.HistoryTitle>Histórico de pedidos</All.HistoryTitle>
                 {orders.orders.map((order, idx) => {
                     return (
-                        <HistoryCard key={idx}>
-                            <span className='name'>{order.restaurantName}</span>
-                            <span className='price'>SUBTOTAL R${order.totalPrice}</span>
-                        </HistoryCard>
+                        <All.HistoryCard key={idx}>
+                            <p className='name'>{order.restaurantName}</p>
+                            <p>{new Date(order.createdAt)
+                                .toLocaleDateString('pt-br', 
+                                    {day:'numeric',month:'long',year:'numeric'})}
+                            </p>
+                            <p className='price'>SUBTOTAL R${order.totalPrice}</p>
+                            {console.log(orders)}
+                        </All.HistoryCard>
                     )
                 })}
-            </HistoryDiv>
+            </All.HistoryDiv>
         )
     })
-
-
 
     return (
         <div>
@@ -81,5 +84,4 @@ export function ProfilePage() {
             <FooterMenu selectedPage={'Profile'} />
         </div>
     );
-
 }
