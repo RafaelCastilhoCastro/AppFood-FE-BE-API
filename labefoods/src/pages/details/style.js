@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const RestImg = styled.img`
+export const RestaurantImg = styled.img`
 width: 100vw;
 padding: 20px;
 border-radius: 12% 12% 0% 0%;
@@ -41,39 +41,19 @@ export const RestaurtTitle = styled.h2`
   font-size: 20px;
 `
 
+export const DescriptionContainer = styled.div`
+  display: flex;
+  gap: 50px;
+`
+
 export const DescriptionDetail = styled.p`
   height: 1.125rem;
+  max-width: 100%;
   margin: 0.5rem 0.5rem 0.625rem 1rem;
   font-family: Roboto;
-  font-size: 1.2rem;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.39px;
+  font-size: 1.1rem;
   color: #b8b8b8;
 `
-export const DescriptionDetail2 = styled.p`
-display: flex;
-justify-content: space-between;
-padding-right: 170px;
-  height: 1.125rem;
-  margin: 0.5rem 0.5rem 0.625rem 1rem;
-  font-family: Roboto;
-  font-size: 1.2rem;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.39px;
-  color: #b8b8b8;
-`
-
-// export const DetailDiv = styled.div`
-// display: flex;
-// margin-top: 10px;
-
-// `
 
 export const PrincDiv = styled.div`
 display: flex;
