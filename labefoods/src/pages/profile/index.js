@@ -63,7 +63,7 @@ export function ProfilePage() {
                                 .toLocaleDateString('pt-br', 
                                     {day:'numeric',month:'long',year:'numeric'})}
                             </p>
-                            <p className='price'>SUBTOTAL R${order.totalPrice},00</p>
+                            <p className='price'>SUBTOTAL R${order.totalPrice}</p>
                             {console.log(orders)}
                         </All.HistoryCard>
                     )
