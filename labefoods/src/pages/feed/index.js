@@ -120,8 +120,6 @@ export function FeedPage() {
         }
     })
 
-
-
     return (
         <All.FeedContainer>
             <Header pageTitle={title} />
@@ -154,20 +152,21 @@ export function FeedPage() {
                 {!loadingRestaurants && restaurantsData && restaurantList}
                 {!loadingRestaurants && !restaurantsData && errorRestaurants}
             </All.RestaurantCardContainer>
+            
             {!loadingActiveOrder && !activeOrderData && errorActiveOrder}
             {!loadingActiveOrder && activeOrderData && activeOrderData.order &&
-                <All.ActiveOrderAlert>
-                    <div>
-                        <AccessTimeIcon style={{color:'#fff'}} fontSize="large"/>
-                    </div>
-                    <div>
-                        <p className="activeTitle">Pedido em andamento</p>
-                        <p>{activeOrderData.order.restaurantName}</p>
-                        <p className="activeSubtotal">
-                            SUBTOTAL R${activeOrderData.order.totalPrice.toFixed(2)}
-                        </p>
-                    </div>
-                </All.ActiveOrderAlert>
+            <All.ActiveOrderAlert>
+                <div>
+                    <AccessTimeIcon style={{color:'#fff'}} fontSize="large"/>
+                </div>
+                <div>
+                    <p className="activeTitle">Pedido em andamento</p>
+                    <p>{activeOrderData.order.restaurantName}</p>
+                    <p className="activeSubtotal">
+                        SUBTOTAL R${activeOrderData.order.totalPrice.toFixed(2)}
+                    </p>
+                </div>
+            </All.ActiveOrderAlert>
             }
 
             <FooterMenu selectedPage={'Feed'} />
