@@ -11,6 +11,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import { BASE_URL } from "../../constants/constants";
 import { useRequestData } from "../../hooks/useRequestData";
 import gif from '../../img/loading-gif.gif'
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 export function FeedPage() {
 
@@ -18,9 +19,16 @@ export function FeedPage() {
 
     const navigate = useNavigate()
 
+    // REQUISITIONS
+    
+    const [restaurantsData, 
+            loadingRestaurants, 
+            errorRestaurants] = useRequestData(`${BASE_URL}restaurants`);
+    const [activeOrderData, 
+            loadingActiveOrder, 
+            errorActiveOrder] = useRequestData(`${BASE_URL}active-order`)
+    
     // STATES
-
-    const [restaurantsData, loadingRestaurants, errorRestaurants] = useRequestData(`${BASE_URL}restaurants`);
 
     const [selectionValue, setSelectionValue] = useState('Árabe')
     const [filterValue, setFilterValue] = useState('')
@@ -146,6 +154,21 @@ export function FeedPage() {
                 {!loadingRestaurants && restaurantsData && restaurantList}
                 {!loadingRestaurants && !restaurantsData && errorRestaurants}
             </All.RestaurantCardContainer>
+            {!loadingActiveOrder && !activeOrderData && errorActiveOrder}
+            {!loadingActiveOrder && activeOrderData && activeOrderData.order &&
+                <All.ActiveOrderAlert>
+                    <div>
+                        <AccessTimeIcon style={{color:'#fff'}} fontSize="large"/>
+                    </div>
+                    <div>
+                        <p className="activeTitle">Pedido em andamento</p>
+                        <p>{activeOrderData.order.restaurantName}</p>
+                        <p className="activeSubtotal">
+                            SUBTOTAL R${activeOrderData.order.totalPrice.toFixed(2)}
+                        </p>
+                    </div>
+                </All.ActiveOrderAlert>
+            }
 
             <FooterMenu selectedPage={'Feed'} />
         </All.FeedContainer>

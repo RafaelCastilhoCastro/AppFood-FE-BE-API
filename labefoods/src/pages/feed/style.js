@@ -68,3 +68,22 @@ export const RestaurantCard = styled.div`
         color: var(--subtitle-gray);
     }
 `
+
+export const ActiveOrderAlert = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    width: 100vw;
+    padding: 30px;
+    background: red;
+    position: fixed;
+    bottom: 50px;
+
+    .activeTitle{
+        color: #fff;
+    }
+
+    .activeSubtotal{
+        font-weight: bolder;
+    }
+`
