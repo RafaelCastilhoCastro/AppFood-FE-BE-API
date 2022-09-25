@@ -59,7 +59,10 @@ export function ProfilePage() {
                     return (
                         <HistoryCard key={idx}>
                             <span className='name'>{order.restaurantName}</span>
-                            <span className='price'>SUBTOTAL R${order.totalPrice}</span>
+                            <span className='price'>
+                                SUBTOTAL R${order.totalPrice}
+                                {order.totalPrice % 2 === 0 ? ',00' : ''}
+                            </span>
                         </HistoryCard>
                     )
                 })}
