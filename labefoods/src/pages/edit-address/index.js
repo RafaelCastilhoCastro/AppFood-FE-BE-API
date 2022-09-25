@@ -58,7 +58,6 @@ export function EditAddressPage() {
 
         isValidated.current && axios.put(`${BASE_URL}address`, form, { headers: { auth: identification } })
             .then(response => {
-                localStorage.setItem('token', response.data.token)
                 goToProfilePage(navigate)
                 isValidated.current = false
             })

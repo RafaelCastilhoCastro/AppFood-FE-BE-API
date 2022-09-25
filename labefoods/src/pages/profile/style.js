@@ -30,7 +30,7 @@ export const InfoDiv = styled.div`
 export const AddressDiv = styled.div`
     display: flex;
     background-color: #eeeeee;
-    margin: 8px 0;
+    margin-bottom: 8px;
     width: 100%;
     padding: 8px 5%;
     justify-content: space-between;
@@ -60,25 +60,23 @@ export const HistoryDiv = styled.div`
     display: flex;
     flex-direction: column;
     width: 90%;
-    height: 58.5vh;
     margin: auto;
-    overflow: auto;
 `
 
 export const HistoryTitle = styled.p`
     font-size: 16px;
-        letter-spacing: -0.4px;
-        border-bottom: 1px solid #000;
-        font-weight: 500;
-        align-self: center;
-        padding: 8px 0;
-        width: 100%;
+    letter-spacing: -0.4px;
+    border-bottom: 1px solid #000;
+    font-weight: 500;
+    align-self: center;
+    padding: 8px 0;
+    width: 100%;
 `
 
 export const HistoryCard = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 9px;
     width: 100%;
     border: solid 1px #b8b8b8;
     border-radius: 8px;
@@ -89,12 +87,19 @@ export const HistoryCard = styled.div`
         color: #e8222e;
         font-weight: 500;
         font-size: 16px;
+        letter-spacing: -0.4px;
     }
 
     .price {
         font-weight: bold;
         font-size: 16px;
+        letter-spacing: -0.4px;
     }
 
+    .date {
+        font-weight: 500;
+        font-size: 12px;
+        letter-spacing: -0.3px;
+    }
 
 `

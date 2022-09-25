@@ -59,7 +59,7 @@ export function ProfilePage() {
                     return (
                         <All.HistoryCard key={idx}>
                             <p className='name'>{order.restaurantName}</p>
-                            <p>{new Date(order.createdAt)
+                            <p className='date'>{new Date(order.createdAt)
                                 .toLocaleDateString('pt-br', 
                                     {day:'numeric',month:'long',year:'numeric'})}
                             </p>
