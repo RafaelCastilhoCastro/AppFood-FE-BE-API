@@ -33,7 +33,6 @@ export function CartPage() {
 
         return (
             <div>
-                <Header buttonExists={true} pageTitle={'Carrinho'} />
                 <Adress>
                     <AdressText>Meu Endereço</AdressText>
                     <MyAdressText>{profile.user.address}</MyAdressText>
@@ -79,7 +78,6 @@ export function CartPage() {
                 <ConfirDiv>
                     <Confirm onClick={""}>Confirmar</Confirm>
                 </ConfirDiv>
-                <FooterMenu selectedPage={'Cart'} />
             </div>
         );
 
@@ -87,8 +85,10 @@ export function CartPage() {
 
     return (
         <div>
+            <Header buttonExists={true} pageTitle={'Carrinho'} />
             {isLoadingProfile && <LoadingDiv><img src={gif} alt="gif" /></LoadingDiv>}
             {!isLoadingProfile && profileData && adressInfo}
+            <FooterMenu selectedPage={'Cart'} />
         </div>
     );
 
