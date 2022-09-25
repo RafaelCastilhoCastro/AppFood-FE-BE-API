@@ -10,7 +10,12 @@ export function Header({ buttonExists, pageTitle }) {
 
     return (
         <HeaderContainer>
-            {buttonExists && <button onClick={() => { goBack(navigate) }} ><ArrowBackIosIcon style={{ "cursor": "pointer", "width": "19px", "margin-top": "2px" }} /></button>}
+            {buttonExists && 
+                <button onClick={() => { goBack(navigate) }}>
+                    <ArrowBackIosIcon style={{ "cursor": "pointer", 
+                                                "width": "19px", 
+                                                "margin-top": "2px" }}/>
+                </button>}
             {(pageTitle && buttonExists) && <TitleWithMargin>{pageTitle}</TitleWithMargin>}
             {(pageTitle && !buttonExists) && <Title>{pageTitle}</Title>}
         </HeaderContainer>
