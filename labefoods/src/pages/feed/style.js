@@ -28,6 +28,7 @@ export const Categories = styled.div`
         border: none !important;
         font-weight: 500;
         font-size: 16px;
+        letter-spacing: -0.4px;
         margin: 0 7%;
     }
 
@@ -37,36 +38,61 @@ export const Categories = styled.div`
 `
 
 export const RestaurantCardContainer = styled.div`
-    overflow: auto;
+    display: flex;
+    flex-direction: column;
     width: 90%;
+    margin-bottom: 49px;
 `
 
 export const RestaurantCard = styled.div`
-    border: 1px solid lightgray;
-    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    overflow: hidden;
     margin-bottom: 10px;
+    border: solid 1px #b8b8b8;
+    border-radius: 8px;
+    cursor: pointer;
 
     img{
         width: 100%;
-        height: 15rem;
+        height: 150px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
     }
 
+`
+
+export const InfoDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    border-top: solid 1px #e0dcdc;
+
     h3 {
+        width: 90%;
+        margin: auto;
+        margin-top: 10px;
+        font-weight: 500;
+        font-size: 16px;
         color: #e8222e;
         text-align: start;
-        margin-left: 53px;
+        letter-spacing: -0.4px;
     }
 
     div {
+        width: 90%;
+        margin: auto;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        margin-top: 4px;
     }
 
     div p {
-        color: var(--subtitle-gray);
+        color: #b8b8b8;
+        font-size: 16px;
+        letter-spacing: -0.4px;
     }
+
 `
 
 export const ActiveOrderAlert = styled.div`

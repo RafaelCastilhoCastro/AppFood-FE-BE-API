@@ -20,14 +20,14 @@ export function FeedPage() {
     const navigate = useNavigate()
 
     // REQUISITIONS
-    
-    const [restaurantsData, 
-            loadingRestaurants, 
-            errorRestaurants] = useRequestData(`${BASE_URL}restaurants`);
-    const [activeOrderData, 
-            loadingActiveOrder, 
-            errorActiveOrder] = useRequestData(`${BASE_URL}active-order`)
-    
+
+    const [restaurantsData,
+        loadingRestaurants,
+        errorRestaurants] = useRequestData(`${BASE_URL}restaurants`);
+    const [activeOrderData,
+        loadingActiveOrder,
+        errorActiveOrder] = useRequestData(`${BASE_URL}active-order`)
+
     // STATES
 
     const [selectionValue, setSelectionValue] = useState('Árabe')
@@ -110,11 +110,13 @@ export function FeedPage() {
             return (
                 <All.RestaurantCard key={index} onClick={() => onClickCard(item.id)}>
                     <img src={item.logoUrl} alt="Logo do restaurante" />
-                    <h3>{item.name}</h3>
-                    <div>
-                        <p>{`${item.deliveryTime} min`}</p>
-                        <p>{`Frete R$ ${item.shipping},00`}</p>
-                    </div>
+                    <All.InfoDiv>
+                        <h3>{item.name}</h3>
+                        <div>
+                            <p>{`${item.deliveryTime} min`}</p>
+                            <p>{`Frete R$ ${item.shipping},00`}</p>
+                        </div>
+                    </All.InfoDiv>
                 </All.RestaurantCard>
             )
         }
@@ -152,21 +154,21 @@ export function FeedPage() {
                 {!loadingRestaurants && restaurantsData && restaurantList}
                 {!loadingRestaurants && !restaurantsData && errorRestaurants}
             </All.RestaurantCardContainer>
-            
+
             {!loadingActiveOrder && !activeOrderData && errorActiveOrder}
             {!loadingActiveOrder && activeOrderData && activeOrderData.order &&
-            <All.ActiveOrderAlert>
-            <div>
-                <AccessTimeIcon style={{color:'#fff'}} fontSize="large"/>
-            </div>
-            <div>
-                <p className="activeTitle">Pedido em andamento</p>
-                <p>{activeOrderData.order.restaurantName}</p>
-                <p className="activeSubtotal">
-                    SUBTOTAL R${activeOrderData.order.totalPrice.toFixed(2)}
-                </p>
-            </div>
-            </All.ActiveOrderAlert>
+                <All.ActiveOrderAlert>
+                    <div>
+                        <AccessTimeIcon style={{ color: '#fff' }} fontSize="large" />
+                    </div>
+                    <div>
+                        <p className="activeTitle">Pedido em andamento</p>
+                        <p>{activeOrderData.order.restaurantName}</p>
+                        <p className="activeSubtotal">
+                            SUBTOTAL R${activeOrderData.order.totalPrice.toFixed(2)}
+                        </p>
+                    </div>
+                </All.ActiveOrderAlert>
             }
 
             <FooterMenu selectedPage={'Feed'} />

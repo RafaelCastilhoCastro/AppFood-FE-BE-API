@@ -139,6 +139,7 @@ export const CartButton = styled.button`
   margin: 8px auto;
   font-weight: 500;
   background-color:#e8222e;
+  margin-bottom: 59px;
 
   :hover {
     opacity: 0.9;

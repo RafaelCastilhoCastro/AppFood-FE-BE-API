@@ -61,6 +61,7 @@ export const HistoryDiv = styled.div`
     flex-direction: column;
     width: 90%;
     margin: auto;
+    margin-bottom: 58px;
 `
 
 export const HistoryTitle = styled.p`
