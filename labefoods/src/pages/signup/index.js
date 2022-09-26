@@ -96,7 +96,7 @@ export function SignUpPage() {
                     label={'Nome'}
                     placeHolder={'Nome e sobrenome'}
                     error={!isNameValid}
-                    helperText={'Digite um nome com pelo menos 3 letras.'}
+                    helperText={'Digite um nome com pelo menos 2 letras.'}
                     required={true}
                 />
                 <GenericInput

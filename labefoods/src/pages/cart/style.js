@@ -1,148 +1,158 @@
 import styled from "styled-components";
-import { style } from "@material-ui/system";
+
+export const CartDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`
 
 
-export const Adress = styled.div`
-justify-content: center;
-display: flex;
-flex-direction: column;
-height: 13vh;
-box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
-background-color: #eeeeee;
+export const AdressDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: #eeeeee;
+  width: 100%;
+  padding: 16px 5%;
 `
 
 export const AdressText = styled.span`
-  padding: 0px 25px 0px 25px;
-  width: 20.5rem;
-  height: 1.125rem;
-  margin: 0 0 0.5rem;
-  font-family: Roboto;
-  font-size: 1rem;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.39px;
+  font-size: 16px;
+  letter-spacing: -0.4px;
   color: #b8b8b8;
+  margin: 4px 0;
 `
 
 export const MyAdressText = styled.span`
-  padding: 0px 25px 0px 25px;
-  width: 20.5rem;
-  height: 1.125rem;
-  margin: 0.5rem 0 0;
-  font-family: Roboto;
-  font-size: 1rem;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.39px;
-  color: #000;
+  font-size: 16px;
+  letter-spacing: -0.4px;
+  margin: 4px 0;
+  font-weight: 500;
 `
-export const EmptyCart = styled.div`
-justify-content: center;
-align-items: center;
-display: flex;
-height: 15vh;
-font-family: Roboto;
-  font-size: 1rem;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.39px;
+
+export const EmptyCartText = styled.span`
+  font-size: 16px;
+  font-weight: 500;
+  opacity: 0.89;
   text-align: center;
-  color: #000;
+  margin: 20px 0;
 `
-export const Frete = styled.div`
-  padding: 0px 25px 0px 25px;
-margin-bottom: 15px;
-height: 5vh;
-display: flex;
-text-align: end;
-justify-content: end;
-align-items: flex-end;
-font-family: Roboto;
-  font-size: 1rem;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.39px;
+export const ShippingText = styled.div`
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.4px;
+  text-align: right;
+  width: 90%;
+  margin: 10px auto;
+  
 `
-export const TotalArea = styled.div`
-  padding: 0px 25px 0px 25px;
-display: flex;
-justify-content: space-between;
+export const TotalDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 15px;
 `
 export const SubTotal = styled.span`
-  height: 1.125rem;
-  font-family: Roboto;
-  font-size: 1rem;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.39px;
-  color: #000;
-  margin-bottom: 30px;
-
-display: flex;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.4px;
 `
-export const ValorFinal = styled.span`
-color: #e8222e;
-font-family: Roboto;
-  font-size: 1.125rem;
+export const FinalValue = styled.span`
+  font-size: 18px;
   font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.43px;
-  text-align: right;
+  letter-spacing: -0.4px;
+  color: #e8222e;
 `
 
-export const Payment = styled.div`
-width: 80%;
-margin-left: 28px;
-margin-right: 0px;
-margin-top: 10px;
-display: flex;
-height: 5vh;
-align-items: center;
-border-bottom: 1px solid black;
+export const PaymentDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
 `
 
-export const PayOption = styled.div`
-  padding: 0px 25px 0px 25px;
+export const PaymentTitle = styled.p`
+  font-size: 16px;
+  letter-spacing: -0.4px;
+  border-bottom: 1px solid #000;
+  font-weight: 500;
+  align-self: center;
+  padding: 8px 0;
+  width: 100%;
 `
 
-export const ConfirDiv = styled.div`
-cursor: pointer;
-margin-top: 150px;
-display: flex;
-justify-content: center;
-align-items: center;
-
+export const PaymentOptions = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 8px 0;
 `
 
-export const Confirm = styled.button`
-cursor: pointer;
-  border-radius: 2px;
-  background-color: rgba(232, 34, 46, 0.5);
-  margin-left: 0px;
-  width: 21.5rem;
-  height: 3.125rem;
-  font-family: Roboto;
-  font-size: 1rem;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.39px;
-  text-align: center;
-  color: #000;
+export const OptionDiv = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+
+  input[type='radio'] {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid black;
+    border-radius: 50%;
+    outline: none;
+    margin-right: 8px;
+  }
+
+  input[type='radio']:before {
+    content:'';
+    display: block;
+    width: 65%;
+    height: 65%;
+    margin: 17.5% auto;    
+    border-radius: 50%;    
+  }
+
+  input[type='radio']:checked:before {
+    background: black;
+  }
+
+  input[type="radio"]:checked {
+    border-color: black;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: -0.4px;
+  }
+`
+
+export const CartButton = styled.button`
   border: none;
+  width: 90%;
+  height: 42px;
+  border-radius: 2px;
+  font-size: 16px;
+  letter-spacing: -0.4px;
+  text-align: center;
+  margin: 8px auto;
+  font-weight: 500;
+  background-color:#e8222e;
+  margin-bottom: 59px;
 
+  :hover {
+    opacity: 0.9;
+    cursor: pointer;
+  }
 
-` 
+  :disabled {
+    background-color: rgba(232, 34, 46, 0.5);
+  }
+
+  :disabled:hover {
+    opacity: 1;
+    cursor: not-allowed;
+  }
+
+`

@@ -6,7 +6,6 @@ import {
     FormContainer,
     FormButton,
     GenericInput,
-    PageTitle,
     Header
 } from '../../components';
 import { BASE_URL } from '../../constants/constants';
@@ -82,7 +81,7 @@ export function AddressPage() {
                     placeHolder={'Rua / Av.'}
                     required={true}
                     error={!isStreetValid}
-                    helperText={'Digite um endereço com pelo menos 3 letras.'}
+                    helperText={'Digite um endereço com pelo menos 2 letras.'}
                 />
                 <GenericInput
                     value={form.number}
@@ -111,7 +110,7 @@ export function AddressPage() {
                     placeHolder={'Bairro'}
                     required={true}
                     error={!isNeighbourhoodValid}
-                    helperText={'Digite um bairro com pelo menos 3 letras.'}
+                    helperText={'Digite um bairro com pelo menos 2 letras.'}
                 />
                 <GenericInput
                     value={form.city}
@@ -121,7 +120,7 @@ export function AddressPage() {
                     placeHolder={'Cidade'}
                     required={true}
                     error={!isCityValid}
-                    helperText={'Digite uma cidade com pelo menos 3 letras.'}                    
+                    helperText={'Digite uma cidade com pelo menos 2 letras.'}                    
                 />
                 <GenericInput
                     value={form.state}
@@ -131,7 +130,7 @@ export function AddressPage() {
                     placeHolder={'Estado'}
                     required={true}
                     error={!isStateValid}
-                    helperText={'Digite um estado com pelo menos 3 letras.'}
+                    helperText={'Digite um estado com pelo menos 2 letras.'}
                 />
                 <FormButton type='submit'>Salvar</FormButton>
             </FormContainer>

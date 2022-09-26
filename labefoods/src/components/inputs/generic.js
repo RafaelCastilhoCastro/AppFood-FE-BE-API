@@ -1,4 +1,4 @@
-import { FormHelperText, TextField } from '@mui/material'
+import { TextField } from '@mui/material'
 import React from 'react'
 
 export function GenericInput({ value, onChange, label, placeHolder, name, error, helperText, required }) {
