@@ -34,7 +34,7 @@ export function FeedPage() {
     const [filterValue, setFilterValue] = useState('')
     const [focused, setFocused] = useState(false);
     const [title, setTitle] = useState('iFuture')
-    const [display, setDisplay] = useState('inline')
+    const [display, setDisplay] = useState('flex')
     const [margin, setMargin] = useState('8px')
     const [selected, setSelected] = useState("1")
 
@@ -64,7 +64,7 @@ export function FeedPage() {
     const onBlur = () => {
         setFocused(false);
         setTitle('iFuture');
-        setDisplay('inline');
+        setDisplay('flex');
         setMargin('8px')
         setSelectionValue('Árabe')
         setSelected('1')
@@ -100,11 +100,11 @@ export function FeedPage() {
     const restaurantList = arrayFiltrado && arrayFiltrado.map((item, index, array) => {
         if (item === 0) {
             return (
-                <span key={index}>Busque por nome de restaurante</span>
+                <All.MessageSpan key={index}>Busque por nome de restaurante</All.MessageSpan>
             )
         } else if (item === 1) {
             return (
-                <span key={index}>Não encontramos :(</span>
+                <All.MessageSpan key={index}>Não encontramos :(</All.MessageSpan>
             )
         } else {
             return (

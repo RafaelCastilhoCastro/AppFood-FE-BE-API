@@ -15,15 +15,15 @@ export function FooterMenu({ selectedPage }) {
         <FooterContainer>
             <AiOutlineHome
                 onClick={() => { goToFeedPage(navigate) }}
-                style={selectedPage === "Feed" ? { 'color': '#e8222e', 'font-size': '30px' } : { 'color': '#b8b8b8', 'font-size': '30px' }}
+                style={selectedPage === "Feed" ? { 'color': '#e8222e', 'font-size': '30px', 'cursor': 'pointer' } : { 'color': '#b8b8b8', 'font-size': '30px', 'cursor': 'pointer'  }}
             />
             <AiOutlineShoppingCart
                 onClick={() => { goToCartPage(navigate) }}
-                style={selectedPage === "Cart" ? { 'color': '#e8222e', 'font-size': '30px' } : { 'color': '#b8b8b8', 'font-size': '30px' }}
+                style={selectedPage === "Cart" ? { 'color': '#e8222e', 'font-size': '30px', 'cursor': 'pointer'  } : { 'color': '#b8b8b8', 'font-size': '30px', 'cursor': 'pointer'  }}
             />
             <BsPerson
                 onClick={() => { goToProfilePage(navigate) }}
-                style={selectedPage === "Profile" ? { 'color': '#e8222e', 'font-size': '30px' } : { 'color': '#b8b8b8', 'font-size': '30px' }}
+                style={selectedPage === "Profile" ? { 'color': '#e8222e', 'font-size': '30px', 'cursor': 'pointer'  } : { 'color': '#b8b8b8', 'font-size': '30px', 'cursor': 'pointer'  }}
             />
         </FooterContainer>
     )

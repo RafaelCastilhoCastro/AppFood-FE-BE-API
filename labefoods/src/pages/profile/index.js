@@ -33,14 +33,14 @@ export function ProfilePage() {
                         <span>{profile.user.email}</span>
                         <span>{profile.user.cpf}</span>
                     </div>
-                    <ModeEditOutlineOutlinedIcon onClick={() => {goToEditUserPage(navigate)}} />
+                    <ModeEditOutlineOutlinedIcon onClick={() => {goToEditUserPage(navigate)}} style={{'cursor': 'pointer'}} />
                 </All.InfoDiv>
                 <All.AddressDiv>
                     <div>
                         <p>Endereço cadastrado</p>
                         <span>{profile.user.address}</span>
                     </div>
-                    <ModeEditOutlineOutlinedIcon onClick={() => {goToEditAddressPage(navigate)}} />
+                    <ModeEditOutlineOutlinedIcon onClick={() => {goToEditAddressPage(navigate)}} style={{'cursor': 'pointer'}} />
                 </All.AddressDiv>
             </All.ProfileDiv>
         )

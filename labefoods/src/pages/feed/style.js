@@ -9,18 +9,18 @@ export const FeedContainer = styled.main`
 
 export const Categories = styled.div`
     flex-shrink: 0;
-    display: flex;
     overflow: scroll;
     height: 42px;
     margin-bottom: ${(props) => props.margin};
     width: 100%;
+    display: ${(props) => props.display};
 
     .selected {
             color: #e8222e;
         }
 
     button {
-        display: ${(props) => props.display};
+        display: inline;
         width: auto;
         height: auto;
         background: transparent;
@@ -84,7 +84,7 @@ export const InfoDiv = styled.div`
         display: flex;
         justify-content: space-between;
         margin-bottom: 10px;
-        margin-top: 4px;
+        margin-top: 5px;
     }
 
     div p {
@@ -112,4 +112,13 @@ export const ActiveOrderAlert = styled.div`
     .activeSubtotal{
         font-weight: bolder;
     }
+`
+
+export const MessageSpan = styled.span`
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: -0.4px;
+    margin: 8px 0;
 `
