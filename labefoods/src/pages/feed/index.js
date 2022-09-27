@@ -30,13 +30,13 @@ export function FeedPage() {
 
     // STATES
 
-    const [selectionValue, setSelectionValue] = useState('Árabe')
+    const [selectionValue, setSelectionValue] = useState('Todos')
     const [filterValue, setFilterValue] = useState('')
     const [focused, setFocused] = useState(false);
     const [title, setTitle] = useState('iFuture')
     const [display, setDisplay] = useState('flex')
     const [margin, setMargin] = useState('8px')
-    const [selected, setSelected] = useState("1")
+    const [selected, setSelected] = useState("")
 
     //FUNCTIONS
 
@@ -45,8 +45,13 @@ export function FeedPage() {
     }
 
     const handleSelection = (e) => {
-        setSelectionValue(e.target.value)
-        setSelected(e.target.id);
+        if (e.target.id === selected) {
+            setSelected('')
+            setSelectionValue('Todos')
+        } else {
+            setSelectionValue(e.target.value)
+            setSelected(e.target.id);
+        }
     }
 
     const handleFilter = (e) => {
@@ -66,8 +71,8 @@ export function FeedPage() {
         setTitle('iFuture');
         setDisplay('flex');
         setMargin('8px')
-        setSelectionValue('Árabe')
-        setSelected('1')
+        setSelectionValue('Todos')
+        setSelected('0')
         setFilterValue('')
     }
 

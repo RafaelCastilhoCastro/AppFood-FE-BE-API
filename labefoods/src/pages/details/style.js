@@ -86,6 +86,12 @@ width: 25vw;
 height: 100%;
 `
 
+export const NameCountDiv = styled.div`
+display: flex;
+justify-content: space-between;
+width: 100%;
+`
+
 export const ItemName = styled.p`
 margin: 10px 15px 7px;
   font-family: Roboto;
@@ -94,6 +100,18 @@ margin: 10px 15px 7px;
   width: 100%;
   letter-spacing: -0.39px;
   color: #e8222e;
+`
+
+export const ItemCount = styled.p`
+background-color: #FFFFFF;
+border: 1.3px solid #e02020;
+color: #e02020;
+border-radius: 8px;
+padding: 7px 21px;
+text-align: center;
+font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
 `
 
 export const ItemDetail = styled.p`
@@ -124,6 +142,37 @@ export const AddButton = styled.button`
   border-radius: 8px;
   box-sizing: border-box;
   color: #222222;
+  cursor: pointer;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  outline: none;
+  padding: 7px 21px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
+  user-select: none;
+  -webkit-user-select: none;
+  width: auto;
+
+  :active {
+  background-color: #F7F7F7;
+  border-color: #000000;
+  transform: scale(.96);
+}
+
+`
+
+
+export const RemoveButton = styled.button`
+  background-color: #FFFFFF;
+  border: 1.3px solid #e02020;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #e02020;
   cursor: pointer;
   font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
   font-size: 14px;
