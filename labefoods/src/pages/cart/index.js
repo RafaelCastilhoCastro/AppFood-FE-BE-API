@@ -18,6 +18,7 @@ export function CartPage() {
     const [profileData, isLoadingProfile, errorProfile] = useRequestData(`${BASE_URL}profile`)
     const profileAdress = [{ ...profileData }]
 
+    // FUNCTIONS
 
     const handleOptionChange = (e) => {
         setSelectedOption(e.target.value)

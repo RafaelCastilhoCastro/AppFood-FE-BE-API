@@ -147,3 +147,40 @@ export const AddButton = styled.button`
 }
 
 `
+
+export const SetQty = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+ position: fixed;
+ left: 50%;
+ top: 50%;
+ transform: translate(-50%, -50%);
+ background: white;
+ width: 90%;
+ border: solid;
+
+ span {
+  margin: 15px;
+ }
+
+ button {
+  background: transparent;
+  border: none !important;
+  color: lightskyblue;
+  margin: 15px 10px;
+  color: #4f81a8;
+  align-self: flex-end;
+  cursor: pointer;
+
+  :hover {
+    opacity: 0.8;
+  }
+
+ }
+`
+
+export const DetailsContainer = styled.div`
+display: flex;
+flex-direction: column;
+`

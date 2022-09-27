@@ -1,7 +1,14 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { GlobalStateContext } from "./globalStateContext";
 
 export function GlobalState(props) {
+
+    //STATE
+
+    const [cartArray, setCartArray] = useState([])
+    const [totalValue, setTotalValue] = useState(0)
+    const [checkoutValue, setCheckoutValue] = useState(0)
+
 
     // FUNCTIONS
 
@@ -29,7 +36,13 @@ export function GlobalState(props) {
                     validateWords,
                     validateCPF,
                     validateNumber,
-                    isValidated
+                    isValidated,
+                    cartArray,
+                    setCartArray,
+                    totalValue,
+                    setTotalValue,
+                    checkoutValue,
+                    setCheckoutValue
                 }
             }>
             {props.children}
