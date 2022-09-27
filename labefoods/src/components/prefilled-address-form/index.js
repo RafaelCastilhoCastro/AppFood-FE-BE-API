@@ -12,7 +12,7 @@ import { goToProfilePage } from '../../routes/Coordinator';
 import { BASE_URL } from '../../constants/constants';
 
 
-export function PrefilledForm({ defaultValues }) {
+export function PrefilledAddressForm({ defaultValues }) {
 
     const navigate = useNavigate()
 

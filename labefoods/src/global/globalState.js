@@ -21,7 +21,7 @@ export function GlobalState(props) {
     const validateEmail = email => /[a-z0-9_.-]+@[a-z]{3}[.a-z]?/.test(email);
     const validatePassword = password => /.{6,}/.test(password);
     const validateWords = word => /[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]{2,}/.test(word);
-    const validateCPF = CPF => /[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}/.test(CPF);
+    const validateCPF = CPF => /[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}/.test(CPF);
     const validateNumber = number => /[0-9]+/.test(number);
 
     const isValidated = useRef(false);

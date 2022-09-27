@@ -1,235 +1,197 @@
 import styled from "styled-components";
 
-export const RestaurantImg = styled.img`
-width: 100vw;
-padding: 20px;
-border-radius: 12% 12% 0% 0%;
+export const DetailsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `
 
-export const ContainerTop = styled.div`
-margin-top: 10px;
-text-align: center;
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: center;
-font-size: 1rem ;
-letter-spacing: -0.39px;
-font-family: Roboto;
-font-weight: 800;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
-  padding-bottom: 15px;
+export const DetailsInfoDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 16px auto;
+`
+
+export const RestaurantImg = styled.img`
+  width: 100%;
+  height: 160px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 `
 
 export const RestaurtTitle = styled.h2`
-  width: 20.5rem;
-  height: 1.125rem;
-  margin: 0.75rem 1rem 0.5rem;
-  margin-bottom: 20px;
-  font-family: Roboto;
-  font-size: 1.2rem;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.39px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.4px;
   color: #e8222e;
-  font-weight: 700;
-  font-size: 20px;
+  margin: 10px 0;
+`
+export const RestaurantDescription = styled.span`
+  font-size: 16px;
+  letter-spacing: -0.4px;
+  color: #b8b8b8;
+  margin-bottom: 10px;
 `
 
 export const DescriptionContainer = styled.div`
   display: flex;
   gap: 50px;
 `
-
-export const DescriptionDetail = styled.p`
-  height: 1.125rem;
-  max-width: 100%;
-  margin: 0.5rem 0.5rem 0.625rem 1rem;
-  font-family: Roboto;
-  font-size: 1.1rem;
-  color: #b8b8b8;
-`
-
-export const PrincDiv = styled.div`
-display: flex;
-border-bottom: 2px solid black;
-margin: 3rem 0.5rem 0.625rem 1rem;
-overflow: auto;
-padding-bottom: 15px;
-`
-
-export const TextDiv = styled.div`
-display: flex;
+export const ProductsTitle = styled.div`
+  font-size: 16px;
+  letter-spacing: -0.4px;
+  border-bottom: 1px solid #000;
+  font-weight: 500;
+  padding: 8px 0;
   width: 100%;
-  overflow-x:hidden;
-flex-direction: column;
 `
 
-export const ContainerProd = styled.div`
-margin-left: 10px;
-display: flex;
-flex-direction: row;
-  width: 95vw;
-  height: 7rem;
+export const ProductCard = styled.div`
+  display: flex;
+  width: 100%;
+  height: 112px;
   border-radius: 8px;
   margin-top: 10px;
   border: solid 1px #b8b8b8;
 `
 
 export const ProductImg = styled.img`
-width: 25vw;
-height: 100%;
+  width: 30%;
+  height: 100%;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+`
+
+export const CardTextDiv = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
 `
 
 export const NameCountDiv = styled.div`
-display: flex;
-justify-content: space-between;
-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-height: 40px;
+  min-height: 33px;
 `
 
 export const ItemName = styled.p`
-margin: 10px 15px 7px;
-  font-family: Roboto;
-  font-size: 0.96rem;
-  font-weight: 800;
-  width: 100%;
-  letter-spacing: -0.39px;
+  margin-left: 15px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.4px;
   color: #e8222e;
+  align-self: flex-end;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 `
 
-export const ItemCount = styled.p`
-background-color: #FFFFFF;
-border: 1.3px solid #e02020;
-color: #e02020;
-border-radius: 8px;
-padding: 7px 21px;
-text-align: center;
-font-size: 14px;
-  font-weight: 600;
-  line-height: 20px;
+export const ItemCount = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #e8222e;
+  color: #e8222e;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.4px;
+  min-width: 33px;
+  height: 33px;
 `
 
-export const ItemDetail = styled.p`
-  font-family: Roboto;
-  margin: 0px 15px 13px;
-
-  font-size: 0.85rem;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.29px;
+export const ItemDescription = styled.p`
+  margin: 10px 15px 0;
+  font-size: 12px;
+  letter-spacing: -0.3px;
   color: #b8b8b8;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 `
 
-export const PriceItem = styled.p`
-display: flex;
-justify-content: space-between;
-width: 100%;
-  height: 7.5rem;
-  margin: 0.5rem 0 0 13px;
-  font-weight: 700;
+export const PriceDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 31px;
+  margin-top: auto;
+`
+
+export const PriceSpan = styled.span`
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.4px;
+  margin-left: 15px;
 `
 
 export const AddButton = styled.button`
-  background-color: #FFFFFF;
-  border: 1.3px solid #222222;
-  border-radius: 8px;
-  box-sizing: border-box;
-  color: #222222;
+  background: none;
+  border: 1px solid #000;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
   cursor: pointer;
-  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 20px;
-  outline: none;
-  padding: 7px 21px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  touch-action: manipulation;
-  transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
-  user-select: none;
-  -webkit-user-select: none;
-  width: auto;
-
-  :active {
-  background-color: #F7F7F7;
-  border-color: #000000;
-  transform: scale(.96);
-}
+  font-size: 12px;
+  font-weight: 500;
+  width: 90px;
 
 `
 
-
 export const RemoveButton = styled.button`
-  background-color: #FFFFFF;
-  border: 1.3px solid #e02020;
-  border-radius: 8px;
-  box-sizing: border-box;
-  color: #e02020;
+  background: none;
+  border: 1px solid #e8222e;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
   cursor: pointer;
-  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 20px;
-  outline: none;
-  padding: 7px 21px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  touch-action: manipulation;
-  transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
-  user-select: none;
-  -webkit-user-select: none;
-  width: auto;
-
-  :active {
-  background-color: #F7F7F7;
-  border-color: #000000;
-  transform: scale(.96);
-}
+  font-size: 12px;
+  font-weight: 500;
+  height: 31px;
+  width: 90px;
+  color: #e8222e;
 
 `
 
 export const SetQty = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
- position: fixed;
- left: 50%;
- top: 50%;
- transform: translate(-50%, -50%);
- background: white;
- width: 90%;
- border: solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  width: 90%;
 
- span {
-  margin: 15px;
- }
-
- button {
-  background: transparent;
-  border: none !important;
-  color: lightskyblue;
-  margin: 15px 10px;
-  color: #4f81a8;
-  align-self: flex-end;
-  cursor: pointer;
-
-  :hover {
-    opacity: 0.8;
+  span {
+    margin: 15px;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -0.4px;
   }
 
- }
-`
+  button {
+    background: transparent;
+    border: none !important;
+    color: lightskyblue;
+    margin: 15px;
+    color: #4f81a8;
+    align-self: flex-end;
+    cursor: pointer;
+    font-size: 16px;
+    letter-spacing: -0.4px;
 
-export const DetailsContainer = styled.div`
-display: flex;
-flex-direction: column;
+    :hover {
+      opacity: 0.8;
+    }
+ }
 `
