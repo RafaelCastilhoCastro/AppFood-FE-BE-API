@@ -10,6 +10,7 @@ import { useState } from 'react';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import { MenuItem, Select } from '@mui/material';
+import { useRef } from 'react';
 
 
 
@@ -21,6 +22,7 @@ export function DetailsPage() {
     const [popQty, setPopQty] = useState(false)
     const [itemQty, setItemQty] = useState(0)
     const [selectedItem, setSelectedItem] = useState([])
+    const toggle = useRef(false)
 
     // REQUEST
 
@@ -45,6 +47,20 @@ export function DetailsPage() {
         }
         }
         toggleQty()
+    }
+
+    const deleteProduct = (product) => {
+        const exists = cartArray.find((e) => e.id === product.id);
+        setTotalValue(totalValue - product.price * product.quantity)
+        if (exists) {
+            setCartArray(cartArray.filter((e) => e.id !== product.id))
+            setCartArray(
+                cartArray.map((e) =>
+                    e.id === product.id ? { ...exists, quantity: 0 } : e
+                )
+            )
+            toggle.current = false
+        } 
     }
 
     const toggleQty = (product) => {
@@ -73,14 +89,24 @@ export function DetailsPage() {
                 <All.PrincDiv>Principais</All.PrincDiv>
 
                 {details.restaurant.products.map(product => {
+                    const exists = cartArray.find((e) => e.id === product.id);
+                    if (!exists) {
+                        toggle.current = false
+                    } else {
+                        toggle.current = true
+                    }
                     return (
                         <All.ContainerProd key={product.id}>
                             <All.ProductImg src={product.photoUrl} />
                             <All.TextDiv>
+                                <All.NameCountDiv>
                                 <All.ItemName>{product.name}</All.ItemName>
+                                {toggle.current && <All.ItemCount>{exists.quantity}</All.ItemCount>}
+                                </All.NameCountDiv>
                                 <All.ItemDetail>{product.description}</All.ItemDetail>
                                 <All.PriceItem>R${product.price.toFixed(0)},00
-                                    <All.AddButton onClick={()=> toggleQty(product)}>Adicionar</All.AddButton></All.PriceItem>
+                                    {!toggle.current ? <All.AddButton onClick={()=> toggleQty(product)}>Adicionar</All.AddButton> : <All.RemoveButton onClick={()=> {deleteProduct(product);}}>Remove</All.RemoveButton>}
+                                    </All.PriceItem>
                             </All.TextDiv>
                             {popQty &&
                                 <All.SetQty>
