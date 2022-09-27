@@ -1,22 +1,20 @@
 import React, { useContext } from 'react'
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { BASE_URL } from "../../constants/constants";
 import { useRequestData } from '../../hooks/useRequestData';
-import * as All from './style';
 import { Header, LoadingDiv } from '../../components';
 import gif from '../../img/loading-gif.gif'
 import { GlobalStateContext } from './../../global/globalStateContext';
 import { useState } from 'react';
 import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
 import { MenuItem, Select } from '@mui/material';
 import { useRef } from 'react';
+import { AddButton, CardTextDiv, DescriptionContainer, DetailsContainer, DetailsInfoDiv, ItemCount, ItemDescription, ItemName, NameCountDiv, PriceDiv, PriceSpan, ProductCard, ProductImg, ProductsTitle, RemoveButton, RestaurantDescription, RestaurantImg, RestaurtTitle, SetQty } from './style';
 
 
 
 export function DetailsPage() {
 
-    const navigate = useNavigate();
     const pathParams = useParams();
     const { cartArray, setCartArray, totalValue, setTotalValue } = useContext(GlobalStateContext)
     const [popQty, setPopQty] = useState(false)
@@ -35,16 +33,16 @@ export function DetailsPage() {
     const addProduct = (qty) => {
         if (qty > 0) {
             const exists = cartArray.find((e) => e.id === selectedItem.id);
-        setTotalValue(totalValue + selectedItem.price * qty)
-        if (exists) {
-            setCartArray(
-                cartArray.map((e) =>
-                    e.id === selectedItem.id ? { ...exists, quantity: exists.quantity + qty } : e
+            setTotalValue(totalValue + selectedItem.price * qty)
+            if (exists) {
+                setCartArray(
+                    cartArray.map((e) =>
+                        e.id === selectedItem.id ? { ...exists, quantity: exists.quantity + qty } : e
+                    )
                 )
-            )
-        } else {
-            setCartArray([...cartArray, { ...selectedItem, quantity: qty }])
-        }
+            } else {
+                setCartArray([...cartArray, { ...selectedItem, quantity: qty }])
+            }
         }
         toggleQty()
     }
@@ -60,7 +58,7 @@ export function DetailsPage() {
                 )
             )
             toggle.current = false
-        } 
+        }
     }
 
     const toggleQty = (product) => {
@@ -76,18 +74,17 @@ export function DetailsPage() {
 
     const detailsList = restaurantData && detailsArray.map(details => {
         return (
-            <div key={details.restaurant.id}>
-                <All.RestaurantImg src={details.restaurant.logoUrl} alt='logo' />
-                <All.RestaurtTitle>{details.restaurant.name}</All.RestaurtTitle>
-                <All.DescriptionDetail>{details.restaurant.category}</All.DescriptionDetail>
-                <All.DescriptionContainer>
-                    <All.DescriptionDetail>{details.restaurant.deliveryTime} min</All.DescriptionDetail>
-                    <All.DescriptionDetail>R$ {details.restaurant.shipping},00</All.DescriptionDetail>
-                </All.DescriptionContainer>
-                <All.DescriptionDetail>{details.restaurant.address}</All.DescriptionDetail>
+            <DetailsInfoDiv key={details.restaurant.id}>
+                <RestaurantImg src={details.restaurant.logoUrl} alt='logo' />
+                <RestaurtTitle>{details.restaurant.name}</RestaurtTitle>
+                <RestaurantDescription>{details.restaurant.category}</RestaurantDescription>
+                <DescriptionContainer>
+                    <RestaurantDescription>{details.restaurant.deliveryTime} min</RestaurantDescription>
+                    <RestaurantDescription>Frete R${details.restaurant.shipping.toFixed(2)}</RestaurantDescription>
+                </DescriptionContainer>
+                <RestaurantDescription>{details.restaurant.address}</RestaurantDescription>
 
-                <All.PrincDiv>Principais</All.PrincDiv>
-
+                <ProductsTitle>Produtos</ProductsTitle>
                 {details.restaurant.products.map(product => {
                     const exists = cartArray.find((e) => e.id === product.id);
                     if (!exists) {
@@ -96,20 +93,21 @@ export function DetailsPage() {
                         toggle.current = true
                     }
                     return (
-                        <All.ContainerProd key={product.id}>
-                            <All.ProductImg src={product.photoUrl} />
-                            <All.TextDiv>
-                                <All.NameCountDiv>
-                                <All.ItemName>{product.name}</All.ItemName>
-                                {toggle.current && <All.ItemCount>{exists.quantity}</All.ItemCount>}
-                                </All.NameCountDiv>
-                                <All.ItemDetail>{product.description}</All.ItemDetail>
-                                <All.PriceItem>R${product.price.toFixed(0)},00
-                                    {!toggle.current ? <All.AddButton onClick={()=> toggleQty(product)}>Adicionar</All.AddButton> : <All.RemoveButton onClick={()=> {deleteProduct(product);}}>Remove</All.RemoveButton>}
-                                    </All.PriceItem>
-                            </All.TextDiv>
+                        <ProductCard key={product.id}>
+                            <ProductImg src={product.photoUrl} />
+                            <CardTextDiv>
+                                <NameCountDiv>
+                                    <ItemName>{product.name}</ItemName>
+                                    {toggle.current && <ItemCount>{exists.quantity}</ItemCount>}
+                                </NameCountDiv>
+                                <ItemDescription>{product.description}</ItemDescription>
+                                <PriceDiv>
+                                    <PriceSpan>R${product.price.toFixed(2)}</PriceSpan>
+                                    {!toggle.current ? <AddButton onClick={() => toggleQty(product)}>adicionar</AddButton> : <RemoveButton onClick={() => { deleteProduct(product); }}>remover</RemoveButton>}
+                                </PriceDiv>
+                            </CardTextDiv>
                             {popQty &&
-                                <All.SetQty>
+                                <SetQty>
                                     <span>Selecione a quantidade desejada</span>
                                     <FormControl focused={false} sx={{ m: 1, width: '90%' }}>
                                         <Select
@@ -117,7 +115,6 @@ export function DetailsPage() {
                                             onChange={handleItemQty}
                                             displayEmpty
                                             inputProps={{ 'aria-label': 'Without label' }}
-
                                         >
                                             <MenuItem value={0}>0</MenuItem>
                                             <MenuItem value={1}>1</MenuItem>
@@ -125,26 +122,31 @@ export function DetailsPage() {
                                             <MenuItem value={3}>3</MenuItem>
                                             <MenuItem value={4}>4</MenuItem>
                                             <MenuItem value={5}>5</MenuItem>
+                                            <MenuItem value={6}>6</MenuItem>
+                                            <MenuItem value={7}>7</MenuItem>
+                                            <MenuItem value={8}>8</MenuItem>
+                                            <MenuItem value={9}>9</MenuItem>
+                                            <MenuItem value={10}>10</MenuItem>
                                         </Select>
                                     </FormControl>
                                     <button onClick={() => addProduct(itemQty)}>ADICIONAR AO CARRINHO</button>
-                                </All.SetQty>
+                                </SetQty>
 
                             }
-                        </All.ContainerProd>
+                        </ProductCard>
                     )
                 })
                 }
-            </div >
+            </ DetailsInfoDiv>
         )
     })
 
     return (
-        <All.DetailsContainer>
+        <DetailsContainer>
             <Header buttonExists={true} pageTitle={'Restaurante'} />
             {isLoading && <LoadingDiv><img src={gif} alt="gif" /></LoadingDiv>}
             {!isLoading && restaurantData && detailsList}
             {!isLoading && !restaurantData && error}
-        </All.DetailsContainer>
+        </DetailsContainer>
     )
 }

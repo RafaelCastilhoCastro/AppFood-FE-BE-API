@@ -11,7 +11,7 @@ export const Categories = styled.div`
     flex-shrink: 0;
     overflow: scroll;
     height: 42px;
-    margin-bottom: ${(props) => props.margin};
+    margin-bottom: 8px;
     width: 100%;
     display: ${(props) => props.display};
 
@@ -55,7 +55,7 @@ export const RestaurantCard = styled.div`
 
     img{
         width: 100%;
-        height: 150px;
+        height: 160px;
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
     }

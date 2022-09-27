@@ -35,7 +35,6 @@ export function FeedPage() {
     const [focused, setFocused] = useState(false);
     const [title, setTitle] = useState('iFuture')
     const [display, setDisplay] = useState('flex')
-    const [margin, setMargin] = useState('8px')
     const [selected, setSelected] = useState("")
 
     //FUNCTIONS
@@ -62,7 +61,6 @@ export function FeedPage() {
         setFocused(true);
         setTitle('Buscar');
         setDisplay('none');
-        setMargin('0px')
         setSelectionValue('Todos')
     }
 
@@ -70,7 +68,6 @@ export function FeedPage() {
         setFocused(false);
         setTitle('iFuture');
         setDisplay('flex');
-        setMargin('8px')
         setSelectionValue('Todos')
         setSelected('0')
         setFilterValue('')
@@ -142,7 +139,7 @@ export function FeedPage() {
                 onFocus={onFocus}
                 onBlur={onBlur}
             />
-            <All.Categories display={display} margin={margin}>
+            <All.Categories display={display} >
                 <button className={selected === "1" ? "selected" : undefined} id={"1"} onClick={handleSelection} value='Árabe'>Árabe</button>
                 <button className={selected === "2" ? "selected" : undefined} id={"2"} onClick={handleSelection} value='Asiática'>Asiática</button>
                 <button className={selected === "3" ? "selected" : undefined} id={"3"} onClick={handleSelection} value='Baiana'>Baiana</button>

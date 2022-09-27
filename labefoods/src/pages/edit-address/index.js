@@ -3,7 +3,7 @@ import {
     FormsPageContainer,
     Header,
     LoadingDiv,
-    PrefilledForm
+    PrefilledAddressForm
 } from '../../components';
 import { BASE_URL } from '../../constants/constants';
 import { MarginDiv } from './style';
@@ -23,7 +23,7 @@ export function EditAddressPage() {
             <Header buttonExists={true} pageTitle={'Endereço'} />
             <MarginDiv />
             {isLoading && <LoadingDiv><img src={gif} alt="gif" /></LoadingDiv>}
-            {!isLoading && addressData && <PrefilledForm defaultValues={{
+            {!isLoading && addressData && <PrefilledAddressForm defaultValues={{
                 street: addressData.address.street,
                 number: addressData.address.number,
                 neighbourhood: addressData.address.neighbourhood,
