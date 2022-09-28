@@ -7,7 +7,7 @@ export function GlobalState(props) {
 
     const [cartArray, setCartArray] = useState([])
     const [totalValue, setTotalValue] = useState(0)
-    const [checkoutValue, setCheckoutValue] = useState(0)
+    const [shippingValue, setShippingValue] = useState(0)
 
 
     // FUNCTIONS
@@ -41,8 +41,8 @@ export function GlobalState(props) {
                     setCartArray,
                     totalValue,
                     setTotalValue,
-                    checkoutValue,
-                    setCheckoutValue
+                    shippingValue,
+                    setShippingValue
                 }
             }>
             {props.children}

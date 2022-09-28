@@ -3,11 +3,12 @@ import dropdown from "../../img/dropdown.svg"
 
 export const ProductCard = styled.div`
   display: flex;
-  width: 100%;
+  width: 90vw;
   height: 112px;
   border-radius: 8px;
   margin-top: 10px;
   border: solid 1px #b8b8b8;
+  align-self: center;
 `
 
 export const ProductImg = styled.img`
@@ -116,6 +117,7 @@ export const RemoveButton = styled.button`
 
 `
 
+
 export const SetQty = styled.div`
   display: flex;
   flex-direction: column;
@@ -129,7 +131,7 @@ export const SetQty = styled.div`
   z-index: 99;
 
   span {
-    margin: 20px 0;
+    margin: 30px 0;
     font-size: 16px;
     font-weight: 500;
     letter-spacing: -0.4px;
@@ -139,7 +141,7 @@ export const SetQty = styled.div`
     background: transparent;
     border: none !important;
     color: lightskyblue;
-    margin: 20px 5%;
+    margin: 25px 5% 20px;
     color: #4f81a8;
     align-self: flex-end;
     cursor: pointer;
@@ -165,6 +167,4 @@ export const SetQty = styled.div`
     background-repeat: no-repeat;
     background-position: calc(100% - 16px) center;
   }
-
-
 `

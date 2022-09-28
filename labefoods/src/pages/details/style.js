@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 export const DetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -58,4 +57,3 @@ export const ProductsTitle = styled.div`
   padding: 8px 0;
   width: 100%;
 `
-
