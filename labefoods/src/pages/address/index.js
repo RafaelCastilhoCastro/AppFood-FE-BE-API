@@ -12,7 +12,7 @@ import { BASE_URL } from '../../constants/constants';
 import { GlobalStateContext } from '../../global/globalStateContext';
 import { useForm } from '../../hooks/useForm'
 import { goToFeedPage } from '../../routes/Coordinator';
-import { AddressPageTitle } from './style';
+import * as All from './style'
 
 
 export function AddressPage() {
@@ -71,7 +71,7 @@ export function AddressPage() {
     return (
         <FormsPageContainer>
             <Header buttonExists={true} />
-            <AddressPageTitle>Meu endereço</AddressPageTitle>
+            <All.AddressPageTitle>Meu endereço</All.AddressPageTitle>
             <FormContainer onSubmit={submitForm}>
                 <GenericInput
                     value={form.street}

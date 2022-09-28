@@ -3,8 +3,8 @@ import { BASE_URL } from '../../constants/constants';
 import { useRequestData } from '../../hooks/useRequestData';
 import { Header, FooterMenu, LoadingDiv } from "../../components";
 import gif from '../../img/loading-gif.gif'
-import { AdressText, MyAdressText, SubTotal, CartDiv, AdressDiv, EmptyCartText, ShippingText, TotalDiv, FinalValue, PaymentTitle, PaymentDiv, CartButton, PaymentOptions, OptionDiv } from './style';
 import { useState } from 'react';
+import * as All from './style'
 
 
 export function CartPage() {
@@ -16,7 +16,7 @@ export function CartPage() {
     // REQUEST
 
     const [profileData, isLoadingProfile, errorProfile] = useRequestData(`${BASE_URL}profile`)
-    const profileAdress = [{ ...profileData }]
+    const profileAddress = [{ ...profileData }]
 
     // FUNCTIONS
 
@@ -24,45 +24,45 @@ export function CartPage() {
         setSelectedOption(e.target.value)
     }
 
-    const adressInfo = profileData && profileAdress.map(profile => {
+    const addressInfo = profileData && profileAddress.map(profile => {
         return (
-            <CartDiv>
-                <AdressDiv>
-                    <AdressText>Meu Endereço</AdressText>
-                    <MyAdressText>{profile.user.address}</MyAdressText>
-                </AdressDiv>
-                <EmptyCartText>Carrinho Vazio</EmptyCartText>
-                <ShippingText>
+            <All.CartDiv>
+                <All.AddressDiv>
+                    <All.AddressText>Meu Endereço</All.AddressText>
+                    <All.MyAddressText>{profile.user.address}</All.MyAddressText>
+                </All.AddressDiv>
+                <All.EmptyCartText>Carrinho Vazio</All.EmptyCartText>
+                <All.ShippingText>
                     Frete    R$ 0,00
-                </ShippingText>
-                <TotalDiv>
-                    <SubTotal>
+                </All.ShippingText>
+                <All.TotalDiv>
+                    <All.SubTotal>
                         SUBTOTAL
-                    </SubTotal>
-                    <FinalValue>
+                    </All.SubTotal>
+                    <All.FinalValue>
                         R$ 0,00
-                    </FinalValue>
-                </TotalDiv>
+                    </All.FinalValue>
+                </All.TotalDiv>
 
-                <PaymentDiv>
-                    <PaymentTitle>Forma de Pagamento</PaymentTitle>
-                    <PaymentOptions>
-                        <OptionDiv>
+                <All.PaymentDiv>
+                    <All.PaymentTitle>Forma de Pagamento</All.PaymentTitle>
+                    <All.PaymentOptions>
+                        <All.OptionDiv>
                             <label>
                                 <input type="radio" onChange={handleOptionChange} value="money" checked={selectedOption === 'money'} />
                                 Dinheiro
                             </label>
-                        </OptionDiv>
-                        <OptionDiv>
+                        </All.OptionDiv>
+                        <All.OptionDiv>
                             <label>
                                 <input type="radio" onChange={handleOptionChange} value="card" checked={selectedOption === 'card'} />
                                 Cartão de crédito
                             </label>
-                        </OptionDiv>
-                    </PaymentOptions>
-                </PaymentDiv>
-                {true ? <CartButton disabled onClick={""}>Confirmar</CartButton> : <CartButton onClick={""}>Confirmar</CartButton>}
-            </CartDiv>
+                        </All.OptionDiv>
+                    </All.PaymentOptions>
+                </All.PaymentDiv>
+                {true ? <All.CartButton disabled onClick={""}>Confirmar</All.CartButton> : <All.CartButton onClick={""}>Confirmar</All.CartButton>}
+            </All.CartDiv>
         );
 
     })
@@ -71,7 +71,7 @@ export function CartPage() {
         <div>
             <Header pageTitle={'Meu carrinho'} />
             {isLoadingProfile && <LoadingDiv><img src={gif} alt="gif" /></LoadingDiv>}
-            {!isLoadingProfile && profileData && adressInfo}
+            {!isLoadingProfile && profileData && addressInfo}
             {!isLoadingProfile && !profileData && errorProfile}
             <FooterMenu selectedPage={'Cart'} />
         </div>

@@ -6,8 +6,6 @@ import { Header, LoadingDiv } from '../../components'
 import gif from '../../img/loading-gif.gif'
 import { GlobalStateContext } from './../../global/globalStateContext'
 import { useState } from 'react'
-import FormControl from '@mui/material/FormControl'
-import { MenuItem, Select } from '@mui/material'
 import { useRef } from 'react'
 import * as All from './style'
 
@@ -108,32 +106,23 @@ export function DetailsPage() {
                                 </All.PriceDiv>
                             </All.CardTextDiv>
                             {popQty &&
-                                <>
-                                    <All.SetQty>
-                                        <span>Selecione a quantidade desejada</span>
-                                        <FormControl focused={false} sx={{ m: 1, width: '90%' }}>
-                                            <Select
-                                                value={itemQty}
-                                                onChange={handleItemQty}
-                                                displayEmpty
-                                                inputProps={{ 'aria-label': 'Without label' }}
-                                            >
-                                                <MenuItem value={0}>0</MenuItem>
-                                                <MenuItem value={1}>1</MenuItem>
-                                                <MenuItem value={2}>2</MenuItem>
-                                                <MenuItem value={3}>3</MenuItem>
-                                                <MenuItem value={4}>4</MenuItem>
-                                                <MenuItem value={5}>5</MenuItem>
-                                                <MenuItem value={6}>6</MenuItem>
-                                                <MenuItem value={7}>7</MenuItem>
-                                                <MenuItem value={8}>8</MenuItem>
-                                                <MenuItem value={9}>9</MenuItem>
-                                                <MenuItem value={10}>10</MenuItem>
-                                            </Select>
-                                        </FormControl>
-                                        <button onClick={() => addProduct(itemQty)}>ADICIONAR AO CARRINHO</button>
-                                    </All.SetQty>
-                                </>
+                                <All.SetQty>
+                                    <span>Selecione a quantidade desejada</span>
+                                        <select value={itemQty} onChange={handleItemQty} >
+                                            <option value={0}>0</option>
+                                            <option value={1}>1</option>
+                                            <option value={2}>2</option>
+                                            <option value={3}>3</option>
+                                            <option value={4}>4</option>
+                                            <option value={5}>5</option>
+                                            <option value={6}>6</option>
+                                            <option value={7}>7</option>
+                                            <option value={8}>8</option>
+                                            <option value={9}>9</option>
+                                            <option value={10}>10</option>
+                                        </select>
+                                    <button onClick={() => addProduct(itemQty)}>ADICIONAR AO CARRINHO</button>
+                                </All.SetQty>
                             }
                         </All.ProductCard>
                     )
@@ -144,11 +133,11 @@ export function DetailsPage() {
     })
 
     return (
-            <All.DetailsContainer toggleGrayBackground={toggleGrayBackground}>
-                <Header buttonExists={true} pageTitle={'Restaurante'} />
-                {isLoading && <LoadingDiv><img src={gif} alt="gif" /></LoadingDiv>}
-                {!isLoading && restaurantData && detailsList}
-                {!isLoading && !restaurantData && error}
-            </All.DetailsContainer>
+        <All.DetailsContainer toggleGrayBackground={toggleGrayBackground}>
+            <Header buttonExists={true} pageTitle={'Restaurante'} />
+            {isLoading && <LoadingDiv><img src={gif} alt="gif" /></LoadingDiv>}
+            {!isLoading && restaurantData && detailsList}
+            {!isLoading && !restaurantData && error}
+        </All.DetailsContainer>
     )
 }

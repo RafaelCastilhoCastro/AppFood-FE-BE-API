@@ -7,8 +7,8 @@ import {
 } from '../../components';
 import { BASE_URL } from '../../constants/constants';
 import { useRequestData } from '../../hooks/useRequestData';
-import { MarginDiv } from './style';
 import gif from '../../img/loading-gif.gif'
+import * as All from './style'
 
 
 export function EditUserPage() {
@@ -21,7 +21,7 @@ export function EditUserPage() {
     return (
         <FormsPageContainer>
             <Header buttonExists={true} pageTitle={'Editar'} />
-            <MarginDiv />
+            <All.MarginDiv />
             {isLoading && <LoadingDiv><img src={gif} alt="gif" /></LoadingDiv>}
             {!isLoading && profileData && <PrefilledUserForm defaultValues={{
                 name: profileData.user.name,
