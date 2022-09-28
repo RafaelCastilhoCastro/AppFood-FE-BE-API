@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BASE_URL } from '../../constants/constants';
 import { useRequestData } from '../../hooks/useRequestData';
-import { Header, FooterMenu, LoadingDiv } from "../../components";
+import { Header, FooterMenu, LoadingDiv, ItemCard } from "../../components";
 import gif from '../../img/loading-gif.gif'
 import { useState } from 'react';
 import * as All from './style'
+import { GlobalStateContext } from '../../global/globalStateContext';
 
 
 export function CartPage() {
+
+    const { cartArray, totalValue, shippingValue, setShippingValue } = useContext(GlobalStateContext)
 
     // STATES
 
@@ -24,24 +27,31 @@ export function CartPage() {
         setSelectedOption(e.target.value)
     }
 
-    const addressInfo = profileData && profileAddress.map(profile => {
+    if (cartArray.length === 0) {
+        setShippingValue(0)
+    }
+
+    // RENDER CARDS
+
+    const cardInfo = cartArray.map(product => {
         return (
-            <All.CartDiv>
+            <ItemCard key={product.id} product={product} />
+        )
+    })
+
+    const cartInfo = profileData && profileAddress.map(profile => {
+        return (
+            <>
                 <All.AddressDiv>
                     <All.AddressText>Meu Endereço</All.AddressText>
                     <All.MyAddressText>{profile.user.address}</All.MyAddressText>
                 </All.AddressDiv>
-                <All.EmptyCartText>Carrinho Vazio</All.EmptyCartText>
-                <All.ShippingText>
-                    Frete    R$ 0,00
-                </All.ShippingText>
+                {cartArray.length === 0 ?
+                    <All.EmptyCartText>Carrinho Vazio</All.EmptyCartText> : cardInfo}
+                <All.ShippingText>R$ {shippingValue.toFixed(2)}</All.ShippingText>
                 <All.TotalDiv>
-                    <All.SubTotal>
-                        SUBTOTAL
-                    </All.SubTotal>
-                    <All.FinalValue>
-                        R$ 0,00
-                    </All.FinalValue>
+                    <All.SubTotal>SUBTOTAL</All.SubTotal>
+                    <All.FinalValue>R$ {(totalValue + shippingValue).toFixed(2)}</All.FinalValue>
                 </All.TotalDiv>
 
                 <All.PaymentDiv>
@@ -61,20 +71,20 @@ export function CartPage() {
                         </All.OptionDiv>
                     </All.PaymentOptions>
                 </All.PaymentDiv>
-                {true ? <All.CartButton disabled onClick={""}>Confirmar</All.CartButton> : <All.CartButton onClick={""}>Confirmar</All.CartButton>}
-            </All.CartDiv>
+                {cartArray.length === 0 ? <All.CartButton disabled onClick={""}>Confirmar</All.CartButton> : <All.CartButton onClick={""}>Confirmar</All.CartButton>}
+            </>
         );
 
     })
 
     return (
-        <div>
+        <All.CartPageContainer>
             <Header pageTitle={'Meu carrinho'} />
             {isLoadingProfile && <LoadingDiv><img src={gif} alt="gif" /></LoadingDiv>}
-            {!isLoadingProfile && profileData && addressInfo}
+            {!isLoadingProfile && profileData && cartInfo}
             {!isLoadingProfile && !profileData && errorProfile}
             <FooterMenu selectedPage={'Cart'} />
-        </div>
+        </All.CartPageContainer>
     );
 
 }

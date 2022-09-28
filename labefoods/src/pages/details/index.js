@@ -1,10 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useParams } from "react-router-dom"
 import { BASE_URL } from "../../constants/constants"
 import { useRequestData } from '../../hooks/useRequestData'
 import { Header, LoadingDiv, ItemCard } from '../../components'
 import gif from '../../img/loading-gif.gif'
-import { GlobalStateContext } from './../../global/globalStateContext'
 import { useState } from 'react'
 import * as All from './style'
 
@@ -12,10 +11,6 @@ import * as All from './style'
 export function DetailsPage() {
 
     const pathParams = useParams()
-    const { cartArray, setCartArray, totalValue, setTotalValue } = useContext(GlobalStateContext)
-    const [popQty, setPopQty] = useState(false)
-    const [itemQty, setItemQty] = useState(0)
-    const [selectedItem, setSelectedItem] = useState([])
     const [toggleGrayBackground, setToggleGrayBackground] = useState(false)
 
     // REQUEST
@@ -24,43 +19,6 @@ export function DetailsPage() {
 
     const detailsArray = [{ ...restaurantData }]
 
-    // FUNCTIONS
-
-    const addProduct = (qty) => {
-        if (qty > 0) {
-            const exists = cartArray.find((e) => e.id === selectedItem.id)
-            setTotalValue(totalValue + selectedItem.price * qty)
-            if (exists) {
-                setCartArray(
-                    cartArray.map((e) =>
-                        e.id === selectedItem.id ? { ...exists, quantity: exists.quantity + qty } : e
-                    )
-                )
-            } else {
-                setCartArray([...cartArray, { ...selectedItem, quantity: qty }])
-            }
-        }
-        toggleQty()
-        setItemQty(0)
-    }
-
-    const deleteProduct = (product) => {
-        const exists = cartArray.find((e) => e.id === product.id)
-        setTotalValue(totalValue - product.price * product.quantity)
-        if (exists) {
-            setCartArray(cartArray.filter((e) => e.id !== exists.id))
-        }
-    }
-
-    const toggleQty = (product) => {
-        setPopQty(!popQty)
-        setSelectedItem(product)
-        setToggleGrayBackground(!toggleGrayBackground)
-    }
-
-    const handleItemQty = (e) => {
-        setItemQty(e.target.value)
-    }
 
     // RENDER RESTAURANT DETAIL
 
@@ -77,7 +35,12 @@ export function DetailsPage() {
                 <All.RestaurantDescription>{details.restaurant.address}</All.RestaurantDescription>
 
                 <All.ProductsTitle>Produtos</All.ProductsTitle>
-                <ItemCard details={details} cartArray={cartArray} toggleQty={toggleQty} deleteProduct={deleteProduct} addProduct={addProduct} popQty={popQty} itemQty={itemQty} handleItemQty={handleItemQty}/>
+                {details.restaurant.products.map(product => {
+                    return (
+                        <ItemCard details={details} key={product.id} product={product} toggleGrayBackground={toggleGrayBackground} setToggleGrayBackground={setToggleGrayBackground} />
+                    )
+                }
+                )}
             </ All.DetailsInfoDiv>
         )
     })

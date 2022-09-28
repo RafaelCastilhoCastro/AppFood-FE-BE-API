@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const CartDiv = styled.div`
+export const CartPageContainer = styled.div`
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 `
-
 
 export const AddressDiv = styled.div`
   display: flex;
@@ -41,7 +41,7 @@ export const ShippingText = styled.div`
   letter-spacing: -0.4px;
   text-align: right;
   width: 90%;
-  margin: 10px auto;
+  margin: 15px auto 0;
   
 `
 export const TotalDiv = styled.div`
@@ -49,8 +49,7 @@ export const TotalDiv = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 90%;
-  margin: auto;
-  margin-bottom: 15px;
+  margin: 10px auto;
 `
 export const SubTotal = styled.span`
   font-size: 16px;
@@ -68,7 +67,7 @@ export const PaymentDiv = styled.div`
   display: flex;
   flex-direction: column;
   width: 90%;
-  margin: auto;
+  margin: 0 auto;
 `
 
 export const PaymentTitle = styled.p`
@@ -136,10 +135,9 @@ export const CartButton = styled.button`
   font-size: 16px;
   letter-spacing: -0.4px;
   text-align: center;
-  margin: 8px auto;
+  margin: auto auto 64px;
   font-weight: 500;
   background-color:#e8222e;
-  margin-bottom: 59px;
 
   :hover {
     opacity: 0.9;
