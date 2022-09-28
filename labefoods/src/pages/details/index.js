@@ -145,13 +145,11 @@ export function DetailsPage() {
     })
 
     return (
-        <>
             <DetailsContainer toggleGrayBackground={toggleGrayBackground}>
                 <Header buttonExists={true} pageTitle={'Restaurante'} />
                 {isLoading && <LoadingDiv><img src={gif} alt="gif" /></LoadingDiv>}
                 {!isLoading && restaurantData && detailsList}
                 {!isLoading && !restaurantData && error}
             </DetailsContainer>
-        </>
     )
 }
