@@ -3,6 +3,19 @@ import styled from "styled-components";
 export const DetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
+
+  ::after{
+    content:'';
+    height: ${(props) => props.toggleGrayBackground ? '100%' : '0'};
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
 `
 
 export const DetailsInfoDiv = styled.div`
@@ -171,6 +184,7 @@ export const SetQty = styled.div`
   transform: translate(-50%, -50%);
   background: white;
   width: 90%;
+  z-index: 99;
 
   span {
     margin: 15px;
@@ -193,5 +207,5 @@ export const SetQty = styled.div`
     :hover {
       opacity: 0.8;
     }
- }
+  }
 `

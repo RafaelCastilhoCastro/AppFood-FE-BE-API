@@ -1,26 +1,27 @@
 import React, { useContext } from 'react'
-import { useParams } from "react-router-dom";
-import { BASE_URL } from "../../constants/constants";
-import { useRequestData } from '../../hooks/useRequestData';
-import { Header, LoadingDiv } from '../../components';
+import { useParams } from "react-router-dom"
+import { BASE_URL } from "../../constants/constants"
+import { useRequestData } from '../../hooks/useRequestData'
+import { Header, LoadingDiv } from '../../components'
 import gif from '../../img/loading-gif.gif'
-import { GlobalStateContext } from './../../global/globalStateContext';
-import { useState } from 'react';
-import FormControl from '@mui/material/FormControl';
-import { MenuItem, Select } from '@mui/material';
-import { useRef } from 'react';
-import { AddButton, CardTextDiv, DescriptionContainer, DetailsContainer, DetailsInfoDiv, ItemCount, ItemDescription, ItemName, NameCountDiv, PriceDiv, PriceSpan, ProductCard, ProductImg, ProductsTitle, RemoveButton, RestaurantDescription, RestaurantImg, RestaurtTitle, SetQty } from './style';
+import { GlobalStateContext } from './../../global/globalStateContext'
+import { useState } from 'react'
+import FormControl from '@mui/material/FormControl'
+import { MenuItem, Select } from '@mui/material'
+import { useRef } from 'react'
+import { AddButton, CardTextDiv, DescriptionContainer, DetailsContainer, DetailsInfoDiv, ItemCount, ItemDescription, ItemName, NameCountDiv, PriceDiv, PriceSpan, ProductCard, ProductImg, ProductsTitle, RemoveButton, RestaurantDescription, RestaurantImg, RestaurtTitle, SetQty, Test1 } from './style'
 
 
 
 export function DetailsPage() {
 
-    const pathParams = useParams();
+    const pathParams = useParams()
     const { cartArray, setCartArray, totalValue, setTotalValue } = useContext(GlobalStateContext)
     const [popQty, setPopQty] = useState(false)
     const [itemQty, setItemQty] = useState(0)
     const [selectedItem, setSelectedItem] = useState([])
     const toggle = useRef(false)
+    const [toggleGrayBackground, setToggleGrayBackground] = useState(false)
 
     // REQUEST
 
@@ -32,7 +33,7 @@ export function DetailsPage() {
 
     const addProduct = (qty) => {
         if (qty > 0) {
-            const exists = cartArray.find((e) => e.id === selectedItem.id);
+            const exists = cartArray.find((e) => e.id === selectedItem.id)
             setTotalValue(totalValue + selectedItem.price * qty)
             if (exists) {
                 setCartArray(
@@ -48,7 +49,7 @@ export function DetailsPage() {
     }
 
     const deleteProduct = (product) => {
-        const exists = cartArray.find((e) => e.id === product.id);
+        const exists = cartArray.find((e) => e.id === product.id)
         setTotalValue(totalValue - product.price * product.quantity)
         if (exists) {
             setCartArray(cartArray.filter((e) => e.id !== product.id))
@@ -64,6 +65,7 @@ export function DetailsPage() {
     const toggleQty = (product) => {
         setPopQty(!popQty)
         setSelectedItem(product)
+        setToggleGrayBackground(!toggleGrayBackground)
     }
 
     const handleItemQty = (e) => {
@@ -86,7 +88,7 @@ export function DetailsPage() {
 
                 <ProductsTitle>Produtos</ProductsTitle>
                 {details.restaurant.products.map(product => {
-                    const exists = cartArray.find((e) => e.id === product.id);
+                    const exists = cartArray.find((e) => e.id === product.id)
                     if (!exists) {
                         toggle.current = false
                     } else {
@@ -103,35 +105,36 @@ export function DetailsPage() {
                                 <ItemDescription>{product.description}</ItemDescription>
                                 <PriceDiv>
                                     <PriceSpan>R${product.price.toFixed(2)}</PriceSpan>
-                                    {!toggle.current ? <AddButton onClick={() => toggleQty(product)}>adicionar</AddButton> : <RemoveButton onClick={() => { deleteProduct(product); }}>remover</RemoveButton>}
+                                    {!toggle.current ? <AddButton onClick={() => toggleQty(product)}>adicionar</AddButton> : <RemoveButton onClick={() => { deleteProduct(product) }}>remover</RemoveButton>}
                                 </PriceDiv>
                             </CardTextDiv>
                             {popQty &&
-                                <SetQty>
-                                    <span>Selecione a quantidade desejada</span>
-                                    <FormControl focused={false} sx={{ m: 1, width: '90%' }}>
-                                        <Select
-                                            value={itemQty}
-                                            onChange={handleItemQty}
-                                            displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }}
-                                        >
-                                            <MenuItem value={0}>0</MenuItem>
-                                            <MenuItem value={1}>1</MenuItem>
-                                            <MenuItem value={2}>2</MenuItem>
-                                            <MenuItem value={3}>3</MenuItem>
-                                            <MenuItem value={4}>4</MenuItem>
-                                            <MenuItem value={5}>5</MenuItem>
-                                            <MenuItem value={6}>6</MenuItem>
-                                            <MenuItem value={7}>7</MenuItem>
-                                            <MenuItem value={8}>8</MenuItem>
-                                            <MenuItem value={9}>9</MenuItem>
-                                            <MenuItem value={10}>10</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                    <button onClick={() => addProduct(itemQty)}>ADICIONAR AO CARRINHO</button>
-                                </SetQty>
-
+                                <>
+                                    <SetQty>
+                                        <span>Selecione a quantidade desejada</span>
+                                        <FormControl focused={false} sx={{ m: 1, width: '90%' }}>
+                                            <Select
+                                                value={itemQty}
+                                                onChange={handleItemQty}
+                                                displayEmpty
+                                                inputProps={{ 'aria-label': 'Without label' }}
+                                            >
+                                                <MenuItem value={0}>0</MenuItem>
+                                                <MenuItem value={1}>1</MenuItem>
+                                                <MenuItem value={2}>2</MenuItem>
+                                                <MenuItem value={3}>3</MenuItem>
+                                                <MenuItem value={4}>4</MenuItem>
+                                                <MenuItem value={5}>5</MenuItem>
+                                                <MenuItem value={6}>6</MenuItem>
+                                                <MenuItem value={7}>7</MenuItem>
+                                                <MenuItem value={8}>8</MenuItem>
+                                                <MenuItem value={9}>9</MenuItem>
+                                                <MenuItem value={10}>10</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                        <button onClick={() => addProduct(itemQty)}>ADICIONAR AO CARRINHO</button>
+                                    </SetQty>
+                                </>
                             }
                         </ProductCard>
                     )
@@ -142,11 +145,13 @@ export function DetailsPage() {
     })
 
     return (
-        <DetailsContainer>
-            <Header buttonExists={true} pageTitle={'Restaurante'} />
-            {isLoading && <LoadingDiv><img src={gif} alt="gif" /></LoadingDiv>}
-            {!isLoading && restaurantData && detailsList}
-            {!isLoading && !restaurantData && error}
-        </DetailsContainer>
+        <>
+            <DetailsContainer toggleGrayBackground={toggleGrayBackground}>
+                <Header buttonExists={true} pageTitle={'Restaurante'} />
+                {isLoading && <LoadingDiv><img src={gif} alt="gif" /></LoadingDiv>}
+                {!isLoading && restaurantData && detailsList}
+                {!isLoading && !restaurantData && error}
+            </DetailsContainer>
+        </>
     )
 }
