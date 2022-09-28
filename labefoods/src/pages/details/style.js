@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import dropdown from "../../img/dropdown.svg"
 
 export const DetailsContainer = styled.div`
   display: flex;
@@ -187,7 +188,7 @@ export const SetQty = styled.div`
   z-index: 99;
 
   span {
-    margin: 15px;
+    margin: 20px 0;
     font-size: 16px;
     font-weight: 500;
     letter-spacing: -0.4px;
@@ -197,7 +198,7 @@ export const SetQty = styled.div`
     background: transparent;
     border: none !important;
     color: lightskyblue;
-    margin: 15px;
+    margin: 20px 5%;
     color: #4f81a8;
     align-self: flex-end;
     cursor: pointer;
@@ -208,4 +209,21 @@ export const SetQty = styled.div`
       opacity: 0.8;
     }
   }
+
+  select {
+    border: 1px solid #b8b8b8;
+    padding: 16px;
+    border-radius: 4px;
+    width: 90%;
+    height: 56px;
+    font-size: 16px;
+    font-weight: 500;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url(${dropdown});
+    background-repeat: no-repeat;
+    background-position: calc(100% - 16px) center;
+  }
+
+
 `

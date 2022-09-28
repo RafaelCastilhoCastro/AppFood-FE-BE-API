@@ -6,7 +6,7 @@ export const CartDiv = styled.div`
 `
 
 
-export const AdressDiv = styled.div`
+export const AddressDiv = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #eeeeee;
@@ -14,14 +14,14 @@ export const AdressDiv = styled.div`
   padding: 16px 5%;
 `
 
-export const AdressText = styled.span`
+export const AddressText = styled.span`
   font-size: 16px;
   letter-spacing: -0.4px;
   color: #b8b8b8;
   margin: 4px 0;
 `
 
-export const MyAdressText = styled.span`
+export const MyAddressText = styled.span`
   font-size: 16px;
   letter-spacing: -0.4px;
   margin: 4px 0;
