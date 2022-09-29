@@ -5,12 +5,22 @@ import { Header, FooterMenu, LoadingDiv, ItemCard } from "../../components";
 import gif from '../../img/loading-gif.gif'
 import { useState } from 'react';
 import * as All from './style'
+import { useProtectedPage } from "../../hooks/useProtectedPage"
 import { GlobalStateContext } from '../../global/globalStateContext';
+import { goToFeedPage } from '../../routes/Coordinator';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 export function CartPage() {
 
-    const { totalValue, shippingValue, setShippingValue, storedArray } = useContext(GlobalStateContext)
+    useProtectedPage();
+
+    const token = localStorage.getItem('token')
+
+    const navigate = useNavigate();
+
+    const { totalValue, setTotalValue, shippingValue, setShippingValue, storedArray, restaurantId } = useContext(GlobalStateContext)
 
     // STATES
 
@@ -33,11 +43,40 @@ export function CartPage() {
 
     // RENDER CARDS
 
-    const cardInfo = storedArray.current.map(product => {
+    const cardInfo = storedArray.current?.map(product => {
         return (
             <ItemCard getData={getData} key={product.id} product={product} />
         )
     })
+
+    // PLACE ORDER
+
+    const ordedProducts = storedArray.current?.map(product => {
+        return {id: `${product.id}`, quantity: product.quantity}
+    })
+
+
+    const order = {
+        products: ordedProducts,
+        paymentMethod: selectedOption
+    }
+
+    const placeOrder = (e) => {
+        e.preventDefault()
+
+        axios.post(`${BASE_URL}restaurants/${restaurantId}/order`, order, { headers: { auth: token } })
+            .then(response => {
+                goToFeedPage(navigate)
+                localStorage.setItem('cart', JSON.stringify([]))
+                setTotalValue(0)
+            })
+            .catch(err => {
+                alert(err.response.data.message)
+                console.log(err)
+            })
+
+    }
+
 
     const cartInfo = profileData && profileAddress.map(profile => {
         return (
@@ -46,8 +85,11 @@ export function CartPage() {
                     <All.AddressText>Meu Endereço</All.AddressText>
                     <All.MyAddressText>{profile.user.address}</All.MyAddressText>
                 </All.AddressDiv>
-                {storedArray.current?.length === 0 ?
-                    <All.EmptyCartText>Carrinho Vazio</All.EmptyCartText> : cardInfo}
+                {
+                    storedArray.current?.length > 0 ?
+                        cardInfo :
+                        <All.EmptyCartText>Carrinho Vazio</All.EmptyCartText>
+                }
                 <All.ShippingText>R$ {shippingValue.toFixed(2)}</All.ShippingText>
                 <All.TotalDiv>
                     <All.SubTotal>SUBTOTAL</All.SubTotal>
@@ -65,13 +107,17 @@ export function CartPage() {
                         </All.OptionDiv>
                         <All.OptionDiv>
                             <label>
-                                <input type="radio" onChange={handleOptionChange} value="card" checked={selectedOption === 'card'} />
+                                <input type="radio" onChange={handleOptionChange} value="creditcard" checked={selectedOption === 'creditcard'} />
                                 Cartão de crédito
                             </label>
                         </All.OptionDiv>
                     </All.PaymentOptions>
                 </All.PaymentDiv>
-                {storedArray.current?.length === 0 ? <All.CartButton disabled onClick={""}>Confirmar</All.CartButton> : <All.CartButton onClick={""}>Confirmar</All.CartButton>}
+                {
+                    storedArray.current?.length > 0 ?
+                        <All.CartButton onClick={placeOrder}>Confirmar</All.CartButton> :
+                        <All.CartButton disabled>Confirmar</All.CartButton>
+                }
             </>
         );
 

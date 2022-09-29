@@ -5,6 +5,7 @@ import {
     FormContainer,
     FormButton,
     GenericInput,
+    CpfInput
 } from '../../components';
 import { BASE_URL } from '../../constants/constants';
 import { GlobalStateContext } from '../../global/globalStateContext';
@@ -75,7 +76,7 @@ export function PrefilledUserForm({ defaultValues }) {
                 helperText={'E-mail inválido.'}
                 required={true}
             />
-            <GenericInput
+            <CpfInput
                 value={form.cpf}
                 onChange={onChangeInputs}
                 name={'cpf'}

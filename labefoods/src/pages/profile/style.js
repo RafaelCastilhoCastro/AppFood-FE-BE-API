@@ -104,3 +104,11 @@ export const HistoryCard = styled.div`
     }
 
 `
+
+export const EmptyHistory = styled.span`
+  font-size: 16px;
+  font-weight: 500;
+  opacity: 0.89;
+  text-align: center;
+  margin: 20px 0;
+`

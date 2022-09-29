@@ -8,10 +8,13 @@ import {
 import { BASE_URL } from '../../constants/constants';
 import { useRequestData } from '../../hooks/useRequestData';
 import gif from '../../img/loading-gif.gif'
+import { useProtectedPage } from "../../hooks/useProtectedPage"
 import * as All from './style'
 
 
 export function EditAddressPage() {
+
+    useProtectedPage();
 
     // GET FULL ADDRESS
 

@@ -100,18 +100,36 @@ export const ActiveOrderAlert = styled.div`
     align-items: center;
     gap: 30px;
     width: 100vw;
-    padding: 30px;
-    background: red;
+    padding: 20px 30px;
+    background: #e8222e;
     position: fixed;
-    bottom: 50px;
+    bottom: 49px;
 
-    .activeTitle{
-        color: #fff;
-    }
+`
 
-    .activeSubtotal{
-        font-weight: bolder;
-    }
+export const ActiveTextDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+`
+
+export const ActiveTitle = styled.p`
+    color: #fff;
+    font-weight: 300;
+    font-size: 16px;
+    letter-spacing: -0.4px;    
+`
+export const ActiveRestaurantName = styled.p`
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: -0.4px;    
+`
+
+export const ActiveSubtotal = styled.p`
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: -0.4px;    
 `
 
 export const MessageSpan = styled.span`
