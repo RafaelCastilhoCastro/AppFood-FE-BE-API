@@ -1,13 +1,20 @@
 import React, { useRef, useState } from "react";
+import { useEffect } from "react";
 import { GlobalStateContext } from "./globalStateContext";
 
 export function GlobalState(props) {
 
-    //STATE
+    //STATES
 
-    const [cartArray, setCartArray] = useState([])
     const [totalValue, setTotalValue] = useState(0)
     const [shippingValue, setShippingValue] = useState(0)
+    const storedArray = useRef([])
+
+    //EFFECTS
+
+    useEffect(() => {
+        storedArray.current = JSON.parse(localStorage.getItem('cart'))
+    }, [])
 
 
     // FUNCTIONS
@@ -37,12 +44,11 @@ export function GlobalState(props) {
                     validateCPF,
                     validateNumber,
                     isValidated,
-                    cartArray,
-                    setCartArray,
                     totalValue,
                     setTotalValue,
                     shippingValue,
-                    setShippingValue
+                    setShippingValue,
+                    storedArray
                 }
             }>
             {props.children}

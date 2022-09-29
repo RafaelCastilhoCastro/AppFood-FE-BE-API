@@ -10,7 +10,7 @@ import { GlobalStateContext } from '../../global/globalStateContext';
 
 export function CartPage() {
 
-    const { cartArray, totalValue, shippingValue, setShippingValue } = useContext(GlobalStateContext)
+    const { totalValue, shippingValue, setShippingValue, storedArray } = useContext(GlobalStateContext)
 
     // STATES
 
@@ -27,13 +27,13 @@ export function CartPage() {
         setSelectedOption(e.target.value)
     }
 
-    if (cartArray.length === 0) {
+    if (storedArray.current.length === 0) {
         setShippingValue(0)
     }
 
     // RENDER CARDS
 
-    const cardInfo = cartArray.map(product => {
+    const cardInfo = storedArray.current.map(product => {
         return (
             <ItemCard key={product.id} product={product} />
         )
@@ -46,7 +46,7 @@ export function CartPage() {
                     <All.AddressText>Meu Endereço</All.AddressText>
                     <All.MyAddressText>{profile.user.address}</All.MyAddressText>
                 </All.AddressDiv>
-                {cartArray.length === 0 ?
+                {storedArray.current.length === 0 ?
                     <All.EmptyCartText>Carrinho Vazio</All.EmptyCartText> : cardInfo}
                 <All.ShippingText>R$ {shippingValue.toFixed(2)}</All.ShippingText>
                 <All.TotalDiv>
@@ -71,7 +71,7 @@ export function CartPage() {
                         </All.OptionDiv>
                     </All.PaymentOptions>
                 </All.PaymentDiv>
-                {cartArray.length === 0 ? <All.CartButton disabled onClick={""}>Confirmar</All.CartButton> : <All.CartButton onClick={""}>Confirmar</All.CartButton>}
+                {storedArray.current.length === 0 ? <All.CartButton disabled onClick={""}>Confirmar</All.CartButton> : <All.CartButton onClick={""}>Confirmar</All.CartButton>}
             </>
         );
 
