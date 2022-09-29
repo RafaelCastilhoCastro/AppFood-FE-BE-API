@@ -117,6 +117,14 @@ export const RemoveButton = styled.button`
 
 `
 
+export const TransparentQtyMask = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+`
 
 export const SetQty = styled.div`
   display: flex;
@@ -128,7 +136,7 @@ export const SetQty = styled.div`
   transform: translate(-50%, -50%);
   background: white;
   width: 90%;
-  z-index: 99;
+  z-index: 101;
 
   span {
     margin: 30px 0;
