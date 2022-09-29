@@ -27,7 +27,7 @@ export function CartPage() {
         setSelectedOption(e.target.value)
     }
 
-    if (storedArray.current.length === 0) {
+    if (storedArray.current?.length === 0) {
         setShippingValue(0)
     }
 
@@ -46,7 +46,7 @@ export function CartPage() {
                     <All.AddressText>Meu Endereço</All.AddressText>
                     <All.MyAddressText>{profile.user.address}</All.MyAddressText>
                 </All.AddressDiv>
-                {storedArray.current.length === 0 ?
+                {storedArray.current?.length === 0 ?
                     <All.EmptyCartText>Carrinho Vazio</All.EmptyCartText> : cardInfo}
                 <All.ShippingText>R$ {shippingValue.toFixed(2)}</All.ShippingText>
                 <All.TotalDiv>
@@ -71,7 +71,7 @@ export function CartPage() {
                         </All.OptionDiv>
                     </All.PaymentOptions>
                 </All.PaymentDiv>
-                {storedArray.current.length === 0 ? <All.CartButton disabled onClick={""}>Confirmar</All.CartButton> : <All.CartButton onClick={""}>Confirmar</All.CartButton>}
+                {storedArray.current?.length === 0 ? <All.CartButton disabled onClick={""}>Confirmar</All.CartButton> : <All.CartButton onClick={""}>Confirmar</All.CartButton>}
             </>
         );
 
