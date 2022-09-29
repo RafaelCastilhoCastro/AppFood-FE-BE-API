@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { GlobalStateContext } from '../../global/globalStateContext'
 import * as All from './style'
+import { useEffect } from 'react';
 
 export function ItemCard({ product, toggleGrayBackground, setToggleGrayBackground, details, getData }) {
 
@@ -42,6 +43,9 @@ export function ItemCard({ product, toggleGrayBackground, setToggleGrayBackgroun
             var newArray = storedArray.current.filter((e) => e.id !== exists.id)
             localStorage.setItem('cart', JSON.stringify(newArray))
             storedArray.current = JSON.parse(localStorage.getItem('cart'))
+            if (storedArray.current?.length === 0) {
+                getData()
+            }
     }
 
     const toggleQty = (product) => {
@@ -54,7 +58,7 @@ export function ItemCard({ product, toggleGrayBackground, setToggleGrayBackgroun
         setItemQty(e.target.value)
     }
 
-    var exists = storedArray.current && storedArray.current?.find((e) => e.id === product.id)
+    var exists = storedArray.current?.find((e) => e.id === product.id)
     var toggle = false
     if (exists) {
         toggle = true
@@ -71,7 +75,7 @@ export function ItemCard({ product, toggleGrayBackground, setToggleGrayBackgroun
                 <All.ItemDescription>{product.description}</All.ItemDescription>
                 <All.PriceDiv>
                     <All.PriceSpan>R${product.price.toFixed(2)}</All.PriceSpan>
-                    {!toggle ? <All.AddButton onClick={() => toggleQty(product)}>adicionar</All.AddButton> : <All.RemoveButton onClick={() => { deleteProduct(product); getData()}}>remover</All.RemoveButton>}
+                    {!toggle ? <All.AddButton onClick={() => toggleQty(product)}>adicionar</All.AddButton> : <All.RemoveButton onClick={() => { deleteProduct(product);}}>remover</All.RemoveButton>}
                 </All.PriceDiv>
             </All.CardTextDiv>
             {popQty &&

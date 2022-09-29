@@ -18,7 +18,7 @@ export function CartPage() {
 
     // REQUEST
 
-    const [profileData, isLoadingProfile, errorProfile] = useRequestData(`${BASE_URL}profile`)
+    const [profileData, isLoadingProfile, errorProfile, getData] = useRequestData(`${BASE_URL}profile`)
     const profileAddress = [{ ...profileData }]
 
     // FUNCTIONS
@@ -35,7 +35,7 @@ export function CartPage() {
 
     const cardInfo = storedArray.current.map(product => {
         return (
-            <ItemCard key={product.id} product={product} />
+            <ItemCard getData={getData} key={product.id} product={product} />
         )
     })
 
