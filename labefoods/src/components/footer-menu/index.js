@@ -12,7 +12,7 @@ export function FooterMenu({ selectedPage }) {
 
     const navigate = useNavigate();
 
-    const { cartArray } = useContext(GlobalStateContext)
+    const { storedArray } = useContext(GlobalStateContext)
 
     return (
         <All.FooterContainer>
@@ -25,7 +25,7 @@ export function FooterMenu({ selectedPage }) {
                     onClick={() => { goToCartPage(navigate) }}
                     style={selectedPage === "Cart" ? { 'color': '#e8222e', 'font-size': '30px', 'cursor': 'pointer' } : { 'color': '#b8b8b8', 'font-size': '30px', 'cursor': 'pointer' }}
                 />
-                {cartArray.length !== 0 && <All.CardCount><span>{cartArray.length}</span></All.CardCount>}
+                {storedArray.current?.length !== 0 && <All.CardCount><span>{storedArray.current?.length}</span></All.CardCount>}
             </All.CartDiv>
             <BsPerson
                 onClick={() => { goToProfilePage(navigate) }}
