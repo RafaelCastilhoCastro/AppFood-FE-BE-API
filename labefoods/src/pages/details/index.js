@@ -5,10 +5,13 @@ import { useRequestData } from '../../hooks/useRequestData'
 import { Header, LoadingDiv, ItemCard } from '../../components'
 import gif from '../../img/loading-gif.gif'
 import { useState } from 'react'
+import { useProtectedPage } from "../../hooks/useProtectedPage"
 import * as All from './style'
 
 
 export function DetailsPage() {
+
+    useProtectedPage();
 
     const pathParams = useParams()
     const [toggleGrayBackground, setToggleGrayBackground] = useState(false)

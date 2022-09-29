@@ -8,7 +8,8 @@ import {
     GenericInput,
     Header,
     SignUpImg,
-    PageTitle
+    PageTitle,
+    CpfInput
 
 } from '../../components';
 import { useForm } from '../../hooks/useForm'
@@ -109,7 +110,7 @@ export function SignUpPage() {
                     helperText={'E-mail inválido.'}
                     required={true}
                 />
-                <GenericInput
+                <CpfInput
                     value={form.cpf}
                     onChange={onChangeInputs}
                     name={'cpf'}

@@ -6,10 +6,13 @@ import gif from '../../img/loading-gif.gif'
 import * as All from './style'
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import { useNavigate } from 'react-router-dom';
+import { useProtectedPage } from "../../hooks/useProtectedPage"
 import { goToEditAddressPage, goToEditUserPage } from '../../routes/Coordinator';
 
 
 export function ProfilePage() {
+
+    useProtectedPage();
 
     const navigate = useNavigate();
 
@@ -33,14 +36,14 @@ export function ProfilePage() {
                         <span>{profile.user.email}</span>
                         <span>{profile.user.cpf}</span>
                     </div>
-                    <ModeEditOutlineOutlinedIcon onClick={() => {goToEditUserPage(navigate)}} style={{'cursor': 'pointer'}} />
+                    <ModeEditOutlineOutlinedIcon onClick={() => { goToEditUserPage(navigate) }} style={{ 'cursor': 'pointer' }} />
                 </All.InfoDiv>
                 <All.AddressDiv>
                     <div>
                         <p>Endereço cadastrado</p>
                         <span>{profile.user.address}</span>
                     </div>
-                    <ModeEditOutlineOutlinedIcon onClick={() => {goToEditAddressPage(navigate)}} style={{'cursor': 'pointer'}} />
+                    <ModeEditOutlineOutlinedIcon onClick={() => { goToEditAddressPage(navigate) }} style={{ 'cursor': 'pointer' }} />
                 </All.AddressDiv>
             </All.ProfileDiv>
         )
@@ -55,18 +58,23 @@ export function ProfilePage() {
         return (
             <All.HistoryDiv key={index}>
                 <All.HistoryTitle>Histórico de pedidos</All.HistoryTitle>
-                {orders.orders.map((order, idx) => {
-                    return (
-                        <All.HistoryCard key={idx}>
-                            <p className='name'>{order.restaurantName}</p>
-                            <p className='date'>{new Date(order.createdAt)
-                                .toLocaleDateString('pt-br', 
-                                    {day:'numeric',month:'long',year:'numeric'})}
-                            </p>
-                            <p className='price'>SUBTOTAL R${order.totalPrice.toFixed(2)}</p>
-                        </All.HistoryCard>
-                    )
-                })}
+                {orders.orders.length > 0 ?
+                    (
+                        orders.orders.map((order, idx) => {
+                            return (
+                                <All.HistoryCard key={idx}>
+                                    <p className='name'>{order.restaurantName}</p>
+                                    <p className='date'>{new Date(order.createdAt)
+                                        .toLocaleDateString('pt-br',
+                                            { day: 'numeric', month: 'long', year: 'numeric' })}
+                                    </p>
+                                    <p className='price'>SUBTOTAL R${order.totalPrice.toFixed(2)}</p>
+                                </All.HistoryCard>
+                            )
+                        })
+                    ) :
+                    <All.EmptyHistory>Você não realizou nenhum pedido</All.EmptyHistory>
+                }
             </All.HistoryDiv>
         )
     })

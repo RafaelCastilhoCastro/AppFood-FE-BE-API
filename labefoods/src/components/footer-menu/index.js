@@ -18,18 +18,18 @@ export function FooterMenu({ selectedPage }) {
         <All.FooterContainer>
             <AiOutlineHome
                 onClick={() => { goToFeedPage(navigate) }}
-                style={selectedPage === "Feed" ? { 'color': '#e8222e', 'font-size': '30px', 'cursor': 'pointer' } : { 'color': '#b8b8b8', 'font-size': '30px', 'cursor': 'pointer' }}
+                style={selectedPage === "Feed" ? { color: '#e8222e', fontSize: '30px', cursor: 'pointer' } : { color: '#b8b8b8', fontSize: '30px', cursor: 'pointer' }}
             />
             <All.CartDiv>
                 <AiOutlineShoppingCart
                     onClick={() => { goToCartPage(navigate) }}
-                    style={selectedPage === "Cart" ? { 'color': '#e8222e', 'font-size': '30px', 'cursor': 'pointer' } : { 'color': '#b8b8b8', 'font-size': '30px', 'cursor': 'pointer' }}
+                    style={selectedPage === "Cart" ? { color: '#e8222e', fontSize: '30px', cursor: 'pointer' } : { color: '#b8b8b8', fontSize: '30px', cursor: 'pointer' }}
                 />
-                {storedArray.current?.length !== 0 && <All.CardCount><span>{storedArray.current?.length}</span></All.CardCount>}
+                {storedArray.current?.length > 0 && <All.CardCount><span>{storedArray.current?.length}</span></All.CardCount>}
             </All.CartDiv>
             <BsPerson
                 onClick={() => { goToProfilePage(navigate) }}
-                style={selectedPage === "Profile" ? { 'color': '#e8222e', 'font-size': '30px', 'cursor': 'pointer' } : { 'color': '#b8b8b8', 'font-size': '30px', 'cursor': 'pointer' }}
+                style={selectedPage === "Profile" ? { color: '#e8222e', fontSize: '30px', cursor: 'pointer' } : { color: '#b8b8b8', fontSize: '30px', cursor: 'pointer' }}
             />
         </All.FooterContainer>
     )

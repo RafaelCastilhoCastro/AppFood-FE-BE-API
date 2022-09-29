@@ -163,13 +163,13 @@ export function FeedPage() {
                     <div>
                         <AccessTimeIcon style={{ color: '#fff' }} fontSize="large" />
                     </div>
-                    <div>
-                        <p className="activeTitle">Pedido em andamento</p>
-                        <p>{activeOrderData.order.restaurantName}</p>
-                        <p className="activeSubtotal">
+                    <All.ActiveTextDiv>
+                        <All.ActiveTitle>Pedido em andamento</All.ActiveTitle>
+                        <All.ActiveRestaurantName>{activeOrderData.order.restaurantName}</All.ActiveRestaurantName>
+                        <All.ActiveSubtotal>
                             SUBTOTAL R${activeOrderData.order.totalPrice.toFixed(2)}
-                        </p>
-                    </div>
+                        </All.ActiveSubtotal>
+                    </All.ActiveTextDiv>
                 </All.ActiveOrderAlert>
             }
 

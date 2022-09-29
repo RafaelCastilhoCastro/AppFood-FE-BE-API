@@ -1,11 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { GlobalStateContext } from '../../global/globalStateContext'
 import * as All from './style'
-import { useEffect } from 'react';
 
-export function ItemCard({ product, toggleGrayBackground, setToggleGrayBackground, details, getData }) {
+export function ItemCard({ product, toggleGrayBackground, setToggleGrayBackground, details, getData}) {
 
-    const { totalValue, setTotalValue, setShippingValue, storedArray } = useContext(GlobalStateContext)
+    const { totalValue, setTotalValue, setShippingValue, storedArray, setRestaurantId  } = useContext(GlobalStateContext)
 
     const [popQty, setPopQty] = useState(false)
     const [itemQty, setItemQty] = useState(0)
@@ -20,14 +19,15 @@ export function ItemCard({ product, toggleGrayBackground, setToggleGrayBackgroun
             }
             const exists = storedArray.current?.find((e) => e.id === selectedItem.id)
             setTotalValue(totalValue + selectedItem.price * qty)
+            var newArray
             if (exists) {
-                var newArray = storedArray.current.map((e) =>
-                        e.id === selectedItem.id ? { ...exists, quantity: exists.quantity + qty } : e
-                    )
-                    localStorage.setItem('cart', JSON.stringify(newArray))
-                    storedArray.current = JSON.parse(localStorage.getItem('cart'))
+                newArray = storedArray.current.map((e) =>
+                    e.id === selectedItem.id ? { ...exists, quantity: exists.quantity + qty } : e
+                )
+                localStorage.setItem('cart', JSON.stringify(newArray))
+                storedArray.current = JSON.parse(localStorage.getItem('cart'))
             } else {
-                var newArray = [...storedArray.current, { ...selectedItem, quantity: qty }]
+                newArray = [...storedArray.current, { ...selectedItem, quantity: qty }]
                 localStorage.setItem('cart', JSON.stringify(newArray))
                 storedArray.current = JSON.parse(localStorage.getItem('cart'))
             }
@@ -35,17 +35,18 @@ export function ItemCard({ product, toggleGrayBackground, setToggleGrayBackgroun
         toggleQty()
         setItemQty(0)
         setShippingValue(details.restaurant.shipping)
+        setRestaurantId(details.restaurant.id)
     }
 
     const deleteProduct = (product) => {
         const exists = storedArray.current?.find((e) => e.id === product.id)
         setTotalValue(totalValue - product.price * product.quantity)
-            var newArray = storedArray.current.filter((e) => e.id !== exists.id)
-            localStorage.setItem('cart', JSON.stringify(newArray))
-            storedArray.current = JSON.parse(localStorage.getItem('cart'))
-            if (storedArray.current?.length === 0) {
-                getData()
-            }
+        var newArray = storedArray.current.filter((e) => e.id !== exists.id)
+        localStorage.setItem('cart', JSON.stringify(newArray))
+        storedArray.current = JSON.parse(localStorage.getItem('cart'))
+        if (storedArray.current?.length === 0) {
+            getData()
+        }
     }
 
     const toggleQty = (product) => {
@@ -75,7 +76,7 @@ export function ItemCard({ product, toggleGrayBackground, setToggleGrayBackgroun
                 <All.ItemDescription>{product.description}</All.ItemDescription>
                 <All.PriceDiv>
                     <All.PriceSpan>R${product.price.toFixed(2)}</All.PriceSpan>
-                    {!toggle ? <All.AddButton onClick={() => toggleQty(product)}>adicionar</All.AddButton> : <All.RemoveButton onClick={() => { deleteProduct(product);}}>remover</All.RemoveButton>}
+                    {!toggle ? <All.AddButton onClick={() => toggleQty(product)}>adicionar</All.AddButton> : <All.RemoveButton onClick={() => { deleteProduct(product); }}>remover</All.RemoveButton>}
                 </All.PriceDiv>
             </All.CardTextDiv>
             {popQty &&

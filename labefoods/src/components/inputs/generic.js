@@ -9,9 +9,9 @@ export function GenericInput({ value, onChange, label, placeHolder, name, error,
       id="outlined-required"
       label={label}
       placeholder={placeHolder}
+      name={name}
       value={value}
       onChange={onChange}
-      name={name}
       error={error}
       helperText={error ? helperText : undefined}
       InputLabelProps={{
