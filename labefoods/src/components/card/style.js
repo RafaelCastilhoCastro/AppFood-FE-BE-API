@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import dropdown from "../../img/dropdown.svg"
+import { TextStyle } from "../../style"
 
 export const ProductCard = styled.div`
   display: flex;
@@ -34,11 +35,8 @@ export const NameCountDiv = styled.div`
 `
 
 export const ItemName = styled.p`
+  ${TextStyle.Red}
   margin-left: 15px;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: -0.4px;
-  color: #e8222e;
   align-self: flex-end;
   -ms-hyphens: auto;
   -moz-hyphens: auto;
@@ -49,25 +47,20 @@ export const ItemName = styled.p`
 `
 
 export const ItemCount = styled.div`
+  ${TextStyle.Red}
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid #e8222e;
-  color: #e8222e;
   border-top-right-radius: 8px;
   border-bottom-left-radius: 8px;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: -0.4px;
   min-width: 33px;
   height: 33px;
 `
 
 export const ItemDescription = styled.p`
+  ${TextStyle.SmallGray}  
   margin: 10px 15px 0;
-  font-size: 12px;
-  letter-spacing: -0.3px;
-  color: #b8b8b8;
   -ms-hyphens: auto;
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
@@ -85,32 +78,28 @@ export const PriceDiv = styled.div`
 `
 
 export const PriceSpan = styled.span`
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: -0.4px;
+  ${TextStyle.Normal}  
   margin-left: 15px;
 `
 
 export const AddButton = styled.button`
+  ${TextStyle.Small}  
   background: none;
   border: 1px solid #000;
   border-top-left-radius: 8px;
   border-bottom-right-radius: 8px;
   cursor: pointer;
-  font-size: 12px;
-  font-weight: 500;
   width: 90px;
 
 `
 
 export const RemoveButton = styled.button`
+  ${TextStyle.Small}  
   background: none;
   border: 1px solid #e8222e;
   border-top-left-radius: 8px;
   border-bottom-right-radius: 8px;
   cursor: pointer;
-  font-size: 12px;
-  font-weight: 500;
   height: 31px;
   width: 90px;
   color: #e8222e;
@@ -131,10 +120,8 @@ export const SetQty = styled.div`
   z-index: 101;
 
   span {
+    ${TextStyle.Normal}  
     margin: 30px 0;
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: -0.4px;
   }
 
   button {
@@ -154,13 +141,12 @@ export const SetQty = styled.div`
   }
 
   select {
+    ${TextStyle.Normal}  
     border: 1px solid #b8b8b8;
     padding: 16px;
     border-radius: 4px;
     width: 90%;
     height: 56px;
-    font-size: 16px;
-    font-weight: 500;
     -webkit-appearance: none;
     appearance: none;
     background-image: url(${dropdown});

@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { TextStyle } from "../../style"
+
 export const DetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -32,16 +34,11 @@ export const RestaurantImg = styled.img`
 `
 
 export const RestaurtTitle = styled.h2`
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: -0.4px;
-  color: #e8222e;
+  ${TextStyle.Red}
   margin: 10px 0;
 `
 export const RestaurantDescription = styled.span`
-  font-size: 16px;
-  letter-spacing: -0.4px;
-  color: #b8b8b8;
+  ${TextStyle.Gray}
   margin-bottom: 10px;
 `
 
@@ -50,10 +47,8 @@ export const DescriptionContainer = styled.div`
   gap: 50px;
 `
 export const ProductsTitle = styled.div`
-  font-size: 16px;
-  letter-spacing: -0.4px;
+  ${TextStyle.Normal}
   border-bottom: 1px solid #000;
-  font-weight: 500;
   padding: 8px 0;
   width: 100%;
 `

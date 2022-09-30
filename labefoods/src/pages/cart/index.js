@@ -108,10 +108,10 @@ export function CartPage() {
                         cardInfo :
                         <All.EmptyCartText>Carrinho Vazio</All.EmptyCartText>
                 }
-                <All.ShippingText>R$ {shippingValue.current.toFixed(2)}</All.ShippingText>
+                <All.ShippingText>Frete R${shippingValue.current.toFixed(2)}</All.ShippingText>
                 <All.TotalDiv>
                     <All.SubTotal>SUBTOTAL</All.SubTotal>
-                    <All.FinalValue>R$ {(totalValue + shippingValue.current).toFixed(2)}</All.FinalValue>
+                    <All.FinalValue>R${(totalValue + shippingValue.current).toFixed(2)}</All.FinalValue>
                 </All.TotalDiv>
 
                 <All.PaymentDiv>

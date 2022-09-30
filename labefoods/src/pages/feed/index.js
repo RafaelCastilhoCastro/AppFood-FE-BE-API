@@ -12,6 +12,8 @@ import { BASE_URL } from "../../constants/constants";
 import { useRequestData } from "../../hooks/useRequestData";
 import gif from '../../img/loading-gif.gif'
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import { margin } from "@mui/system";
+import { useRef } from "react";
 
 export function FeedPage() {
 
@@ -36,6 +38,8 @@ export function FeedPage() {
     const [title, setTitle] = useState('iFuture')
     const [display, setDisplay] = useState('flex')
     const [selected, setSelected] = useState("")
+
+    const margin = useRef('49px')
 
     //FUNCTIONS
 
@@ -124,6 +128,10 @@ export function FeedPage() {
         }
     })
 
+    if (activeOrderData) {
+        margin.current = '165px'
+    }
+
     return (
         <All.FeedContainer>
             <Header pageTitle={title} />
@@ -151,7 +159,7 @@ export function FeedPage() {
                 <button className={selected === "9" ? "selected" : undefined} id={"9"} onClick={handleSelection} value='Sorvetes'>Sorvetes</button>
             </All.Categories>
 
-            <All.RestaurantCardContainer>
+            <All.RestaurantCardContainer margin={margin.current} >
                 {loadingRestaurants && <LoadingDiv><img src={gif} alt="gif" /></LoadingDiv>}
                 {!loadingRestaurants && restaurantsData && restaurantList}
                 {!loadingRestaurants && !restaurantsData && errorRestaurants}

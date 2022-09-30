@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { TextStyle } from "../../style"
 
 export const CartPageContainer = styled.div`
   display: flex;
@@ -15,30 +16,23 @@ export const AddressDiv = styled.div`
 `
 
 export const AddressText = styled.span`
-  font-size: 16px;
-  letter-spacing: -0.4px;
-  color: #b8b8b8;
+  ${TextStyle.Gray}
   margin: 4px 0;
 `
 
 export const MyAddressText = styled.span`
-  font-size: 16px;
-  letter-spacing: -0.4px;
+  ${TextStyle.Normal}
   margin: 4px 0;
-  font-weight: 500;
 `
 
 export const EmptyCartText = styled.span`
-  font-size: 16px;
-  font-weight: 500;
+  ${TextStyle.Normal}
   opacity: 0.89;
   text-align: center;
   margin: 20px 0;
 `
 export const ShippingText = styled.div`
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: -0.4px;
+  ${TextStyle.Normal}
   text-align: right;
   width: 90%;
   margin: 15px auto 0;
@@ -52,9 +46,7 @@ export const TotalDiv = styled.div`
   margin: 10px auto;
 `
 export const SubTotal = styled.span`
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: -0.4px;
+  ${TextStyle.Normal}
 `
 export const FinalValue = styled.span`
   font-size: 18px;
@@ -71,10 +63,8 @@ export const PaymentDiv = styled.div`
 `
 
 export const PaymentTitle = styled.p`
-  font-size: 16px;
-  letter-spacing: -0.4px;
+  ${TextStyle.Normal}
   border-bottom: 1px solid #000;
-  font-weight: 500;
   align-self: center;
   padding: 8px 0;
   width: 100%;
@@ -119,24 +109,20 @@ export const OptionDiv = styled.div`
   }
 
   label {
+    ${TextStyle.Normal}
     display: flex;
     align-items: center;
-    font-weight: 500;
-    font-size: 16px;
-    letter-spacing: -0.4px;
   }
 `
 
 export const CartButton = styled.button`
+  ${TextStyle.Normal}
   border: none;
   width: 90%;
   height: 42px;
   border-radius: 2px;
-  font-size: 16px;
-  letter-spacing: -0.4px;
   text-align: center;
   margin: auto auto 64px;
-  font-weight: 500;
   background-color:#e8222e;
 
   :hover {

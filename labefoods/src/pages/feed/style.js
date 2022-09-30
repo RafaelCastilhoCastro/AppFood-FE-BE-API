@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { TextStyle } from "../../style"
 
 export const FeedContainer = styled.main`
     display: flex;
@@ -20,15 +21,13 @@ export const Categories = styled.div`
         }
 
     button {
+        ${TextStyle.Normal}
         display: inline;
         width: auto;
         height: auto;
         background: transparent;
         cursor: pointer;    
         border: none !important;
-        font-weight: 500;
-        font-size: 16px;
-        letter-spacing: -0.4px;
         margin: 0 7%;
     }
 
@@ -41,7 +40,7 @@ export const RestaurantCardContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 90%;
-    margin-bottom: 49px;
+    margin-bottom: ${(props) => props.margin};
 `
 
 export const RestaurantCard = styled.div`
@@ -68,14 +67,12 @@ export const InfoDiv = styled.div`
     border-top: solid 1px #e0dcdc;
 
     h3 {
+        ${TextStyle.Normal}
         width: 90%;
         margin: auto;
         margin-top: 10px;
-        font-weight: 500;
-        font-size: 16px;
         color: #e8222e;
         text-align: start;
-        letter-spacing: -0.4px;
     }
 
     div {
@@ -88,9 +85,7 @@ export const InfoDiv = styled.div`
     }
 
     div p {
-        color: #b8b8b8;
-        font-size: 16px;
-        letter-spacing: -0.4px;
+        ${TextStyle.Gray}
     }
 
 `
@@ -104,7 +99,6 @@ export const ActiveOrderAlert = styled.div`
     background: #e8222e;
     position: fixed;
     bottom: 49px;
-
 `
 
 export const ActiveTextDiv = styled.div`
@@ -115,28 +109,23 @@ export const ActiveTextDiv = styled.div`
 `
 
 export const ActiveTitle = styled.p`
+    ${TextStyle.Normal}
     color: #fff;
     font-weight: 300;
-    font-size: 16px;
-    letter-spacing: -0.4px;    
 `
 export const ActiveRestaurantName = styled.p`
+    ${TextStyle.Normal}
     font-weight: 400;
-    font-size: 16px;
-    letter-spacing: -0.4px;    
 `
 
 export const ActiveSubtotal = styled.p`
-    font-weight: bold;
-    font-size: 16px;
-    letter-spacing: -0.4px;    
+    ${TextStyle.Normal}
+    font-weight: bold; 
 `
 
 export const MessageSpan = styled.span`
+    ${TextStyle.Normal}
     width: 100%;
     text-align: center;
-    font-weight: 500;
-    font-size: 16px;
-    letter-spacing: -0.4px;
     margin: 8px 0;
 `
