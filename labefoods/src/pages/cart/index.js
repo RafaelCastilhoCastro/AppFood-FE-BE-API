@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { BASE_URL } from '../../constants/constants';
 import { useRequestData } from '../../hooks/useRequestData';
 import { Header, FooterMenu, LoadingDiv, ItemCard } from "../../components";
@@ -20,7 +20,15 @@ export function CartPage() {
 
     const navigate = useNavigate();
 
-    const { totalValue, setTotalValue, shippingValue, setShippingValue, storedArray, restaurantId } = useContext(GlobalStateContext)
+    const { totalValue, setTotalValue, shippingValue, storedArray, restaurantId } = useContext(GlobalStateContext)
+
+    // EFFECT
+
+    useEffect(() => {
+        getPrice()
+        shippingValue.current = shippingValue.current ? parseInt(localStorage.getItem('shipping')) : 0
+        restaurantId.current = localStorage.getItem('restaurantid')
+    }, [storedArray.current])
 
     // STATES
 
@@ -33,12 +41,18 @@ export function CartPage() {
 
     // FUNCTIONS
 
-    const handleOptionChange = (e) => {
-        setSelectedOption(e.target.value)
+    const getPrice = () => {
+        let newPrice = 0
+
+        storedArray.current?.forEach(product => {
+            newPrice += product.price * parseInt(product.quantity)
+        })
+
+        setTotalValue(newPrice)
     }
 
-    if (storedArray.current?.length === 0) {
-        setShippingValue(0)
+    const handleOptionChange = (e) => {
+        setSelectedOption(e.target.value)
     }
 
     // RENDER CARDS
@@ -64,11 +78,13 @@ export function CartPage() {
     const placeOrder = (e) => {
         e.preventDefault()
 
-        axios.post(`${BASE_URL}restaurants/${restaurantId}/order`, order, { headers: { auth: token } })
+        axios.post(`${BASE_URL}restaurants/${restaurantId.current}/order`, order, { headers: { auth: token } })
             .then(response => {
                 goToFeedPage(navigate)
                 localStorage.setItem('cart', JSON.stringify([]))
-                setTotalValue(0)
+                storedArray.current = JSON.parse(localStorage.getItem('cart'))
+                localStorage.setItem('shipping', 0)
+                shippingValue.current = localStorage.getItem('shipping')
             })
             .catch(err => {
                 alert(err.response.data.message)
@@ -90,10 +106,10 @@ export function CartPage() {
                         cardInfo :
                         <All.EmptyCartText>Carrinho Vazio</All.EmptyCartText>
                 }
-                <All.ShippingText>R$ {shippingValue.toFixed(2)}</All.ShippingText>
+                <All.ShippingText>R$ {shippingValue.current.toFixed(2)}</All.ShippingText>
                 <All.TotalDiv>
                     <All.SubTotal>SUBTOTAL</All.SubTotal>
-                    <All.FinalValue>R$ {(totalValue + shippingValue).toFixed(2)}</All.FinalValue>
+                    <All.FinalValue>R$ {(totalValue + shippingValue.current).toFixed(2)}</All.FinalValue>
                 </All.TotalDiv>
 
                 <All.PaymentDiv>

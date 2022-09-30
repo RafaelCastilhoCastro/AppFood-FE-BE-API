@@ -22,10 +22,8 @@ export const useRequestData = (url) => {
         setIsLoading(true);
         axios.get(url, myHeaders)
             .then(response => {
-                setTimeout(() => {
-                    setIsLoading(false)
-                    setData(response.data)
-                }, 1000)
+                setIsLoading(false)
+                setData(response.data)
             }).catch(err => {
                 setIsLoading(false)
                 setError(err)

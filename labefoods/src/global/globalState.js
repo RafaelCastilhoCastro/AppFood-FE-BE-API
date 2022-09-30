@@ -7,8 +7,8 @@ export function GlobalState(props) {
     //STATES
 
     const [totalValue, setTotalValue] = useState(0)
-    const [shippingValue, setShippingValue] = useState(0)
-    const [restaurantId, setRestaurantId] = useState(undefined)
+    const shippingValue = useRef(0)
+    const restaurantId = useRef(undefined)
     const storedArray = useRef([])
 
     //EFFECTS
@@ -48,10 +48,8 @@ export function GlobalState(props) {
                     totalValue,
                     setTotalValue,
                     shippingValue,
-                    setShippingValue,
                     storedArray,
-                    restaurantId,
-                    setRestaurantId
+                    restaurantId
                 }
             }>
             {props.children}
