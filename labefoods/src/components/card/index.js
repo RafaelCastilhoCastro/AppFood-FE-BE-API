@@ -53,7 +53,6 @@ export function ItemCard({ product, toggleGrayBackground, setToggleGrayBackgroun
         var newArray = storedArray.current.filter((e) => e.id !== exists.id)
         localStorage.setItem('cart', JSON.stringify(newArray))
         storedArray.current = JSON.parse(localStorage.getItem('cart'))
-        // getData()
         if (storedArray.current?.length === 0) {
             localStorage.setItem('shipping', '0')
             shippingValue.current = parseInt(localStorage.getItem('shipping'))
