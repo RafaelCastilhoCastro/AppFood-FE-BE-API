@@ -59,7 +59,7 @@ export function ItemCard({ product, toggleGrayBackground, setToggleGrayBackgroun
     }
 
     const toggleQty = (product) => {
-        if (restaurantId.current !== null && restaurantId.current !== '' && (restaurantId.current !== details.restaurant.id)) {
+        if (restaurantId.current && restaurantId.current !== '' && (restaurantId.current !== details.restaurant.id)) {
             if (window.confirm("Você já tem itens adicionados no seu carrinho. Deseja limpar o carrinho?")) {
                 localStorage.setItem('cart', JSON.stringify([]))
                 storedArray.current = JSON.parse(localStorage.getItem('cart'))
