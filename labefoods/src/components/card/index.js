@@ -2,9 +2,9 @@ import React, { useContext, useState } from 'react'
 import { GlobalStateContext } from '../../global/globalStateContext'
 import * as All from './style'
 
-export function ItemCard({ product, toggleGrayBackground, setToggleGrayBackground, details, getData }) {
+export function ItemCard({ product, toggleGrayBackground, setToggleGrayBackground, details }) {
 
-    const { shippingValue, storedArray, restaurantId } = useContext(GlobalStateContext)
+    const { shippingValue, storedArray, restaurantId, cartArray, setCartArray } = useContext(GlobalStateContext)
 
 
     const [popQty, setPopQty] = useState(false)
@@ -22,32 +22,42 @@ export function ItemCard({ product, toggleGrayBackground, setToggleGrayBackgroun
             if (!storedArray.current) {
                 storedArray.current = []
             }
-            const exists = storedArray.current?.find((e) => e.id === selectedItem.id)
+            const exists = cartArray?.find((e) => e.id === selectedItem.id)
             if (exists) {
                 var newArray = storedArray.current.map((e) =>
                     e.id === selectedItem.id ? { ...exists, quantity: exists.quantity + qty } : e
                 )
                 localStorage.setItem('cart', JSON.stringify(newArray))
                 storedArray.current = JSON.parse(localStorage.getItem('cart'))
+                setCartArray(
+                    cartArray.map((e) =>
+                        e.id === selectedItem.id ? { ...exists, quantity: exists.quantity + qty } : e
+                    ))
             } else {
                 var newArray = [...storedArray.current, { ...selectedItem, quantity: qty }]
                 localStorage.setItem('cart', JSON.stringify(newArray))
                 storedArray.current = JSON.parse(localStorage.getItem('cart'))
+                setCartArray([...cartArray, { ...selectedItem, quantity: qty }])
             }
         }
         toggleQty()
         setItemQty(0)
     }
 
+    console.log(cartArray)
+    console.log(storedArray.current)
+
     const deleteProduct = (product) => {
-        const exists = storedArray.current?.find((e) => e.id === product.id)
+        const exists = cartArray.find((e) => e.id === product.id)
+        setCartArray(cartArray.filter((e) => e.id !== exists.id))
         var newArray = storedArray.current.filter((e) => e.id !== exists.id)
         localStorage.setItem('cart', JSON.stringify(newArray))
         storedArray.current = JSON.parse(localStorage.getItem('cart'))
-        getData()
         if (storedArray.current?.length === 0) {
             localStorage.setItem('shipping', '0')
             shippingValue.current = parseInt(localStorage.getItem('shipping'))
+            localStorage.setItem('restaurantid', '')
+            restaurantId.current = parseInt(localStorage.getItem('restaurantid'))
         }
     }
 
@@ -61,7 +71,7 @@ export function ItemCard({ product, toggleGrayBackground, setToggleGrayBackgroun
         setItemQty(e.target.value)
     }
 
-    var exists = storedArray.current?.find((e) => e.id === product.id)
+    var exists = cartArray?.find((e) => e.id === product.id)
     var toggle = false
     if (exists) {
         toggle = true

@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import { useEffect } from "react";
 import { GlobalStateContext } from "./globalStateContext";
 
 export function GlobalState(props) {
@@ -10,12 +9,7 @@ export function GlobalState(props) {
     const shippingValue = useRef(0)
     const restaurantId = useRef(undefined)
     const storedArray = useRef([])
-
-    //EFFECTS
-
-    useEffect(() => {
-        storedArray.current = JSON.parse(localStorage.getItem('cart'))
-    }, [])
+    const [cartArray, setCartArray] = useState([])
 
 
     // FUNCTIONS
@@ -49,7 +43,9 @@ export function GlobalState(props) {
                     setTotalValue,
                     shippingValue,
                     storedArray,
-                    restaurantId
+                    restaurantId,
+                    cartArray,
+                    setCartArray
                 }
             }>
             {props.children}
