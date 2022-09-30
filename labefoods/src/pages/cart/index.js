@@ -36,7 +36,7 @@ export function CartPage() {
 
     // REQUEST
 
-    const [profileData, isLoadingProfile, errorProfile, getData] = useRequestData(`${BASE_URL}profile`)
+    const [profileData, isLoadingProfile, errorProfile] = useRequestData(`${BASE_URL}profile`)
     const profileAddress = [{ ...profileData }]
 
     // FUNCTIONS
@@ -59,7 +59,7 @@ export function CartPage() {
 
     const cardInfo = cartArray?.map(product => {
         return (
-            <ItemCard getData={getData} key={product.id} product={product} />
+            <ItemCard key={product.id} product={product} />
         )
     })
 
@@ -85,6 +85,8 @@ export function CartPage() {
                 storedArray.current = JSON.parse(localStorage.getItem('cart'))
                 localStorage.setItem('shipping', 0)
                 shippingValue.current = localStorage.getItem('shipping')
+                localStorage.setItem('restaurantid', '')
+                restaurantId.current = localStorage.getItem('restaurantid')
             })
             .catch(err => {
                 alert(err.response.data.message)

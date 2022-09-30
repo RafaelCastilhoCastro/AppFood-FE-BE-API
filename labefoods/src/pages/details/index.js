@@ -18,7 +18,7 @@ export function DetailsPage() {
 
     // REQUEST
 
-    const [restaurantData, isLoading, error, getData] = useRequestData(`${BASE_URL}restaurants/${pathParams.id}`)
+    const [restaurantData, isLoading, error] = useRequestData(`${BASE_URL}restaurants/${pathParams.id}`)
 
     const detailsArray = [{ ...restaurantData }]
 
@@ -40,7 +40,12 @@ export function DetailsPage() {
                 <All.ProductsTitle>Produtos</All.ProductsTitle>
                 {details.restaurant.products.map(product => {
                     return (
-                        <ItemCard getData={getData} details={details} key={product.id} product={product} toggleGrayBackground={toggleGrayBackground} setToggleGrayBackground={setToggleGrayBackground} />
+                        <ItemCard
+                            details={details}
+                            key={product.id}
+                            product={product}
+                            toggleGrayBackground={toggleGrayBackground}
+                            setToggleGrayBackground={setToggleGrayBackground} />
                     )
                 }
                 )}
