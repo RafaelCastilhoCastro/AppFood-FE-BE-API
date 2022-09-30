@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { TextStyle } from "../../style"
 
 export const ProfileDiv = styled.div`
     display: flex;
@@ -20,9 +21,7 @@ export const InfoDiv = styled.div`
 
     span {
         margin: 4px 0;
-        font-weight: 500;
-        font-size: 16px;
-        letter-spacing: -0.4px;
+        ${TextStyle.Normal}
     }
 
 `
@@ -42,16 +41,12 @@ export const AddressDiv = styled.div`
     }
 
     span {
-        font-weight: 500;
-        font-size: 16px;
-        letter-spacing: -0.4px;
+        ${TextStyle.Normal}
         margin: 4px 0;
     }
 
     p {
-        color: #b8b8b8;
-        font-size: 16px;
-        letter-spacing: -0.4px;
+        ${TextStyle.Gray}
         margin: 4px 0;
     }
 `
@@ -65,10 +60,8 @@ export const HistoryDiv = styled.div`
 `
 
 export const HistoryTitle = styled.p`
-    font-size: 16px;
-    letter-spacing: -0.4px;
+    ${TextStyle.Normal}
     border-bottom: 1px solid #000;
-    font-weight: 500;
     align-self: center;
     padding: 8px 0;
     width: 100%;
@@ -85,30 +78,24 @@ export const HistoryCard = styled.div`
     padding: 16px;
 
     .name {
-        color: #e8222e;
-        font-weight: 500;
-        font-size: 16px;
+        ${TextStyle.Red}
         letter-spacing: -0.4px;
     }
 
     .price {
+        ${TextStyle.Normal}
         font-weight: bold;
-        font-size: 16px;
-        letter-spacing: -0.4px;
     }
 
     .date {
-        font-weight: 500;
-        font-size: 12px;
-        letter-spacing: -0.3px;
+        ${TextStyle.Small}
     }
 
 `
 
 export const EmptyHistory = styled.span`
-  font-size: 16px;
-  font-weight: 500;
-  opacity: 0.89;
-  text-align: center;
-  margin: 20px 0;
+    ${TextStyle.Normal}
+    opacity: 0.89;
+    text-align: center;
+    margin: 20px 0;
 `

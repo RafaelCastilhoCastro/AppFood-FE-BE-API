@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { TextStyle } from "../../style"
+
 
 export const FormsPageContainer = styled.div`
     display: flex;
@@ -7,11 +9,9 @@ export const FormsPageContainer = styled.div`
 `
 
 export const PageTitle = styled.h2`
-    font-size: 16px;
-    letter-spacing: -0.4px;
+    ${TextStyle.Normal}
     text-align: center;
     color: #000;
-    font-weight: 500;
     margin: 13px 0;
 `
 
@@ -25,31 +25,27 @@ export const FormContainer = styled.form`
 `
 
 export const FormButton = styled.button`
-        border: none;
-        width: 100%;
-        height: 42px;
-        border-radius: 2px;
-        background-color:#e8222e;
-        font-size: 16px;
-        letter-spacing: -0.4px;
-        text-align: center;
-        cursor: pointer;
-        margin: 8px 0;
-        font-weight: 500;
+    ${TextStyle.Normal}
+    border: none;
+    width: 100%;
+    height: 42px;
+    border-radius: 2px;
+    background-color:#e8222e;
+    text-align: center;
+    cursor: pointer;
+    margin: 8px 0;
 
-        :hover {
-            opacity: 0.9;
-        }
+    :hover {
+        opacity: 0.9;
+    }
 
 `
 
 export const SignUpButton = styled.button`
+    ${TextStyle.Normal}
     background: none;
     border: none;
-    font-size: 16px;
-    letter-spacing: -0.4px;
     text-align: center;
-    font-weight: 500;
     margin: 13px 0;
 
     :hover {

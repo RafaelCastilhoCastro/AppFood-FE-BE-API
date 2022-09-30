@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { TextStyle } from "../../style"
 
 export const HeaderContainer = styled.div`
     display: flex;
@@ -17,20 +18,15 @@ export const HeaderContainer = styled.div`
 `
 
 export const Title = styled.h2`
+    ${TextStyle.Normal}
     width: 100%;
     text-align: center;
-    font-size: 16px;
-    letter-spacing: -0.4px;
-    color: #000;
-    font-weight: 500;
+
 `
 
 export const TitleWithMargin = styled.h2`
+    ${TextStyle.Normal}
     width: 100%;
     text-align: center;
-    font-size: 16px;
-    letter-spacing: -0.4px;
-    color: #000;
-    font-weight: 500;
     margin-right: 19px;
 `
