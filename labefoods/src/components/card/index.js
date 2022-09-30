@@ -44,9 +44,6 @@ export function ItemCard({ product, toggleGrayBackground, setToggleGrayBackgroun
         setItemQty(0)
     }
 
-    console.log(cartArray)
-    console.log(storedArray.current)
-
     const deleteProduct = (product) => {
         const exists = cartArray.find((e) => e.id === product.id)
         setCartArray(cartArray.filter((e) => e.id !== exists.id))
@@ -62,9 +59,23 @@ export function ItemCard({ product, toggleGrayBackground, setToggleGrayBackgroun
     }
 
     const toggleQty = (product) => {
-        setPopQty(!popQty)
-        setSelectedItem(product)
-        setToggleGrayBackground(!toggleGrayBackground)
+        if (restaurantId.current !== null && restaurantId.current !== '' && (restaurantId.current !== details.restaurant.id)) {
+            if (window.confirm("Você já tem itens adicionados no seu carrinho. Deseja limpar o carrinho?")) {
+                localStorage.setItem('cart', JSON.stringify([]))
+                storedArray.current = JSON.parse(localStorage.getItem('cart'))
+                localStorage.setItem('restaurantid', '')
+                restaurantId.current = parseInt(localStorage.getItem('restaurantid'))
+                localStorage.setItem('shipping', '0')
+                shippingValue.current = parseInt(localStorage.getItem('shipping'))
+                setPopQty(!popQty)
+                setSelectedItem(product)
+                setToggleGrayBackground(!toggleGrayBackground)
+            }
+        } else {
+            setPopQty(!popQty)
+            setSelectedItem(product)
+            setToggleGrayBackground(!toggleGrayBackground)
+        }
     }
 
     const handleItemQty = (e) => {
@@ -88,7 +99,11 @@ export function ItemCard({ product, toggleGrayBackground, setToggleGrayBackgroun
                 <All.ItemDescription>{product.description}</All.ItemDescription>
                 <All.PriceDiv>
                     <All.PriceSpan>R${product.price.toFixed(2)}</All.PriceSpan>
-                    {!toggle ? <All.AddButton onClick={() => toggleQty(product)}>adicionar</All.AddButton> : <All.RemoveButton onClick={() => { deleteProduct(product) }}>remover</All.RemoveButton>}
+                    {
+                        !toggle ?
+                            <All.AddButton onClick={() => toggleQty(product)}>adicionar</All.AddButton> :
+                            <All.RemoveButton onClick={() => { deleteProduct(product) }}>remover</All.RemoveButton>
+                    }
                 </All.PriceDiv>
             </All.CardTextDiv>
             {popQty &&

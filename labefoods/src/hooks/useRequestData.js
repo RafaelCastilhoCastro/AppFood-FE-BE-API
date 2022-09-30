@@ -49,5 +49,5 @@ export const useRequestData = (url) => {
             })
     }
 
-    return [data, isLoading, error, getData];
+    return [data, isLoading, error];
 }
