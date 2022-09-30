@@ -20,13 +20,13 @@ export function CartPage() {
 
     const navigate = useNavigate();
 
-    const { totalValue, setTotalValue, shippingValue, storedArray, restaurantId } = useContext(GlobalStateContext)
+    const { totalValue, setTotalValue, shippingValue, storedArray, restaurantId, cartArray } = useContext(GlobalStateContext)
 
     // EFFECT
 
     useEffect(() => {
         getPrice()
-        shippingValue.current = shippingValue.current ? parseInt(localStorage.getItem('shipping')) : 0
+        shippingValue.current = parseInt(localStorage.getItem('shipping'))
         restaurantId.current = localStorage.getItem('restaurantid')
     }, [storedArray.current])
 
@@ -44,7 +44,7 @@ export function CartPage() {
     const getPrice = () => {
         let newPrice = 0
 
-        storedArray.current?.forEach(product => {
+        cartArray?.forEach(product => {
             newPrice += product.price * parseInt(product.quantity)
         })
 
@@ -57,7 +57,7 @@ export function CartPage() {
 
     // RENDER CARDS
 
-    const cardInfo = storedArray.current?.map(product => {
+    const cardInfo = cartArray?.map(product => {
         return (
             <ItemCard getData={getData} key={product.id} product={product} />
         )
@@ -65,8 +65,8 @@ export function CartPage() {
 
     // PLACE ORDER
 
-    const ordedProducts = storedArray.current?.map(product => {
-        return {id: `${product.id}`, quantity: product.quantity}
+    const ordedProducts = cartArray?.map(product => {
+        return { id: `${product.id}`, quantity: product.quantity }
     })
 
 
