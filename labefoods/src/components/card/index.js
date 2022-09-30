@@ -2,9 +2,10 @@ import React, { useContext, useState } from 'react'
 import { GlobalStateContext } from '../../global/globalStateContext'
 import * as All from './style'
 
-export function ItemCard({ product, toggleGrayBackground, setToggleGrayBackground, details, getData}) {
+export function ItemCard({ product, toggleGrayBackground, setToggleGrayBackground, details, getData }) {
 
-    const { totalValue, setTotalValue, setShippingValue, storedArray, setRestaurantId  } = useContext(GlobalStateContext)
+    const { shippingValue, storedArray, restaurantId } = useContext(GlobalStateContext)
+
 
     const [popQty, setPopQty] = useState(false)
     const [itemQty, setItemQty] = useState(0)
@@ -14,38 +15,39 @@ export function ItemCard({ product, toggleGrayBackground, setToggleGrayBackgroun
 
     const addProduct = (qty) => {
         if (qty > 0) {
+            localStorage.setItem('restaurantid', details.restaurant.id)
+            restaurantId.current = localStorage.getItem('restaurantid')
+            localStorage.setItem('shipping', details.restaurant.shipping)
+            shippingValue.current = parseInt(localStorage.getItem('shipping'))
             if (!storedArray.current) {
                 storedArray.current = []
             }
             const exists = storedArray.current?.find((e) => e.id === selectedItem.id)
-            setTotalValue(totalValue + selectedItem.price * qty)
-            var newArray
             if (exists) {
-                newArray = storedArray.current.map((e) =>
+                var newArray = storedArray.current.map((e) =>
                     e.id === selectedItem.id ? { ...exists, quantity: exists.quantity + qty } : e
                 )
                 localStorage.setItem('cart', JSON.stringify(newArray))
                 storedArray.current = JSON.parse(localStorage.getItem('cart'))
             } else {
-                newArray = [...storedArray.current, { ...selectedItem, quantity: qty }]
+                var newArray = [...storedArray.current, { ...selectedItem, quantity: qty }]
                 localStorage.setItem('cart', JSON.stringify(newArray))
                 storedArray.current = JSON.parse(localStorage.getItem('cart'))
             }
         }
         toggleQty()
         setItemQty(0)
-        setShippingValue(details.restaurant.shipping)
-        setRestaurantId(details.restaurant.id)
     }
 
     const deleteProduct = (product) => {
         const exists = storedArray.current?.find((e) => e.id === product.id)
-        setTotalValue(totalValue - product.price * product.quantity)
         var newArray = storedArray.current.filter((e) => e.id !== exists.id)
         localStorage.setItem('cart', JSON.stringify(newArray))
         storedArray.current = JSON.parse(localStorage.getItem('cart'))
+        getData()
         if (storedArray.current?.length === 0) {
-            getData()
+            localStorage.setItem('shipping', '0')
+            shippingValue.current = parseInt(localStorage.getItem('shipping'))
         }
     }
 
@@ -76,29 +78,31 @@ export function ItemCard({ product, toggleGrayBackground, setToggleGrayBackgroun
                 <All.ItemDescription>{product.description}</All.ItemDescription>
                 <All.PriceDiv>
                     <All.PriceSpan>R${product.price.toFixed(2)}</All.PriceSpan>
-                    {!toggle ? <All.AddButton onClick={() => toggleQty(product)}>adicionar</All.AddButton> : <All.RemoveButton onClick={() => { deleteProduct(product); }}>remover</All.RemoveButton>}
+                    {!toggle ? <All.AddButton onClick={() => toggleQty(product)}>adicionar</All.AddButton> : <All.RemoveButton onClick={() => { deleteProduct(product) }}>remover</All.RemoveButton>}
                 </All.PriceDiv>
             </All.CardTextDiv>
             {popQty &&
-                <All.SetQty>
-                    <span>Selecione a quantidade desejada</span>
-                    <select value={itemQty} onChange={handleItemQty} >
-                        <option value={0}>0</option>
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                        <option value={4}>4</option>
-                        <option value={5}>5</option>
-                        <option value={6}>6</option>
-                        <option value={7}>7</option>
-                        <option value={8}>8</option>
-                        <option value={9}>9</option>
-                        <option value={10}>10</option>
-                    </select>
-                    <button onClick={() => addProduct(itemQty)}>ADICIONAR AO CARRINHO</button>
-                </All.SetQty>
+                <>
+                    <All.TransparentQtyMask onClick={() => toggleQty(product)} />
+                    <All.SetQty>
+                        <span>Selecione a quantidade desejada</span>
+                        <select value={itemQty} onChange={handleItemQty} >
+                            <option value={0}>0</option>
+                            <option value={1}>1</option>
+                            <option value={2}>2</option>
+                            <option value={3}>3</option>
+                            <option value={4}>4</option>
+                            <option value={5}>5</option>
+                            <option value={6}>6</option>
+                            <option value={7}>7</option>
+                            <option value={8}>8</option>
+                            <option value={9}>9</option>
+                            <option value={10}>10</option>
+                        </select>
+                        <button onClick={() => addProduct(itemQty)}>ADICIONAR AO CARRINHO</button>
+                    </All.SetQty>
+                </>
             }
-
         </All.ProductCard>
     )
 }

@@ -12,9 +12,9 @@ export function Header({ buttonExists, pageTitle }) {
         <All.HeaderContainer>
             {buttonExists && 
                 <button onClick={() => { goBack(navigate) }}>
-                    <ArrowBackIosIcon style={{ "cursor": "pointer", 
-                                                "width": "19px", 
-                                                "margin-top": "2px" }}/>
+                    <ArrowBackIosIcon style={{ cursor: "pointer", 
+                                                width: "19px", 
+                                                marginTop: "2px" }}/>
                 </button>}
             {(pageTitle && buttonExists) && <All.TitleWithMargin>{pageTitle}</All.TitleWithMargin>}
             {(pageTitle && !buttonExists) && <All.Title>{pageTitle}</All.Title>}

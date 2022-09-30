@@ -128,7 +128,7 @@ export const SetQty = styled.div`
   transform: translate(-50%, -50%);
   background: white;
   width: 90%;
-  z-index: 99;
+  z-index: 101;
 
   span {
     margin: 30px 0;
@@ -167,4 +167,13 @@ export const SetQty = styled.div`
     background-repeat: no-repeat;
     background-position: calc(100% - 16px) center;
   }
+`
+
+export const TransparentQtyMask = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
 `
