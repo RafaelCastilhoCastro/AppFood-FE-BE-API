@@ -4,7 +4,6 @@ import { TextStyle } from "../../style"
 export const ProfileDiv = styled.div`
     display: flex;
     flex-direction: column;
-
 `
 
 export const InfoDiv = styled.div`
@@ -33,7 +32,6 @@ export const AddressDiv = styled.div`
     width: 100%;
     padding: 8px 5%;
     justify-content: space-between;
-
 
     div {
         display: flex;
