@@ -1,6 +1,12 @@
 import styled from "styled-components";
 import { TextStyle } from "../../style"
 
+export const ProfileContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+`
+
 export const ProfileDiv = styled.div`
     display: flex;
     flex-direction: column;
@@ -53,8 +59,7 @@ export const HistoryDiv = styled.div`
     display: flex;
     flex-direction: column;
     width: 90%;
-    margin: auto;
-    margin-bottom: 58px;
+    margin: 0 auto 15px;
 `
 
 export const HistoryTitle = styled.p`
@@ -96,4 +101,30 @@ export const EmptyHistory = styled.span`
     opacity: 0.89;
     text-align: center;
     margin: 20px 0;
+`
+
+export const LogoutButton = styled.button`
+  ${TextStyle.Normal}
+  border: none;
+  width: 90%;
+  height: 42px;
+  border-radius: 2px;
+  text-align: center;
+  margin: auto auto 64px;
+  background-color:#e8222e;
+
+  :hover {
+    opacity: 0.9;
+    cursor: pointer;
+  }
+
+  :disabled {
+    background-color: rgba(232, 34, 46, 0.5);
+  }
+
+  :disabled:hover {
+    opacity: 1;
+    cursor: not-allowed;
+  }
+
 `

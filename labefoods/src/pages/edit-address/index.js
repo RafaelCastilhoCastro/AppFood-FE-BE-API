@@ -20,20 +20,26 @@ export function EditAddressPage() {
 
     const [addressData, isLoading, error] = useRequestData(`${BASE_URL}profile/address`)
 
+    const addressArray = [{ ...addressData }]
+
+    const addressValues = addressData && addressArray.map(value => {
+        return {
+            street: value.address.street,
+            number: value.address.number,
+            neighbourhood: value.address.neighbourhood,
+            city: value.address.city,
+            state: value.address.state,
+            complement: value.address.complement
+        }
+    })
+
 
     return (
         <FormsPageContainer>
             <Header buttonExists={true} pageTitle={'Endereço'} />
             <All.MarginDiv />
             {isLoading && <LoadingDiv><img src={gif} alt="gif" /></LoadingDiv>}
-            {!isLoading && addressData && <PrefilledAddressForm defaultValues={{
-                street: addressData.address.street,
-                number: addressData.address.number,
-                neighbourhood: addressData.address.neighbourhood,
-                city: addressData.address.city,
-                state: addressData.address.state,
-                complement: addressData.address.complement
-            }} />}
+            {!isLoading && addressData && <PrefilledAddressForm defaultValues={addressValues[0]} />}
             {!isLoading && !addressData && error}
 
         </FormsPageContainer>

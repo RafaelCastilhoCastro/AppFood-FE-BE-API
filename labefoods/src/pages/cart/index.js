@@ -96,9 +96,9 @@ export function CartPage() {
     }
 
 
-    const cartInfo = profileData && profileAddress.map(profile => {
+    const cartInfo = profileData && profileAddress.map((profile, index) => {
         return (
-            <>
+            <All.CartDiv key={index}>
                 <All.AddressDiv>
                     <All.AddressText>Meu Endereço</All.AddressText>
                     <All.MyAddressText>{profile.user.address}</All.MyAddressText>
@@ -131,12 +131,7 @@ export function CartPage() {
                         </All.OptionDiv>
                     </All.PaymentOptions>
                 </All.PaymentDiv>
-                {
-                    storedArray.current?.length > 0 ?
-                        <All.CartButton onClick={placeOrder}>Confirmar</All.CartButton> :
-                        <All.CartButton disabled>Confirmar</All.CartButton>
-                }
-            </>
+            </All.CartDiv>
         );
 
     })
@@ -147,6 +142,11 @@ export function CartPage() {
             {isLoadingProfile && <LoadingDiv><img src={gif} alt="gif" /></LoadingDiv>}
             {!isLoadingProfile && profileData && cartInfo}
             {!isLoadingProfile && !profileData && errorProfile}
+            {
+                storedArray.current?.length > 0 ?
+                    <All.CartButton onClick={placeOrder}>Confirmar</All.CartButton> :
+                    <All.CartButton disabled>Confirmar</All.CartButton>
+            }
             <FooterMenu selectedPage={'Cart'} />
         </All.CartPageContainer>
     );

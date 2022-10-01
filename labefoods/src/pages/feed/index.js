@@ -12,7 +12,6 @@ import { BASE_URL } from "../../constants/constants";
 import { useRequestData } from "../../hooks/useRequestData";
 import gif from '../../img/loading-gif.gif'
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import { margin } from "@mui/system";
 import { useRef } from "react";
 
 export function FeedPage() {
@@ -29,6 +28,8 @@ export function FeedPage() {
     const [activeOrderData,
         loadingActiveOrder,
         errorActiveOrder] = useRequestData(`${BASE_URL}active-order`)
+
+    const activeOrderArray = [{ ...activeOrderData }]
 
     // STATES
 
@@ -128,6 +129,23 @@ export function FeedPage() {
         }
     })
 
+    const orderAlert = activeOrderData && activeOrderData.order && activeOrderArray.map((order, index) => {
+        return (
+            <All.ActiveOrderAlert key={index}>
+                <div>
+                    <AccessTimeIcon style={{ color: '#fff' }} fontSize="large" />
+                </div>
+                <All.ActiveTextDiv>
+                    <All.ActiveTitle>Pedido em andamento</All.ActiveTitle>
+                    <All.ActiveRestaurantName>{order.order.restaurantName}</All.ActiveRestaurantName>
+                    <All.ActiveSubtotal>
+                        SUBTOTAL R${order.order.totalPrice.toFixed(2)}
+                    </All.ActiveSubtotal>
+                </All.ActiveTextDiv>
+            </All.ActiveOrderAlert>
+        )
+    })
+
     if (activeOrderData) {
         margin.current = '165px'
     }
@@ -165,21 +183,8 @@ export function FeedPage() {
                 {!loadingRestaurants && !restaurantsData && errorRestaurants}
             </All.RestaurantCardContainer>
 
+            {!loadingActiveOrder && activeOrderData && orderAlert}
             {!loadingActiveOrder && !activeOrderData && errorActiveOrder}
-            {!loadingActiveOrder && activeOrderData && activeOrderData.order &&
-                <All.ActiveOrderAlert>
-                    <div>
-                        <AccessTimeIcon style={{ color: '#fff' }} fontSize="large" />
-                    </div>
-                    <All.ActiveTextDiv>
-                        <All.ActiveTitle>Pedido em andamento</All.ActiveTitle>
-                        <All.ActiveRestaurantName>{activeOrderData.order.restaurantName}</All.ActiveRestaurantName>
-                        <All.ActiveSubtotal>
-                            SUBTOTAL R${activeOrderData.order.totalPrice.toFixed(2)}
-                        </All.ActiveSubtotal>
-                    </All.ActiveTextDiv>
-                </All.ActiveOrderAlert>
-            }
 
             <FooterMenu selectedPage={'Feed'} />
         </All.FeedContainer>

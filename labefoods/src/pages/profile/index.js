@@ -79,8 +79,13 @@ export function ProfilePage() {
         )
     })
 
+    const logout = () => {
+        localStorage.clear()
+        navigate("/login")
+    }
+
     return (
-        <div>
+        <All.ProfileContainer>
             <Header pageTitle={'Meu perfil'} />
             {isLoadingProfile && <LoadingDiv><img src={gif} alt="gif" /></LoadingDiv>}
             {!isLoadingProfile && profileData && profileInfo}
@@ -88,7 +93,8 @@ export function ProfilePage() {
             {isLoadingOrders && <LoadingDiv><img src={gif} alt="gif" /></LoadingDiv>}
             {!isLoadingOrders && ordersData && ordersHistory}
             {!isLoadingOrders && !ordersData && errorOrders}
+            <All.LogoutButton onClick={logout}>Sair</All.LogoutButton>
             <FooterMenu selectedPage={'Profile'} />
-        </div>
+        </All.ProfileContainer>
     );
 }
