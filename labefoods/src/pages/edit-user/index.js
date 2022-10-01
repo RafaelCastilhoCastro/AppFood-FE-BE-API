@@ -20,17 +20,23 @@ export function EditUserPage() {
 
     const [profileData, isLoading, error] = useRequestData(`${BASE_URL}profile`)
 
+    const profileArray = [{...profileData}]
+
+    const profileValues = profileData && profileArray.map(value => {
+        return {
+            name: value.user.name,
+            email: value.user.email,
+            cpf: value.user.cpf
+        }
+    })
+
 
     return (
         <FormsPageContainer>
             <Header buttonExists={true} pageTitle={'Editar'} />
             <All.MarginDiv />
             {isLoading && <LoadingDiv><img src={gif} alt="gif" /></LoadingDiv>}
-            {!isLoading && profileData && <PrefilledUserForm defaultValues={{
-                name: profileData.user.name,
-                email: profileData.user.email,
-                cpf: profileData.user.cpf
-            }} />}
+            {!isLoading && profileData && <PrefilledUserForm defaultValues={profileValues[0]} />}
             {!isLoading && !profileData && error}
 
         </FormsPageContainer>

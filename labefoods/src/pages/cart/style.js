@@ -7,6 +7,11 @@ export const CartPageContainer = styled.div`
   min-height: 100vh;
 `
 
+export const CartDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
 export const AddressDiv = styled.div`
   display: flex;
   flex-direction: column;
