@@ -146,7 +146,7 @@ export function FeedPage() {
         )
     })
 
-    if (activeOrderData) {
+    if (activeOrderData && activeOrderData.order) {
         margin.current = '165px'
     }
 
