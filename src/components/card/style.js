@@ -162,12 +162,3 @@ export const SetQty = styled.div`
     background-position: calc(100% - 16px) center;
   }
 `
-
-export const TransparentQtyMask = styled.div`
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 100;
-`
