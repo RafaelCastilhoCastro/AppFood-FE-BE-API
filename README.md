@@ -4,7 +4,7 @@
 
 Aplicação web mobile que simula o Ifood, alimentando-se de uma API. O usuário pode se cadastrar, alterar seus dados cadastrais, fazer os pedidos, acessar o carrinho de compras, finalizar a compra e acompanhar o pedido.
 
-### :satellite: [Link do deploy no Render](https://projeto-ifuture.surge.sh/)
+### :satellite: [Link do deploy do projeto no Render](https://projeto-ifuture.surge.sh/)
 
 ## 💻 Funcionalidades
 
