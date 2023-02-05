@@ -1,14 +1,10 @@
-# Projeto LabeFood
-
 ![logo](https://user-images.githubusercontent.com/102267210/193479015-a2804e1c-c166-46fb-a65f-4e9099454881.svg)
 
-## 📄 Sobre
+# Projeto AppFood
 
-Aplicativo web que simula o Ifood, onde o usuário faz os pedidos, acessa o carrinho de compras, finaliza a compra, altera seus dados e verifica o tempo de espera do pedido.
+Aplicação web mobile que simula o Ifood, alimentando-se de uma API. O usuário pode se cadastrar, alterar seus dados cadastrais, fazer os pedidos, acessar o carrinho de compras, finalizar a compra e acompanhar o pedido.
 
-## 🔗 Link para acessar
-
-https://ifood-app.surge.sh/
+### :satellite: [Link do deploy no Render](https://projeto-ifuture.surge.sh/)
 
 ## 💻 Funcionalidades
 
@@ -59,12 +55,3 @@ https://ifood-app.surge.sh/
 - Ao editar as informações, caso insira alguma informação incorreta ou deixe de inserir alguma informação obrigatória, o usuário deve receber uma mensagem de erro clara.
 - O usuário deve ser capaz de visualizar o seu histórico de pedidos concluídos.
 - Caso queira, o usuário pode clicar no botaão "sair" para fazer o logout.
-
-## 👩‍💻 Desenvolvedores:
-
-- João Vitor Gomes Lara Resende.
-- Rafael Gonçalves Quintanilha Guimarães.
-- Nei Luis Duarte Tavares Junior.
-- Rafael Castilho Castro.
-- Lucas Ferreira Arruda.
-
